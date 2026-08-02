@@ -21,7 +21,15 @@ function issueTokens(user: PersistedUser, response: import('express').Response):
   const claims = { sub: user._id.toString(), role: user.role };
   const accessToken = jwt.sign(claims, env.jwtAccessSecret, { expiresIn: '15m' });
   const refreshToken = jwt.sign(claims, env.jwtRefreshSecret, { expiresIn: '30d' });
-  response.cookie('refreshToken', refreshToken, { httpOnly: true, secure: env.nodeEnv === 'production', sameSite: 'lax', maxAge: 30 * 24 * 60 * 60 * 1000, path: '/api/auth' });
+  response.cookie('refreshToken', refreshToken, {
+    httpOnly: true,
+    // Vercel and Railway are different sites, so a production refresh cookie
+    // must be allowed in credentialed cross-site requests.
+    secure: env.nodeEnv === 'production',
+    sameSite: env.nodeEnv === 'production' ? 'none' : 'lax',
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    path: '/api/auth',
+  });
   return accessToken;
 }
 

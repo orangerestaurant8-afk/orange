@@ -9,7 +9,12 @@ dotenv.config({ path: resolve(process.cwd(), '.env') });
 export const env = {
   port: Number(process.env.PORT ?? 5000),
   mongoUri: process.env.MONGODB_URI,
-  frontendOrigin: process.env.FRONTEND_ORIGIN ?? 'http://localhost:3000',
+  // A comma-separated list lets production support a Vercel custom domain and
+  // preview deployments without relaxing CORS for every origin.
+  frontendOrigins: (process.env.FRONTEND_ORIGIN ?? 'http://localhost:3000')
+    .split(',')
+    .map((origin) => origin.trim().replace(/\/$/, ''))
+    .filter(Boolean),
   jwtAccessSecret: process.env.JWT_ACCESS_SECRET ?? 'development-only-access-secret-change-me',
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET ?? 'development-only-refresh-secret-change-me',
   adminEmail: process.env.ADMIN_EMAIL ?? 'admin@orange.online',

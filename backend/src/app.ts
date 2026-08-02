@@ -24,7 +24,14 @@ app.use(helmet({
     },
   },
 }));
-app.use(cors({ origin: env.frontendOrigin, credentials: true }));
+app.use(cors({
+  origin(origin, callback) {
+    // Requests made outside a browser do not include an Origin header.
+    if (!origin || env.frontendOrigins.includes(origin.replace(/\/$/, ''))) return callback(null, true);
+    return callback(new Error('Origin is not allowed by CORS'));
+  },
+  credentials: true,
+}));
 app.use(express.json());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, limit: 300, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: { code: 'RATE_LIMITED', message: 'Too many requests. Please try again later.' } } }));
 const authRateLimit = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: { code: 'RATE_LIMITED', message: 'Too many authentication attempts. Please try again later.' } } });

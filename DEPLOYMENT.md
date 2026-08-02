@@ -1,38 +1,52 @@
-# Deployment
+# Production deployment: Vercel + Railway
 
-## Frontend — Vercel
+The frontend and API can be deployed independently. Deploy the Railway API first so its public URL is available to the Vercel build.
 
-1. Import this repository into Vercel and select `frontend` as the project root.
-2. Set `NEXT_PUBLIC_API_URL` to `https://<your-render-service>.onrender.com/api`.
-3. Set `NEXT_PUBLIC_SITE_URL` to the production Vercel URL (or custom domain), for example `https://orange.example.com`.
-4. Deploy. Rebuild the frontend whenever either public variable changes.
+## 1. MongoDB Atlas
 
-## Backend — Render
+Create a database user and a production database. In Atlas Network Access, allow Railway to reach the cluster (for initial setup, `0.0.0.0/0` works; restrict it later if possible). Copy the connection string for `MONGODB_URI`.
 
-1. Create a Render Web Service from this repository with `backend` as the root directory.
-2. Use build command `npm install && npm run build` and start command `npm start`.
-3. Configure these environment variables:
-   - `PORT` (Render provides this automatically)
-   - `MONGODB_URI` — Atlas connection URI
-   - `FRONTEND_ORIGIN` — exact Vercel production URL, without a trailing slash
-   - `JWT_ACCESS_SECRET` and `JWT_REFRESH_SECRET` — long, distinct random secrets
-   - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET`
-   - `NODE_ENV=production`
-4. Deploy and copy the service’s HTTPS URL into Vercel’s `NEXT_PUBLIC_API_URL`.
+## 2. Backend on Railway
 
-## MongoDB Atlas
+1. Create a **New Project → Deploy from GitHub repo** and choose this repository.
+2. In the service settings, set **Root Directory** to `backend`. Railway will use `backend/railway.json` for the build, start, restart, and health-check settings.
+3. Add the variables in `backend/.env.example`, using real values. Set `NODE_ENV` to `production`; Railway provides `PORT` automatically.
+4. Generate a public domain. Confirm `https://<your-api>.up.railway.app/api/health` returns `{"status":"ok"}`.
 
-1. Create a production database user with a strong password and only the required database permissions.
-2. Add the Render service’s outbound network access according to your Atlas network policy. For an initial deployment, Atlas’s temporary `0.0.0.0/0` allowance is possible but should be narrowed when practical.
-3. Put the URI in Render as `MONGODB_URI`; never commit it to `.env.example`.
+Leave `FRONTEND_ORIGIN` as a placeholder until Vercel deploys. It is a comma-separated allowlist, so it can contain both your custom domain and Vercel production URL, for example:
 
-## CORS and cookies
+```text
+https://orange.example.com,https://orange.vercel.app
+```
 
-Set `FRONTEND_ORIGIN` to the exact deployed frontend origin. The API already sends credentialed CORS responses for that origin, allowing the httpOnly refresh cookie flow. If you add a preview domain or custom domain, update `FRONTEND_ORIGIN` and redeploy the backend. For cross-site frontend/API domains in production, set the refresh cookie `sameSite` policy to `none` with `secure: true` if browser testing shows the cookie is not retained.
+## 3. Frontend on Vercel
 
-## Pre-launch checks
+1. Import the same Git repository into Vercel and set **Root Directory** to `frontend`.
+2. Add these production environment variables:
 
-- Confirm `GET /api/health` responds from Render.
-- Sign up/login and confirm `/api/auth/me` succeeds.
-- Upload a menu image from the admin console and confirm its Cloudinary URL is saved.
-- Confirm an admin endpoint returns `403` to a customer token.
+```text
+NEXT_PUBLIC_API_URL=https://<your-api>.up.railway.app/api
+NEXT_PUBLIC_SITE_URL=https://<your-project>.vercel.app
+```
+
+Add `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` only when the address picker is needed. Its Google Cloud referrer restriction should include your Vercel/custom domain.
+
+3. Deploy. Copy the resulting Vercel production URL.
+4. In Railway, set `FRONTEND_ORIGIN` to that exact URL (and any custom domain), then redeploy Railway.
+
+`NEXT_PUBLIC_*` variables are compiled into the frontend. Redeploy Vercel whenever `NEXT_PUBLIC_API_URL` or `NEXT_PUBLIC_SITE_URL` changes.
+
+## 4. Verify
+
+- The Railway health URL responds successfully.
+- The Vercel app loads menu data from the API.
+- Customer signup/login and admin login work.
+- An admin can upload an image to Cloudinary.
+- A customer token cannot access admin endpoints.
+
+## Notes
+
+- Never commit `.env`, `.env.local`, or real credentials; use each platform's environment-variable UI.
+- The API only accepts browser requests from `FRONTEND_ORIGIN`. Update it when changing domains.
+- Cross-site refresh cookies are configured with `Secure` and `SameSite=None` in production for the Vercel/Railway setup.
+- Customer OTPs currently log to the backend console and are intentionally not returned in production. Connect an SMS or WhatsApp provider before enabling customer signup/login publicly.
