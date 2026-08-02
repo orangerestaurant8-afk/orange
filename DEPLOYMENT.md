@@ -49,4 +49,4 @@ Add `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` only when the address picker is needed. It
 - Never commit `.env`, `.env.local`, or real credentials; use each platform's environment-variable UI.
 - The API only accepts browser requests from `FRONTEND_ORIGIN`. Update it when changing domains.
 - Cross-site refresh cookies are configured with `Secure` and `SameSite=None` in production for the Vercel/Railway setup.
-- Customer OTPs currently log to the backend console and are intentionally not returned in production. Connect an SMS or WhatsApp provider before enabling customer signup/login publicly.
+- Customer OTPs currently log to the backend console. During private testing, set `EXPOSE_OTP_IN_RESPONSE=true` in Railway to display the code on the verification screen. Remove it or set it to `false` before public launch, then connect an SMS or WhatsApp provider.

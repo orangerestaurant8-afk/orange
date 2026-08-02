@@ -45,7 +45,7 @@ authRouter.post('/signup', validate(signup), async (req, res, next) => {
   try {
     if (await UserModel.exists({ phone: req.body.phone })) return res.status(409).json({ error: { code: 'PHONE_IN_USE', message: 'An account already exists for this phone number' } });
     const code = await sendOtp(req.body.phone, 'signup', { name: req.body.name, email: req.body.email });
-    return res.status(202).json({ data: { message: 'OTP generated. Check the server console during development.', expiresIn: 600, ...(env.nodeEnv !== 'production' ? { developmentOtp: code } : {}) } });
+    return res.status(202).json({ data: { message: 'OTP generated. Check the server console during development.', expiresIn: 600, ...(env.nodeEnv !== 'production' || env.exposeOtpInResponse ? { developmentOtp: code } : {}) } });
   } catch (error) { next(error); }
 });
 
@@ -53,7 +53,7 @@ authRouter.post('/login', validate(login), async (req, res, next) => {
   try {
     if (!await UserModel.exists({ phone: req.body.phone })) return res.status(404).json({ error: { code: 'USER_NOT_FOUND', message: 'No account exists for this phone number' } });
     const code = await sendOtp(req.body.phone, 'login');
-    return res.status(202).json({ data: { message: 'OTP generated. Check the server console during development.', expiresIn: 600, ...(env.nodeEnv !== 'production' ? { developmentOtp: code } : {}) } });
+    return res.status(202).json({ data: { message: 'OTP generated. Check the server console during development.', expiresIn: 600, ...(env.nodeEnv !== 'production' || env.exposeOtpInResponse ? { developmentOtp: code } : {}) } });
   } catch (error) { next(error); }
 });
 

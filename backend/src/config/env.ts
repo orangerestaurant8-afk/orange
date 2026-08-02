@@ -20,6 +20,8 @@ export const env = {
   adminEmail: process.env.ADMIN_EMAIL ?? 'admin@orange.online',
   adminPassword: process.env.ADMIN_PASSWORD ?? 'orange@123',
   nodeEnv: process.env.NODE_ENV ?? 'development',
+  // Temporary testing switch. Keep disabled for public launches.
+  exposeOtpInResponse: process.env.EXPOSE_OTP_IN_RESPONSE === 'true',
   cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
   cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
