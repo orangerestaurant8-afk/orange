@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Your Cart - Orange Food Pakistan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-primary-fixed-variant": "#783200",
+                    "primary": "#9d4300",
+                    "surface-container": "#e7eefe",
+                    "on-tertiary-container": "#36322c",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-surface-variant": "#584237",
+                    "on-primary-fixed": "#341100",
+                    "surface-variant": "#dce2f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#151c27",
+                    "primary-fixed": "#ffdbca",
+                    "tertiary": "#625e56",
+                    "surface-tint": "#9d4300",
+                    "inverse-surface": "#2a313d",
+                    "surface": "#f9f9ff",
+                    "on-secondary-container": "#596373",
+                    "background": "#f9f9ff",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary-container": "#582200",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#dce2f3",
+                    "primary-container": "#f97316",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#ebf1ff",
+                    "inverse-primary": "#ffb690",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "tertiary-container": "#a09a91",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d3daea",
+                    "secondary-fixed": "#d9e3f6",
+                    "secondary": "#555f6f",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#151c27",
+                    "outline-variant": "#e0c0b1",
+                    "outline": "#8c7164",
+                    "surface-container-high": "#e2e8f8",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-container": "#d6e0f3",
+                    "surface-bright": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "base": "4px",
+                    "xl": "64px",
+                    "sm": "16px",
+                    "container-max": "1280px",
+                    "md": "24px",
+                    "gutter": "20px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            scroll-behavior: smooth;
+        }
+        .custom-shadow-l1 { shadow-[0px_2px_8px_rgba(31,41,55,0.05)] }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-interaction:active { transform: scale(0.96); transition: transform 0.1s; }
+        .summary-gradient { background: linear-gradient(180deg, rgba(249,249,255,0) 0%, rgba(249,249,255,1) 10%); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface dark:bg-background shadow-[0px_2px_8px_rgba(31,41,55,0.05)]">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xs">
+<button class="p-xs rounded-full hover:bg-surface-container transition-colors active-interaction">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Cart</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="hidden md:flex gap-md font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-primary transition-colors" href="#">Lahore</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary" href="#">Karachi</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-primary transition-colors" href="#">Islamabad</a>
+</div>
+<div class="flex items-center gap-xs">
+<button class="material-symbols-outlined text-primary p-xs active-interaction">notifications</button>
+<img class="w-8 h-8 rounded-full border-2 border-primary-container object-cover" data-alt="A professional studio portrait of a young Pakistani male user with a friendly smile, set against a clean minimalist light blue background. The lighting is soft and even, highlighting modern corporate aesthetics. The image has a high-quality, high-resolution feel consistent with a premium food delivery platform profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAthGJriZOPZ5yyMrL4p6L-dPrXD8yuzsXsmExGrduYDiUW555REnbSoqPjIWPbvEZRxOqH_VNJ9RWdFP2kkJSmRVK3srMNer6jkAHfYatBojd5FhYg_4-nfUjg3VmSVMrSQvSR9UtAQ7WZvFXv5whexQ70cArlP8OcBP4CrC_oK69YBuBml_Vt9mE1zar2b5HeQ4L79Lx8UxbJXVmbPzxBCbKBNuWM6OnNBRj1HRXXzPj7D5PLsUyl_Q"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-48 px-md max-w-2xl mx-auto">
+<!-- Delivery Address Section -->
+<div class="bg-surface-container-lowest rounded-xl p-sm mb-md flex items-center justify-between border border-outline-variant/30">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Delivery to Home</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">DHA Phase 6, Karachi</p>
+</div>
+</div>
+<button class="text-primary font-label-md text-label-md active-interaction">Change</button>
+</div>
+<!-- Cart Items List -->
+<div class="space-y-sm">
+<!-- Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm flex gap-sm border border-outline-variant/20 shadow-[0px_2px_8px_rgba(31,41,55,0.05)]">
+<div class="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of an authentic Karachi Beef Biryani in a traditional clay pot, showing long-grain basmati rice tinted with saffron and succulent pieces of spiced beef. Steam rises gently against a neutral, high-key background. The food styling is appetizing, rich in texture, and vibrant in color, matching the energetic Orange brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMaPG5my1yOkg-Q5gipfzAIftKzVWjftLPhwI2PV0u5ckrgdkYyXvuPxhhAdZejkEndnYhc7HEbzffriu-ZYbNr--5dO35cxiz2yNoetopC9eGIAcwvmQj1F7YLyugw0gUi7tRMwVfr6U1U4B9RjSkTaa45GXO8fvymIsbjshAayaWlnMPu1cUadIKj5KWB6czjB61OUp0944Q5KX9geLYAuvCZANTviDn4dJLWAUq6aGQAlAZ0F66vA"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Special Beef Biryani</h3>
+<button class="material-symbols-outlined text-on-surface-variant text-sm">close</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Extra Raita &amp; Salad</p>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">Rs. 850</span>
+<div class="flex items-center bg-secondary-container rounded-full px-base py-1">
+<button class="w-8 h-8 flex items-center justify-center text-on-secondary-container active-interaction"><span class="material-symbols-outlined">remove</span></button>
+<span class="w-8 text-center font-label-md">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-secondary-container active-interaction"><span class="material-symbols-outlined">add</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm flex gap-sm border border-outline-variant/20 shadow-[0px_2px_8px_rgba(31,41,55,0.05)]">
+<div class="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Six pieces of crispy, golden-brown Chicken Seekh Kababs served on a minimalist white plate with a side of mint chutney. The lighting is bright and airy, emphasizing the charred texture of the kababs. The composition is clean and focused, ideal for a premium food app's high-efficiency UI design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyQe3t0iFSDA-GWxjRwdJrUVAez8RCBVHiiXsaCQa0x1mtMiB-ChGkrPBrX7GyG1Xj1-6-cJWbL1NLI0jdMcNWtjJTylAvo5d-ht1Zq_hrwW_7WQLHvhr3Ffdp-ObtmLDjWTG_ox66YZaSMXVxgpJkf8f7yDIbQcus0HKnDCDqK8frTJL9h6g43dCEliLOSl0TctUo0HZ8q0G9RMX1yTgpNcEwtfQ3LUkdm1B2PObEDsVQcJtxiJwVgw"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Chicken Seekh Kabab</h3>
+<button class="material-symbols-outlined text-on-surface-variant text-sm">close</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">6 Pieces</p>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">Rs. 540</span>
+<div class="flex items-center bg-secondary-container rounded-full px-base py-1">
+<button class="w-8 h-8 flex items-center justify-center text-on-secondary-container active-interaction"><span class="material-symbols-outlined">remove</span></button>
+<span class="w-8 text-center font-label-md">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-secondary-container active-interaction"><span class="material-symbols-outlined">add</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm flex gap-sm border border-outline-variant/20 shadow-[0px_2px_8px_rgba(31,41,55,0.05)]">
+<div class="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A refreshing glass of chilled Garlic Nan with a side of traditional Doodh Patti Chai in a transparent glass, bubbles visible. The background is a soft, out-of-focus Pakistani cafe setting. High-key lighting highlights the richness of the tea. The visual style is minimalist yet inviting, adhering to the Modern Corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB95qMTABPQNbVpmcoL_MRNodILfWlrkW2dOopGDQ352Dxn_m2lsQjt_9Oa-D852a743KbybP27iUZwdDr9z8vbh0uA8AAakPtFNnMtMjL0y-PS268peZo_c8aXhDMy2ls4iEs9uYRJGjcNaO4TPnnr5mKpG80EhbbasVWZz5aLGbyB8FdnqUtGBALc4gX27ObmZPT94kvF34KFj4SWuHngmOKZHRXTyaEanYhwHAXt6z05kqDWsaTD0g"/>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Classic Doodh Patti</h3>
+<button class="material-symbols-outlined text-on-surface-variant text-sm">close</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Large Cup</p>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">Rs. 60</span>
+<div class="flex items-center bg-secondary-container rounded-full px-base py-1">
+<button class="w-8 h-8 flex items-center justify-center text-on-secondary-container active-interaction"><span class="material-symbols-outlined">remove</span></button>
+<span class="w-8 text-center font-label-md">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-secondary-container active-interaction"><span class="material-symbols-outlined">add</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Order Summary (Collapsible) -->
+<section class="mt-xl pb-24" id="order-summary">
+<button class="w-full flex items-center justify-between py-sm border-t border-outline-variant/30 active-interaction" onclick="toggleSummary()">
+<span class="font-headline-sm text-headline-sm text-on-surface">Order Summary</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="summary-icon">expand_less</span>
+</button>
+<div class="space-y-xs overflow-hidden transition-all duration-300 max-h-96" id="summary-content">
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Subtotal</span>
+<span class="font-body-md text-body-md">Rs. 1,450</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Delivery Fee</span>
+<span class="font-body-md text-body-md">Rs. 99</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Platform Fee</span>
+<span class="font-body-md text-body-md">Rs. 20</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-md text-body-md">Taxes (GST)</span>
+<span class="font-body-md text-body-md">Rs. 188</span>
+</div>
+<div class="pt-sm mt-sm border-t border-dashed border-outline-variant flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface">Total</span>
+<span class="font-price-display text-price-display text-primary">Rs. 1,757</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Checkout Bar (Sticky) -->
+<div class="fixed bottom-16 left-0 w-full z-[60] px-sm pb-4">
+<div class="max-w-2xl mx-auto bg-primary-container rounded-2xl flex items-center justify-between p-md shadow-lg active-interaction cursor-pointer">
+<div class="flex flex-col">
+<span class="text-white/80 font-label-md text-label-md">Total Price</span>
+<span class="text-white font-price-display text-price-display">Rs. 1,757</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="text-white font-headline-sm text-headline-sm">Checkout</span>
+<span class="material-symbols-outlined text-white">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1 rounded-xl active-interaction" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1 rounded-xl active-interaction" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 active-interaction" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1 rounded-xl active-interaction" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        function toggleSummary() {
+            const content = document.getElementById('summary-content');
+            const icon = document.getElementById('summary-icon');
+            if (content.style.maxHeight === '0px') {
+                content.style.maxHeight = '384px'; // Max-h-96
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Initialize state
+        document.addEventListener('DOMContentLoaded', () => {
+            const content = document.getElementById('summary-content');
+            // Start expanded as requested for "showing" the summary at the bottom
+            content.style.maxHeight = '384px';
+        });
+
+        // Simple button ripple/active effects
+        document.querySelectorAll('.active-interaction').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

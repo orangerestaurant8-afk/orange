@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monster Zinger - Orange Food Pakistan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "outline": "#8c7164",
+                    "on-surface-variant": "#584237",
+                    "on-primary-fixed": "#341100",
+                    "surface-tint": "#9d4300",
+                    "on-tertiary-container": "#36322c",
+                    "surface": "#f9f9ff",
+                    "outline-variant": "#e0c0b1",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "surface-container": "#e7eefe",
+                    "secondary": "#555f6f",
+                    "secondary-container": "#d6e0f3",
+                    "tertiary-fixed": "#e9e1d8",
+                    "primary": "#9d4300",
+                    "inverse-surface": "#2a313d",
+                    "surface-variant": "#dce2f3",
+                    "primary-container": "#f97316",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f0f3ff",
+                    "on-background": "#151c27",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "primary-fixed": "#ffdbca",
+                    "tertiary": "#625e56",
+                    "surface-container-high": "#e2e8f8",
+                    "on-surface": "#151c27",
+                    "on-secondary-container": "#596373",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#a09a91",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-highest": "#dce2f3",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d3daea",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary-container": "#582200",
+                    "inverse-primary": "#ffb690",
+                    "background": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "sm": "16px",
+                    "lg": "40px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "md": "24px",
+                    "gutter": "20px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "price-display": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .swipe-sheet {
+            transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        .option-card {
+            transition: all 0.2s ease;
+        }
+
+        .option-card:active {
+            transform: scale(0.96);
+        }
+
+        .sticky-bar {
+            box-shadow: 0px -4px 12px rgba(31, 41, 55, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- Header Navigation (Hidden/Transparent initially, but required for context) -->
+<header class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-sm">
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md rounded-full text-on-surface shadow-sm" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex gap-xs">
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md rounded-full text-on-surface shadow-sm">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md rounded-full text-on-surface shadow-sm">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="relative flex-1 pb-32">
+<!-- Full-width High Quality Image -->
+<div class="w-full h-[353px] md:h-[442px] relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional food photography shot of a 'Monster Zinger' burger. The burger features two massive, crispy golden-brown fried chicken fillets stacked high with melted cheddar cheese dripping between them. Fresh, vibrant green lettuce and thick slices of ripe tomato peek out from under a toasted, glossy brioche bun sprinkled with sesame seeds. The lighting is warm and directional, emphasizing the crunchy texture of the breading and the juicy interior of the chicken against a soft-focus Pakistani cafe background. Vibrant orange and warm cream tones dominate the aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2pKSEEc5MNRmHbr0QonPLj8TL2lHmh0JIS1aV1sWxWyhC6RcUkTTyXngW4ZlnJI59zXhIyfFMK4KnPWPXbqXAdUj9x5wh_S67gEakCO_Ge3fauE3-2CcUn1gBWwvXHwzwlULlQJ9xxgQw5SAw8lzpoHOJ-1baFsa24bin0Eq4a5Dl7eWOS97Zs7pT54KJO9OegMMMHC1Y-QbjM86WjEP57QZ1Waig7qlNhnDOBozkgEv7BwDtyx4iNQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+<!-- Detail Swipe-up Sheet Container -->
+<div class="swipe-sheet relative -mt-8 bg-surface rounded-t-[32px] px-md pt-sm min-h-[530px] shadow-2xl z-10 border-t border-outline-variant/20">
+<!-- Pull Handle -->
+<div class="w-12 h-1.5 bg-outline-variant/40 rounded-full mx-auto mb-md"></div>
+<!-- Item Identity -->
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-xs">Monster Zinger</h1>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.8 (1.2k+ reviews)</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-price-display text-price-display text-primary block">Rs. 650</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Incl. taxes</span>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg leading-relaxed">
+                The ultimate challenge for your hunger. Two oversized, hand-breaded spicy Zinger fillets, double melted cheese, spicy mayo, and fresh veggies in our signature brioche bun.
+            </p>
+<!-- Customization Section -->
+<form class="space-y-lg" id="burger-config">
+<!-- Size Selector -->
+<section>
+<div class="flex justify-between items-center mb-sm">
+<h3 class="font-headline-sm text-headline-sm">Select Size</h3>
+<span class="bg-surface-container-high px-xs py-0.5 rounded text-label-md text-on-surface-variant">Required</span>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="size" type="radio" value="regular"/>
+<div class="peer-checked:border-primary peer-checked:bg-primary/5 border border-outline-variant rounded-xl p-md flex flex-col items-center transition-all">
+<span class="font-label-md text-label-md mb-xs">Regular</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Standard Fit</span>
+</div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="size" type="radio" value="monster"/>
+<div class="peer-checked:border-primary peer-checked:bg-primary/5 border border-outline-variant rounded-xl p-md flex flex-col items-center transition-all">
+<span class="font-label-md text-label-md mb-xs">Large</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">+ Rs. 150</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Spice Level -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-sm">Spice Level</h3>
+<div class="flex gap-xs overflow-x-auto no-scrollbar pb-xs">
+<label class="flex-none cursor-pointer">
+<input class="peer sr-only" name="spice" type="radio" value="mild"/>
+<div class="px-md py-sm border border-outline-variant rounded-full font-label-md text-label-md peer-checked:bg-inverse-surface peer-checked:text-white transition-all">
+                                Mild
+                            </div>
+</label>
+<label class="flex-none cursor-pointer">
+<input checked="" class="peer sr-only" name="spice" type="radio" value="medium"/>
+<div class="px-md py-sm border border-outline-variant rounded-full font-label-md text-label-md peer-checked:bg-inverse-surface peer-checked:text-white transition-all">
+                                Medium
+                            </div>
+</label>
+<label class="flex-none cursor-pointer">
+<input class="peer sr-only" name="spice" type="radio" value="hot"/>
+<div class="px-md py-sm border border-outline-variant rounded-full font-label-md text-label-md peer-checked:bg-error peer-checked:text-white transition-all">
+                                Hot 🔥
+                            </div>
+</label>
+</div>
+</section>
+<!-- Extra Toppings (Bento-style list) -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-sm">Add Extras</h3>
+<div class="space-y-xs">
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-xl cursor-pointer">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">drive_file_rename</span>
+<div>
+<p class="font-label-md text-label-md">Extra Cheese Slice</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rs. 60</p>
+</div>
+</div>
+<input class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-xl cursor-pointer">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">egg</span>
+<div>
+<p class="font-label-md text-label-md">Fried Egg</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rs. 80</p>
+</div>
+</div>
+<input class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-md bg-surface-container-low rounded-xl cursor-pointer">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">layers</span>
+<div>
+<p class="font-label-md text-label-md">Beef Bacon Strips</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rs. 120</p>
+</div>
+</div>
+<input class="w-6 h-6 rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</label>
+</div>
+</section>
+<!-- Special Instructions -->
+<section>
+<h3 class="font-headline-sm text-headline-sm mb-sm">Special Instructions</h3>
+<textarea class="w-full p-md bg-white border border-outline-variant rounded-xl font-body-md focus:outline-none focus:ring-2 focus:ring-primary-container min-h-[100px] transition-all" placeholder="E.g. No mayo, extra napkins please..."></textarea>
+</section>
+</form>
+</div>
+</main>
+<!-- Sticky Bottom Bar -->
+<footer class="fixed bottom-0 left-0 right-0 z-[60] bg-surface-container-lowest border-t border-outline-variant/10 p-md sticky-bar">
+<div class="max-w-container-max mx-auto flex items-center justify-between gap-md">
+<!-- Quantity Stepper -->
+<div class="flex items-center bg-surface-container-high rounded-full px-xs py-1">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:text-primary transition-colors" onclick="decrementQty()">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<span class="w-8 text-center font-price-display" id="qty">1</span>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:text-primary transition-colors" onclick="incrementQty()">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Primary CTA -->
+<button class="flex-1 bg-primary-container text-white py-md px-lg rounded-xl font-headline-sm flex justify-between items-center shadow-lg active:scale-95 transition-all">
+<span>Add to Cart</span>
+<span class="font-price-display" id="total-price">Rs. 650</span>
+</button>
+</div>
+</footer>
+<script>
+        let quantity = 1;
+        const basePrice = 650;
+        const qtyElement = document.getElementById('qty');
+        const priceElement = document.getElementById('total-price');
+
+        function updateDisplay() {
+            qtyElement.innerText = quantity;
+            priceElement.innerText = `Rs. ${quantity * basePrice}`;
+        }
+
+        function incrementQty() {
+            quantity++;
+            updateDisplay();
+        }
+
+        function decrementQty() {
+            if (quantity > 1) {
+                quantity--;
+                updateDisplay();
+            }
+        }
+
+        // Micro-interaction for the bottom bar appearance
+        window.addEventListener('scroll', () => {
+            const footer = document.querySelector('.sticky-bar');
+            if (window.scrollY > 100) {
+                footer.classList.remove('translate-y-full');
+            }
+        });
+    </script>
+</body></html>

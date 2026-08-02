@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f9f9ff",
+                    "outline": "#8c7164",
+                    "tertiary-container": "#a09a91",
+                    "primary-fixed": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-primary-container": "#582200",
+                    "on-surface": "#151c27",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#36322c",
+                    "on-primary-fixed-variant": "#783200",
+                    "secondary-container": "#d6e0f3",
+                    "outline-variant": "#e0c0b1",
+                    "surface-container-highest": "#dce2f3",
+                    "on-secondary-container": "#596373",
+                    "tertiary-fixed": "#e9e1d8",
+                    "surface-tint": "#9d4300",
+                    "on-secondary-fixed": "#121c2a",
+                    "tertiary": "#625e56",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#341100",
+                    "surface": "#f9f9ff",
+                    "secondary": "#555f6f",
+                    "primary-fixed-dim": "#ffb690",
+                    "surface-variant": "#dce2f3",
+                    "surface-container-low": "#f0f3ff",
+                    "surface-container": "#e7eefe",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#d9e3f6",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "surface-container-high": "#e2e8f8",
+                    "primary": "#9d4300",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2a313d",
+                    "background": "#f9f9ff",
+                    "surface-dim": "#d3daea",
+                    "on-surface-variant": "#584237",
+                    "primary-container": "#f97316",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-primary": "#ffb690",
+                    "on-background": "#151c27"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "lg": "40px",
+                    "sm": "16px",
+                    "container-max": "1280px",
+                    "gutter": "20px",
+                    "md": "24px",
+                    "xl": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .otp-input:focus {
+            box-shadow: 0 0 0 2px #f9731633;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+        }
+        .hide-step {
+            display: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-surface-bright font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left Side: Visual/Branding (Hidden on mobile) -->
+<div class="hidden md:flex md:w-1/2 lg:w-3/5 relative bg-primary items-center justify-center overflow-hidden">
+<!-- Animated Background Shader (Optional Placeholder if requested) -->
+<!-- <webgl-shader src="{{DATA:ANIMATION:ANIMATION_1}}" class="absolute inset-0 w-full h-full opacity-40"></webgl-shader> -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary via-primary-container/80 to-primary-fixed/40"></div>
+<div class="relative z-10 w-full h-full flex flex-col">
+<div class="p-xl">
+<h1 class="font-display-lg text-display-lg text-white mb-xs">Orange</h1>
+<p class="font-headline-sm text-headline-sm text-white/90">Authentic Flavors of Karachi, Delivered.</p>
+</div>
+<!-- Food Grid Layout -->
+<div class="flex-grow grid grid-cols-2 gap-sm p-xl pt-0">
+<div class="rounded-xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A macro close-up of succulent Karachi-style beef seekh kababs sizzling on a charcoal grill, with embers glowing underneath. The lighting is warm and cinematic, highlighting the juices and spices. The overall aesthetic is high-end food photography with a rich, vibrant orange-toned color grade." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCizOrrgIGxcG3yEyR0CthNO7iBku7mBfK6Omz2JuphxN_D9xEBiPlP13OL5ZGo8rngA2HXkuY2EAXiDjATYWM1Ks0o1F4xQkrZQMFawu0RTp-QmtP5odgsJymo6OudQ_Bl0updF7LLiEysJ2uAV3im49VLhxkSyFUBexsmntufiWLZWqoBX3Ms6M3QGYyeh7a13TDkSXwHgnIGgt9B4qS9HGupjidkH_t6T8w_vwcBf7EQfhsDn0StDw"/>
+</div>
+<div class="rounded-xl overflow-hidden shadow-2xl transform translate-y-lg hover:scale-[1.02] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A steaming hot plate of traditional Karachi biryani with long-grain basmati rice, tender chicken pieces, and vibrant yellow-orange saffron infusion. Scattered coriander and fried onions provide texture. The setting is a clean, modern Pakistani restaurant with soft afternoon sunlight streaming through. Energetic and appetizing mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTYmCQXZH328B2mgmUyRLw2hd9zasqMQwXJmv-5U3-kGbcQj3D-YqTp9tjxz68-dn_v8_55pd8u2WORlCSl5FQOBwWzDkzBdDc70-9D9tTiButq8s1OrGTgptm_vwlRdGp9XWdM4v_2leqphQz7g-yGWkuPGIQ0x9voyyv5gy3y49e0YHB-ruHYDFN7LuosnzGljnAFf1r2VAqYxaaFWP5N-5uxxYWvNCz1isQgyy54gEi7-n2IjCW6g"/>
+</div>
+<div class="col-span-2 h-48 rounded-xl overflow-hidden shadow-2xl transform -translate-y-xs hover:scale-[1.01] transition-transform duration-500">
+<img class="w-full h-full object-cover" data-alt="A delicious spread of various Pakistani fast food items including a crispy zinger burger, loaded fries with cheese sauce, and a spicy roll paratha. The layout is a modern bento-style presentation on a dark charcoal surface, emphasizing the bright orange colors of the sauces and the 'Orange' brand palette. Top-down view, professional studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPkkdezO1TP93zVAuMh9oEjWY7o4tGonAG1W6u9dSk5F6IEeQ2QpQy5Ttz8neMyXAgdVHqWWt1fhxnWonu__KmS6mTLxdYvZ4dpTt-nyauKNnmDj_gywq-XeLQZaHcbBeUfd5JDPKGmr3HM5JGGBJiAeF5DCxUr8i8yl9hS4TJ4vnog3VOuh2kj6DaIG_Nvs-oM0mwmIEzzr3W2qigdrhfmceFlRQjXsRrFGhsVskh5LHPv4XD1MM-3w"/>
+</div>
+</div>
+<div class="p-xl text-white/80 font-label-md text-label-md flex justify-between items-center">
+<span>Over 500+ Top Restaurants</span>
+<span class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                        Trusted by 1M+ Foodies
+                    </span>
+</div>
+</div>
+</div>
+<!-- Right Side: Form Content -->
+<div class="flex-grow md:w-1/2 lg:w-2/5 flex items-center justify-center p-md bg-white">
+<div class="w-full max-w-md animate-fade">
+<!-- Brand Mobile Header -->
+<div class="md:hidden text-center mb-lg">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary-container font-bold">Orange</h1>
+<p class="text-on-surface-variant font-body-sm text-body-sm">The best of Karachi's BBQ &amp; Fast Food</p>
+</div>
+<!-- Step 1: Phone Entry -->
+<div class="space-y-lg" id="step-phone">
+<div class="space-y-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">Welcome Back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Login or Sign up to start your feast.</p>
+</div>
+<form class="space-y-md" id="phone-form">
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-on-surface-variant" for="phone">Phone Number</label>
+<div class="relative group">
+<span class="absolute inset-y-0 left-0 pl-md flex items-center text-on-surface-variant font-semibold">
+                                    +92
+                                </span>
+<input class="w-full pl-[64px] pr-md py-md bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary-container focus:border-primary-container outline-none transition-all font-body-md text-on-surface placeholder:text-outline-variant/60" id="phone" name="phone" placeholder="300 1234567" required="" type="tel"/>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-md rounded-xl font-headline-sm text-headline-sm shadow-md hover:bg-primary transition-all active:scale-95 flex items-center justify-center gap-xs" type="submit">
+                            Continue
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+<div class="relative flex items-center py-sm">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-md text-on-surface-variant font-body-sm text-body-sm uppercase tracking-widest">or</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<div class="space-y-md">
+<button class="w-full border border-outline-variant py-md rounded-xl font-label-md text-label-md text-on-surface flex items-center justify-center gap-md hover:bg-surface-container transition-all">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                            Continue with Google
+                        </button>
+<button class="w-full bg-[#1877F2] text-white py-md rounded-xl font-label-md text-label-md flex items-center justify-center gap-md hover:opacity-90 transition-all">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+</svg>
+                            Continue with Facebook
+                        </button>
+<button class="w-full py-sm font-label-md text-label-md text-primary hover:underline transition-all">
+                            Use Email Address Instead
+                        </button>
+</div>
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant px-lg">
+                        By continuing, you agree to our 
+                        <a class="text-primary font-semibold hover:underline" href="#">Terms of Service</a> and 
+                        <a class="text-primary font-semibold hover:underline" href="#">Privacy Policy</a>.
+                    </p>
+</div>
+<!-- Step 2: OTP Entry (Hidden by default) -->
+<div class="hide-step space-y-lg" id="step-otp">
+<button class="flex items-center gap-xs text-primary font-label-md text-label-md hover:gap-sm transition-all" onclick="toggleStep('step-phone')">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Edit Phone Number
+                    </button>
+<div class="space-y-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface">Verify Identity</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">We've sent a 6-digit code to <span class="font-semibold text-on-surface" id="display-phone">+92 300 1234567</span>.</p>
+</div>
+<div class="flex justify-between gap-xs py-md" id="otp-container">
+<input class="otp-input w-12 h-14 text-center text-headline-md font-bold border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-headline-md font-bold border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-headline-md font-bold border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-headline-md font-bold border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-headline-md font-bold border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" maxlength="1" type="text"/>
+<input class="otp-input w-12 h-14 text-center text-headline-md font-bold border border-outline-variant rounded-lg focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" maxlength="1" type="text"/>
+</div>
+<div class="space-y-md">
+<button class="w-full bg-primary-container text-white py-md rounded-xl font-headline-sm text-headline-sm shadow-md hover:bg-primary transition-all active:scale-95" id="verify-btn">
+                            Verify &amp; Proceed
+                        </button>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Didn't receive code?</span>
+<button class="text-primary font-semibold hover:underline disabled:opacity-50 disabled:no-underline" id="resend-btn">
+                                Resend in <span id="timer">00:59</span>
+</button>
+</div>
+</div>
+<!-- Visual Feedback -->
+<div class="hidden flex items-center justify-center gap-xs p-md bg-green-50 text-green-700 rounded-xl border border-green-200" id="success-feedback">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-label-md">Login Successful! Redirecting...</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Modal (Hidden) -->
+<div class="fixed inset-0 bg-surface/80 backdrop-blur-sm z-50 hidden flex items-center justify-center" id="loading-overlay">
+<div class="flex flex-col items-center gap-md">
+<div class="w-12 h-12 border-4 border-primary-fixed border-t-primary rounded-full animate-spin"></div>
+<p class="font-headline-sm text-primary">Prepping your kitchen...</p>
+</div>
+</div>
+<script>
+        const phoneForm = document.getElementById('phone-form');
+        const phoneInput = document.getElementById('phone');
+        const stepPhone = document.getElementById('step-phone');
+        const stepOtp = document.getElementById('step-otp');
+        const displayPhone = document.getElementById('display-phone');
+        const otpInputs = document.querySelectorAll('.otp-input');
+        const verifyBtn = document.getElementById('verify-btn');
+        const resendBtn = document.getElementById('resend-btn');
+        const timerSpan = document.getElementById('timer');
+
+        // Step Management
+        function toggleStep(step) {
+            if (step === 'step-otp') {
+                stepPhone.classList.add('hide-step');
+                stepOtp.classList.remove('hide-step');
+                stepOtp.classList.add('animate-fade');
+                displayPhone.textContent = `+92 ${phoneInput.value}`;
+                startTimer();
+            } else {
+                stepOtp.classList.add('hide-step');
+                stepPhone.classList.remove('hide-step');
+                stepPhone.classList.add('animate-fade');
+            }
+        }
+
+        phoneForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate API call
+            toggleStep('step-otp');
+        });
+
+        // OTP Input Logic
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('keyup', (e) => {
+                if (e.key >= 0 && e.key <= 9) {
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                } else if (e.key === 'Backspace') {
+                    if (index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                }
+            });
+        });
+
+        verifyBtn.addEventListener('click', () => {
+            document.getElementById('loading-overlay').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('loading-overlay').classList.add('hidden');
+                document.getElementById('success-feedback').classList.remove('hidden');
+                // Simulate redirect
+            }, 1500);
+        });
+
+        // Simple Countdown Timer
+        function startTimer() {
+            let seconds = 59;
+            resendBtn.disabled = true;
+            const interval = setInterval(() => {
+                seconds--;
+                timerSpan.textContent = `00:${seconds < 10 ? '0' + seconds : seconds}`;
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    resendBtn.disabled = false;
+                    timerSpan.parentElement.innerHTML = 'Resend Code Now';
+                }
+            }, 1000);
+        }
+
+        // Phone Input Formatting
+        phoneInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+            e.target.value = value;
+        });
+    </script>
+</body></html>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant Portal - Menu Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3d4756;
+            border-radius: 10px;
+        }
+        .modal-enter {
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#ffdbca",
+                        "secondary-container": "#d6e0f3",
+                        "background": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#dce2f3",
+                        "surface-container": "#e7eefe",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#a09a91",
+                        "primary": "#9d4300",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#36322c",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-primary-container": "#582200",
+                        "primary-container": "#f97316",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#d9e3f6",
+                        "on-tertiary-fixed-variant": "#4a463f",
+                        "inverse-primary": "#ffb690",
+                        "surface-container-high": "#e2e8f8",
+                        "on-secondary-fixed": "#121c2a",
+                        "inverse-surface": "#2a313d",
+                        "surface": "#f9f9ff",
+                        "on-primary-fixed": "#341100",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "secondary": "#555f6f",
+                        "on-tertiary-fixed": "#1e1b15",
+                        "inverse-on-surface": "#ebf1ff",
+                        "tertiary": "#625e56",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-primary-fixed-variant": "#783200",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#151c27",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#e0c0b1",
+                        "surface-tint": "#9d4300",
+                        "on-surface-variant": "#584237",
+                        "tertiary-fixed-dim": "#ccc5bc",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e9e1d8",
+                        "outline": "#8c7164",
+                        "on-background": "#151c27",
+                        "surface-container-highest": "#dce2f3",
+                        "surface-dim": "#d3daea",
+                        "on-secondary-container": "#596373"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "24px",
+                        "gutter": "20px",
+                        "base": "4px",
+                        "xl": "64px",
+                        "xs": "8px",
+                        "lg": "40px",
+                        "sm": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Montserrat"],
+                        "price-display": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface-container-low text-on-surface font-body-md overflow-hidden">
+<!-- Wrapper -->
+<div class="flex h-screen w-full">
+<!-- SideNavBar - JSON Data Implementation -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 bg-inverse-surface dark:bg-surface-container-low docked left-0 h-full w-64 z-50">
+<div class="p-md flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white fill-icon">restaurant</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary-fixed">Orange Merchant</h1>
+<p class="font-label-md text-label-md text-surface-variant opacity-70">Partner Portal</p>
+</div>
+</div>
+<nav class="flex-1 mt-md custom-scrollbar overflow-y-auto">
+<!-- Dashboard -->
+<a class="flex items-center text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 hover:bg-secondary-container/10 transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                    Dashboard
+                </a>
+<!-- Orders -->
+<a class="flex items-center text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 hover:bg-secondary-container/10 transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">list_alt</span>
+                    Orders
+                </a>
+<!-- Menu (ACTIVE) -->
+<a class="flex items-center bg-on-secondary-fixed-variant text-white rounded-lg mx-2 my-1 px-4 py-3 active:opacity-80 transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">restaurant_menu</span>
+                    Menu
+                </a>
+<!-- Analytics -->
+<a class="flex items-center text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 hover:bg-secondary-container/10 transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+                    Analytics
+                </a>
+<!-- Settings -->
+<a class="flex items-center text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 hover:bg-secondary-container/10 transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+                    Settings
+                </a>
+</nav>
+<div class="p-md mt-auto">
+<button class="w-full py-3 bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                    View Live Store
+                </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 flex-1 h-screen overflow-y-auto custom-scrollbar">
+<!-- Header Section -->
+<header class="sticky top-0 z-40 bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] px-xl py-md flex justify-between items-center">
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Menu Management</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Manage items, prices, and availability for your store.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-white px-md py-sm rounded-lg font-label-md text-label-md shadow-sm hover:scale-[1.02] active:scale-95 transition-all" onclick="toggleModal('add-item-modal')">
+<span class="material-symbols-outlined">add_circle</span>
+                    Add New Item
+                </button>
+</header>
+<div class="px-xl py-lg">
+<!-- Filters & Controls -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-lg">
+<div class="flex gap-2 p-1 bg-surface-container rounded-xl">
+<button class="px-md py-2 bg-white text-primary shadow-sm rounded-lg font-label-md text-label-md">All</button>
+<button class="px-md py-2 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">Fast Food</button>
+<button class="px-md py-2 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">Chinese Food</button>
+<button class="px-md py-2 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">BBQ</button>
+</div>
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant bg-white rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-sm" placeholder="Search menu items..." type="text"/>
+</div>
+</div>
+<!-- Menu Table -->
+<div class="bg-white rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border border-outline-variant overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-md py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Item</th>
+<th class="px-md py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Category</th>
+<th class="px-md py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Price</th>
+<th class="px-md py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-md py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-md py-3">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-lg bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A delicious close-up of a premium beef burger with melting cheese, fresh lettuce, and ripe tomatoes on a toasted brioche bun. The lighting is warm and cinematic, highlighting the juicy texture of the meat and the crispness of the vegetables. The background is a soft-focus Pakistani urban street at dusk, emphasizing a modern commercial food aesthetic with vibrant oranges and deep charcoals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkMzfa4XVJR5a9ppDPkiyBeH9XtRfkGLwdytJGQ4HA7Q4QfpPTiT7QCFUeP_bw6v4bwaAZsU254432wMXXi4QqakyPuQIXL6Jkd1AbzLkzvqqKgDXUgMWeH1QJ1UR5g2bIt41jCtibMNKVjvsU-ssWEkfgtB79aPhMRmjOyvxGcd0yGVM92oEJbzcPOcIxK8k6aB7EJqB9nJh1KZTJ-Flw3ZVALNNAUamyDEjcdyTQtdRhU5UV-R0-gg"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Zinger Supreme</div>
+<div class="text-body-sm text-on-surface-variant">Crispy chicken breast, mayo, lettuce</div>
+</div>
+</div>
+</td>
+<td class="px-md py-3">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container text-xs font-semibold">Fast Food</span>
+</td>
+<td class="px-md py-3">
+<div class="font-price-display text-price-display text-primary">Rs. 850</div>
+</td>
+<td class="px-md py-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-3 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded-full transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/10 rounded-full transition-all">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-md py-3">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-lg bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Authentic Pakistani mutton seekh kababs served on a traditional sizzler plate with grilled green chilies and lemon wedges. The steam is visible, captured with high-speed photography against a dark, rustic charcoal background. The lighting is focused and warm, creating high contrast and an appetizing, high-end culinary merchant feel with deep shadows and vibrant textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlGXSDSUjpAd7Zz8UUaRGnSFvMA7J4M8hCxCclvG6Upf447wtTiUbKngsLPFUiKIA6dqb5P57-x1NnT1yfB8GcoREp8-niQM7KBh2Jg4bUf8yCfvV82DXZJ3d6c7B9dzl6QRmT83SDk-p10dgyQ1oTvfrnWP2h3VWNxWzc70bjYFH_t2eKEkH20aQOM0BBqDy9cRpUgZZieW5wljDYNEXnHjOXwooHkbTabM0oGe_9EZ0rJwMp5oDDSA"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Mutton Seekh Kabab</div>
+<div class="text-body-sm text-on-surface-variant">4 pieces, mint chutney, salad</div>
+</div>
+</div>
+</td>
+<td class="px-md py-3">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container text-xs font-semibold">BBQ</span>
+</td>
+<td class="px-md py-3">
+<div class="font-price-display text-price-display text-primary">Rs. 1,200</div>
+</td>
+<td class="px-md py-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-3 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded-full transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/10 rounded-full transition-all">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group bg-on-surface-variant/5">
+<td class="px-md py-3">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-lg bg-surface-variant overflow-hidden flex-shrink-0 opacity-50 grayscale">
+<img class="w-full h-full object-cover" data-alt="A vibrant plate of Kung Pao Chicken with peanuts and scallions, presented in a minimalist ceramic bowl. The dish has a glossy, appetizing sheen under bright, studio lighting. The aesthetic is clean and modern, featuring the brand's primary orange and dark charcoal accents in the tableware. The background is a soft light-grey, creating a professional, high-efficiency logistics dashboard feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1ov4n1P16gXOLSKZrVbhXJNTBwE72_Q7vsgx8b7Zz2JO0DJWRMbRhgfK9TM45e5C6BvMxe98OnPFDQv1AgjLkeK34NasYYgFNXXNfW5LsieQ05_3UIpT36WQ3CQFUwR71fFxfGr5F8iOLuom7HeK8xZsddvRnVH8oi9yIo9uoHqaMIIFgDUCAGFbiQ8LtgJ3j7a03W9wFmsLKobY8muf_s1wpcIZh_wal16T7O5UXUUcpujvlBHso9Q"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Kung Pao Chicken</div>
+<div class="text-body-sm text-on-surface-variant">Wok-fried chicken, peanuts, dried chili</div>
+</div>
+</div>
+</td>
+<td class="px-md py-3">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container text-xs font-semibold">Chinese Food</span>
+</td>
+<td class="px-md py-3">
+<div class="font-price-display text-price-display text-primary">Rs. 980</div>
+</td>
+<td class="px-md py-3">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="px-md py-3 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded-full transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/10 rounded-full transition-all">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer - JSON Data Implementation -->
+<footer class="w-full py-lg px-md flex flex-col items-center gap-md mt-xl bg-surface-container-low dark:bg-surface-dim">
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary underline transition-all" href="#">About Us</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary underline transition-all" href="#">Contact Support</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-70">© 2024 Orange Food Pakistan. All rights reserved.</p>
+</footer>
+</div>
+</main>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-inverse-surface/60 backdrop-blur-sm hidden p-md" id="add-item-modal">
+<div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden modal-enter flex flex-col max-h-[921px]">
+<div class="p-md bg-surface-container flex justify-between items-center border-b border-outline-variant">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Add New Menu Item</h3>
+<button class="text-on-surface-variant hover:text-on-surface p-1" onclick="toggleModal('add-item-modal')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-md">
+<form class="space-y-md">
+<!-- Image Upload -->
+<div class="flex flex-col gap-2">
+<span class="font-label-md text-label-md text-on-surface">Item Image</span>
+<div class="w-full h-48 border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant group-hover:text-primary transition-colors">cloud_upload</span>
+<p class="text-body-sm text-on-surface-variant mt-2 font-medium">Click to upload or drag &amp; drop</p>
+<p class="text-[12px] text-on-surface-variant/60 mt-1">PNG, JPG up to 5MB (16:9 ratio recommended)</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Item Name</label>
+<input class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-sm" placeholder="e.g. Garlic Mayo Roll" type="text"/>
+</div>
+<!-- Price -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Price (PKR)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">Rs.</span>
+<input class="w-full pl-12 pr-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-sm" placeholder="550" type="number"/>
+</div>
+</div>
+</div>
+<!-- Category -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Category</label>
+<select class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-sm bg-white appearance-none">
+<option>Fast Food</option>
+<option>Chinese Food</option>
+<option>BBQ</option>
+<option>Beverages</option>
+</select>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface">Description</label>
+<textarea class="w-full px-4 py-2 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-sm" placeholder="Briefly describe the ingredients and taste..." rows="3"></textarea>
+</div>
+<!-- Add-ons Section -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface">Add-ons (Optional)</label>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Row
+                            </button>
+</div>
+<div class="grid grid-cols-12 gap-2">
+<input class="col-span-7 px-4 py-1.5 border border-outline-variant rounded-lg text-xs" placeholder="Extra Cheese" type="text"/>
+<input class="col-span-4 px-4 py-1.5 border border-outline-variant rounded-lg text-xs" placeholder="Price" type="number"/>
+<button class="col-span-1 text-on-surface-variant hover:text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Toggle Availability -->
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border border-outline-variant">
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Item Availability</span>
+<span class="text-xs text-on-surface-variant">Enable this to show the item on the user menu.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</form>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface-container flex gap-md justify-end">
+<button class="px-md py-2 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-highest rounded-lg transition-colors" onclick="toggleModal('add-item-modal')">Cancel</button>
+<button class="px-xl py-2 bg-primary text-white font-label-md text-label-md rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all">Save Item</button>
+</div>
+</div>
+</div>
+<script>
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal when clicking background
+        window.onclick = function(event) {
+            const modal = document.getElementById('add-item-modal');
+            if (event.target == modal) {
+                toggleModal('add-item-modal');
+            }
+        }
+    </script>
+</body></html>

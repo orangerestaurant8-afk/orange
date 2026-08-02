@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Orange - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f9f9ff",
+                    "outline": "#8c7164",
+                    "tertiary-container": "#a09a91",
+                    "primary-fixed": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-primary-container": "#582200",
+                    "on-surface": "#151c27",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#36322c",
+                    "on-primary-fixed-variant": "#783200",
+                    "secondary-container": "#d6e0f3",
+                    "outline-variant": "#e0c0b1",
+                    "surface-container-highest": "#dce2f3",
+                    "on-secondary-container": "#596373",
+                    "tertiary-fixed": "#e9e1d8",
+                    "surface-tint": "#9d4300",
+                    "on-secondary-fixed": "#121c2a",
+                    "tertiary": "#625e56",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#341100",
+                    "surface": "#f9f9ff",
+                    "secondary": "#555f6f",
+                    "primary-fixed-dim": "#ffb690",
+                    "surface-variant": "#dce2f3",
+                    "surface-container-low": "#f0f3ff",
+                    "surface-container": "#e7eefe",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#d9e3f6",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "surface-container-high": "#e2e8f8",
+                    "primary": "#9d4300",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2a313d",
+                    "background": "#f9f9ff",
+                    "surface-dim": "#d3daea",
+                    "on-surface-variant": "#584237",
+                    "primary-container": "#f97316",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-primary": "#ffb690",
+                    "on-background": "#151c27"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "lg": "40px",
+                    "sm": "16px",
+                    "container-max": "1280px",
+                    "gutter": "20px",
+                    "md": "24px",
+                    "xl": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            overscroll-behavior-y: contain;
+        }
+        .otp-input:focus {
+            box-shadow: 0 0 0 2px #f97316;
+            border-color: #f97316;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-bright text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Transactional Screen: Navigation Shell Suppressed as per "Semantic Shell" Mandate -->
+<main class="flex-grow flex flex-col px-md py-xl max-w-md mx-auto w-full">
+<!-- Minimal Branding Header -->
+<header class="mb-xl text-center">
+<div class="flex justify-center mb-sm">
+<div class="w-16 h-16 bg-primary-container rounded-xl flex items-center justify-center shadow-lg transform rotate-3">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="restaurant">restaurant</span>
+</div>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Orange</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Fastest Delivery in Karachi</p>
+</header>
+<!-- Initial Phone Entry State -->
+<section class="flex flex-col flex-grow animate-fade-in" id="phone-entry-section">
+<div class="mb-lg">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Welcome back!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Enter your phone number to get started.</p>
+</div>
+<div class="space-y-md">
+<div class="relative">
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Phone Number</label>
+<div class="flex items-center border border-outline-variant bg-surface-container-lowest rounded-xl p-md focus-within:ring-2 focus-within:ring-primary-container focus-within:border-primary-container transition-all">
+<span class="font-headline-sm text-headline-sm mr-xs">+92</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-headline-sm font-headline-sm w-full placeholder:text-surface-dim" id="phone-input" maxlength="10" placeholder="300 1234567" type="tel"/>
+</div>
+</div>
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant px-sm">
+                    By continuing, you agree to our <span class="text-primary font-semibold cursor-pointer">Terms of Service</span> and <span class="text-primary font-semibold cursor-pointer">Privacy Policy</span>.
+                </p>
+</div>
+<!-- Sticky Bottom Action -->
+<div class="mt-auto pt-lg">
+<button class="w-full bg-primary-container text-white font-headline-sm text-headline-sm py-md rounded-xl shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-sm" onclick="showOtpSection()">
+                    Continue
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- OTP Entry State (Hidden Initially) -->
+<section class="hidden flex flex-col flex-grow animate-fade-in" id="otp-section">
+<div class="mb-lg">
+<button class="mb-md text-on-surface-variant flex items-center gap-xs" onclick="hideOtpSection()">
+<span class="material-symbols-outlined text-md" data-icon="arrow_back">arrow_back</span>
+<span class="font-label-md text-label-md">Change Number</span>
+</button>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Verify Code</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    We sent a 4-digit code to <span class="font-bold text-on-surface" id="display-phone">+92 300 1234567</span>
+</p>
+</div>
+<div class="flex justify-between gap-sm mb-lg">
+<input class="otp-input w-16 h-20 text-center text-display-lg-mobile font-display-lg-mobile bg-surface-container-lowest border-outline-variant rounded-xl focus:ring-0 transition-all" maxlength="1" oninput="moveToNext(this)" type="number"/>
+<input class="otp-input w-16 h-20 text-center text-display-lg-mobile font-display-lg-mobile bg-surface-container-lowest border-outline-variant rounded-xl focus:ring-0 transition-all" maxlength="1" oninput="moveToNext(this)" type="number"/>
+<input class="otp-input w-16 h-20 text-center text-display-lg-mobile font-display-lg-mobile bg-surface-container-lowest border-outline-variant rounded-xl focus:ring-0 transition-all" maxlength="1" oninput="moveToNext(this)" type="number"/>
+<input class="otp-input w-16 h-20 text-center text-display-lg-mobile font-display-lg-mobile bg-surface-container-lowest border-outline-variant rounded-xl focus:ring-0 transition-all" maxlength="1" oninput="moveToNext(this)" type="number"/>
+</div>
+<div class="text-center mb-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Didn't receive code?</p>
+<button class="text-primary font-label-md text-label-md hover:underline decoration-2 underline-offset-4">Resend Code in 0:45</button>
+</div>
+<!-- Sticky Bottom Action -->
+<div class="mt-auto pt-lg">
+<button class="w-full bg-primary-container text-white font-headline-sm text-headline-sm py-md rounded-xl shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-sm" id="verify-btn" onclick="handleVerify()">
+                    Verify &amp; Login
+                    <span class="material-symbols-outlined" data-icon="lock_open">lock_open</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Success Feedback Overlay (Hidden) -->
+<div class="fixed inset-0 bg-surface-bright/95 z-50 flex items-center justify-center p-xl hidden" id="success-overlay">
+<div class="text-center animate-fade-in">
+<div class="w-24 h-24 bg-primary-container/10 text-primary rounded-full flex items-center justify-center mx-auto mb-lg">
+<span class="material-symbols-outlined text-5xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h3 class="font-display-lg-mobile text-display-lg-mobile text-on-surface mb-sm">Verified!</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Getting your favorites ready...</p>
+</div>
+</div>
+<script>
+        function showOtpSection() {
+            const phoneInput = document.getElementById('phone-input').value;
+            if (phoneInput.length < 10) {
+                alert('Please enter a valid Pakistani phone number');
+                return;
+            }
+            document.getElementById('display-phone').textContent = '+92 ' + phoneInput;
+            document.getElementById('phone-entry-section').classList.add('hidden');
+            document.getElementById('otp-section').classList.remove('hidden');
+        }
+
+        function hideOtpSection() {
+            document.getElementById('otp-section').classList.add('hidden');
+            document.getElementById('phone-entry-section').classList.remove('hidden');
+        }
+
+        function moveToNext(el) {
+            if (el.value.length === 1 && el.nextElementSibling) {
+                el.nextElementSibling.focus();
+            }
+        }
+
+        function handleVerify() {
+            const btn = document.getElementById('verify-btn');
+            btn.innerHTML = `
+                <svg class="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Verifying...
+            `;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('success-overlay').classList.remove('hidden');
+                setTimeout(() => {
+                    // Logic to navigate to Home
+                    console.log('Redirecting to dashboard...');
+                }, 2000);
+            }, 1500);
+        }
+
+        // Focus first OTP field if OTP section is visible
+        document.addEventListener('keyup', (e) => {
+            if(e.key === 'Backspace') {
+                const active = document.activeElement;
+                if(active.classList.contains('otp-input') && active.previousElementSibling) {
+                    if(active.value === '') {
+                        active.previousElementSibling.focus();
+                    }
+                }
+            }
+        });
+    </script>
+</body></html>

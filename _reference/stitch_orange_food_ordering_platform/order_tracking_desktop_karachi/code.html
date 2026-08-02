@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Track Order - Orange</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#ffb690",
+                    "primary": "#9d4300",
+                    "surface-tint": "#9d4300",
+                    "on-primary-fixed": "#341100",
+                    "on-background": "#151c27",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-secondary-fixed": "#121c2a",
+                    "tertiary-container": "#a09a91",
+                    "inverse-surface": "#2a313d",
+                    "on-primary-container": "#582200",
+                    "secondary": "#555f6f",
+                    "primary-fixed": "#ffdbca",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#151c27",
+                    "inverse-primary": "#ffb690",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "on-tertiary-container": "#36322c",
+                    "surface-dim": "#d3daea",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-high": "#e2e8f8",
+                    "on-secondary-container": "#596373",
+                    "surface-variant": "#dce2f3",
+                    "outline": "#8c7164",
+                    "surface-container": "#e7eefe",
+                    "on-primary-fixed-variant": "#783200",
+                    "surface-container-highest": "#dce2f3",
+                    "tertiary-fixed": "#e9e1d8",
+                    "primary-container": "#f97316",
+                    "tertiary": "#625e56",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#584237",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f0f3ff",
+                    "secondary-container": "#d6e0f3",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "outline-variant": "#e0c0b1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "lg": "40px",
+                    "xl": "64px",
+                    "gutter": "20px",
+                    "container-max": "1280px",
+                    "sm": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "price-display": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "headline-sm": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .active-step-line {
+        background: linear-gradient(to bottom, #f97316 50%, #e2e8f8 50%);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e7eefe;
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] sticky top-0 z-50 w-full">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">Orange</span>
+<div class="hidden md:flex gap-sm">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Lahore</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary" href="#">Karachi</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Islamabad</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly young Pakistani man with short dark hair and a neat beard, smiling warmly. He is wearing a clean white polo shirt. The background is a soft-focus office environment with natural sunlight, maintaining the bright and modern orange-themed brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdDprpB32dBa68MR3hbJWhaw4G016Y3UbKiYQrT6z5_MA1VSMTgJ9QZSZq0h6BUhu-Je9rFCiAJJZcYQ5pGc8t0c3p09OlBqqgMRdv6yWdrgd5el7DOqAn2T8CltAEq3TmZVnezycO3oC9LtLT0pkGvEYD6w4Piw6F0RpuL4i8Uiz6hAtPH9YjVJ0iFT4oSbgVOrS1KSFo5JVBzxAvzPD02rYd4F1o8N5KfNbW8JB7GQwd2k_H-QB1kw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex flex-col md:flex-row h-[calc(100vh-64px)] overflow-hidden">
+<!-- Left Side: Interactive Map & Stepper -->
+<section class="flex-grow relative flex flex-col h-1/2 md:h-full">
+<!-- Map Container -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-surface-container" data-location="Karachi" style="">
+<!-- This div would normally render a map via data-location -->
+<img class="w-full h-full object-cover" data-alt="A high-angle 3D aerial map view of Karachi, Pakistan, focusing on the vibrant DHA neighborhood. The map shows simplified, clean architectural city blocks with a glowing vibrant orange delivery route line weaving through the streets. The lighting is bright afternoon sun with soft shadows, using a modern minimalist cartography style that highlights the Orange food delivery brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0296Gvui3fu6mX_sfUWH5Hh_FdRK8lYqGP8lH5DPply251kzOIvotxseoI4Yt7oCl5Y-k-imvFiB1lybXYbtOcI056W0Vq1zGkTWJYVQv6uyv6_cQyLVDMx28eoKd4cw3IOOg2keP0eH3H061es7tylJVkCUI08SH7GkxOjFaCrO8xsme1Ky9znsBQl9K6Lmb0ygbOB5mw5kv4GLVeiNaMgmIyNBhrGjuPR8DOlgzxpBd9LcDEeMDyA"/>
+</div>
+<!-- Courier Marker Simulation -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="relative">
+<div class="absolute -inset-4 bg-primary-container/20 rounded-full animate-ping"></div>
+<div class="bg-primary-container text-white p-2 rounded-full shadow-lg relative z-20">
+<span class="material-symbols-outlined text-3xl">delivery_dining</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Overlay: Status Stepper -->
+<div class="absolute bottom-md left-md right-md md:left-md md:right-auto md:w-80 z-20">
+<div class="bg-surface/90 backdrop-blur-md p-md rounded-xl shadow-lg border border-outline-variant">
+<h2 class="font-headline-sm text-headline-sm mb-md text-on-surface">Order Status</h2>
+<div class="flex flex-col gap-0 relative">
+<!-- Step 1: Confirmed -->
+<div class="flex gap-md items-start">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<div class="w-1 h-8 bg-primary-container"></div>
+</div>
+<div class="pb-4">
+<p class="font-label-md text-label-md text-primary">Confirmed</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your order has been received</p>
+</div>
+</div>
+<!-- Step 2: Preparing (ACTIVE) -->
+<div class="flex gap-md items-start">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 -mx-1 -my-1 rounded-full border-4 border-primary-container bg-surface flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-primary-container animate-spin">restaurant</span>
+</div>
+<div class="w-1 h-8 bg-surface-container-high"></div>
+</div>
+<div class="pb-4">
+<p class="font-label-md text-label-md text-primary-container">Preparing</p>
+<p class="font-body-sm text-body-sm text-on-surface">The chef is crafting your meal</p>
+</div>
+</div>
+<!-- Step 3: Out for Delivery -->
+<div class="flex gap-md items-start">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">delivery_dining</span>
+</div>
+<div class="w-1 h-8 bg-surface-container-high"></div>
+</div>
+<div class="pb-4">
+<p class="font-label-md text-label-md text-on-surface-variant">Out for Delivery</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Almost at your doorstep</p>
+</div>
+</div>
+<!-- Step 4: Delivered -->
+<div class="flex gap-md items-start">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">home</span>
+</div>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Delivered</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enjoy your food!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Order Details Panel -->
+<aside class="w-full md:w-[400px] bg-surface flex flex-col shadow-[-4px_0px_12px_rgba(31,41,55,0.05)] z-30 h-1/2 md:h-full">
+<div class="p-md flex flex-col gap-md h-full overflow-y-auto custom-scrollbar">
+<!-- Header Info -->
+<div class="flex justify-between items-start">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-background">Order #OR-59283</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Estimated arrival in 20-30 mins</p>
+</div>
+<div class="bg-primary-container/10 text-primary-container px-3 py-1 rounded-full">
+<span class="font-label-md text-label-md">Preparing</span>
+</div>
+</div>
+<!-- Courier Section -->
+<div class="bg-surface-container-low p-sm rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a friendly-looking delivery rider wearing a bright orange uniform and a safety helmet. He has a kind expression, representing the Orange delivery team in Karachi. The lighting is bright and outdoor, maintaining a professional and reliable tone consistent with a modern food delivery app interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPuMZRCPWns0kFXNg7X_Ph_Lah5Kmk1gADQEir3rn0aaElIqPHjiIEgXCzvcwc_b6HWl5pkTaU7WFCep04kzPrLWywwcOHzzFC4eRwKwNDzYwBJayF_V4Y1vw8FsV0L6HNBEsuOgsOeOmosVVRVLPK6zP34g3qZ3iN70pV7rrzIdiTNL6YQKAyz_DsQpV79UG7PgwxD6QnxryVvBxiE7KZvzjCP06GNl4uyYaRzATsQPGgBJn3nzwwkA"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">Ahmed Khan</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your Delivery Hero</p>
+</div>
+<div class="flex gap-xs">
+<button class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary-container shadow-sm hover:scale-105 transition-transform">
+<span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</div>
+<!-- Item Recap -->
+<div class="flex flex-col gap-sm">
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Item Recap</h3>
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center py-2 border-b border-surface-variant">
+<div class="flex items-center gap-sm">
+<span class="bg-surface-container text-on-surface-variant w-6 h-6 flex items-center justify-center rounded font-label-md">1</span>
+<span class="font-body-md text-body-md">Monster Zinger</span>
+</div>
+<span class="font-price-display text-price-display">Rs. 850</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant">
+<div class="flex items-center gap-sm">
+<span class="bg-surface-container text-on-surface-variant w-6 h-6 flex items-center justify-center rounded font-label-md">1</span>
+<span class="font-body-md text-body-md">Spicy Wings (6 Pcs)</span>
+</div>
+<span class="font-price-display text-price-display">Rs. 420</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<div class="flex items-center gap-sm">
+<span class="bg-surface-container text-on-surface-variant w-6 h-6 flex items-center justify-center rounded font-label-md">1</span>
+<span class="font-body-md text-body-md">Coke (500ml)</span>
+</div>
+<span class="font-price-display text-price-display">Rs. 110</span>
+</div>
+</div>
+</div>
+<!-- Bill Details -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant flex flex-col gap-xs mt-auto">
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Subtotal</span>
+<span class="font-body-sm text-body-sm">Rs. 1,380</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Delivery Fee</span>
+<span class="font-body-sm text-body-sm">Rs. 60</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span class="font-body-sm text-body-sm">Service Tax</span>
+<span class="font-body-sm text-body-sm">Rs. 55</span>
+</div>
+<div class="h-[1px] bg-surface-variant my-xs"></div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface">Total</span>
+<span class="font-headline-sm text-headline-sm text-primary-container">Rs. 1,495</span>
+</div>
+</div>
+<!-- Support/Action -->
+<button class="w-full bg-primary-container text-white py-4 rounded-xl font-headline-sm text-headline-sm flex items-center justify-center gap-sm shadow-md hover:bg-primary transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">support_agent</span>
+                    Contact Support
+                </button>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for the "Preparing" spinner
+        document.addEventListener('DOMContentLoaded', () => {
+            const spinner = document.querySelector('.animate-spin');
+            if (spinner) {
+                let deg = 0;
+                setInterval(() => {
+                    deg += 5;
+                    spinner.style.transform = `rotate(${deg}deg)`;
+                }, 50);
+            }
+        });
+    </script>
+</body></html>

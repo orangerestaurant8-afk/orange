@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant - Category Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f3ff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-primary-fixed-variant": "#783200",
+                    "surface-container-highest": "#dce2f3",
+                    "on-background": "#151c27",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "secondary": "#555f6f",
+                    "on-surface-variant": "#584237",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "inverse-primary": "#ffb690",
+                    "surface-container-high": "#e2e8f8",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#d9e3f6",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#e9e1d8",
+                    "surface-container": "#e7eefe",
+                    "tertiary-container": "#a09a91",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "outline": "#8c7164",
+                    "on-primary-container": "#582200",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#e0c0b1",
+                    "on-primary-fixed": "#341100",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#d6e0f3",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "primary-fixed": "#ffdbca",
+                    "surface-tint": "#9d4300",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-secondary-container": "#596373",
+                    "background": "#f9f9ff",
+                    "primary": "#9d4300",
+                    "surface": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2a313d",
+                    "on-surface": "#151c27",
+                    "primary-container": "#f97316",
+                    "on-tertiary-container": "#36322c",
+                    "surface-dim": "#d3daea",
+                    "tertiary": "#625e56",
+                    "surface-variant": "#dce2f3",
+                    "on-secondary-fixed": "#121c2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "base": "4px",
+                    "xl": "64px",
+                    "sm": "16px",
+                    "lg": "40px",
+                    "gutter": "20px",
+                    "md": "24px",
+                    "xs": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "price-display": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "display-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #151c27; /* Fallback to dark background */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for mobile lists */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-on-background text-on-secondary selection:bg-primary-container selection:text-on-primary-container overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar (Admin Variant) -->
+<header class="bg-inverse-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] w-full z-40">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-fixed text-headline-sm">restaurant_menu</span>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary-fixed uppercase tracking-tight">Orange</h1>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full overflow-hidden border-2 border-primary-fixed/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a Pakistani restaurant manager in a sleek dark uniform, looking confidently at the camera. The background is a slightly blurred high-end commercial kitchen with warm amber lighting and stainless steel surfaces, maintaining a dark mode aesthetic with deep shadows and vibrant orange accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9EQuVI_mjccurJwfsMxGpn1mjaSliugj70YwTKXVrfCVDEGMYxZzVQ6Ks367gixb6WK2ilCQGhT_EI0D7jbPZiGPuC-dGTzspAgW5O7XypNG6JD1EvvSzuY7mlXd4fyFhKQIe97jC3zMdrnB15OZ0zWpJHGKTVrcYZF9u3p2JtsUnewU8wUKW9uEKtN-yaCogXEpAN-USb9gNDwtqJQk7MiCLbaWr1yr-uOh2hX15KE2vMwFZ3fKCzw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto no-scrollbar px-sm pt-md pb-xl">
+<!-- Screen Header -->
+<div class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-secondary mb-xs">Category Management</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your menu categories and visibility.</p>
+</div>
+<!-- Dashboard Stats Row (Dense) -->
+<div class="grid grid-cols-2 gap-sm mb-lg">
+<div class="bg-surface-container-low/10 border border-white/5 p-sm rounded-xl">
+<p class="font-label-md text-label-md text-secondary-fixed-dim">Total Items</p>
+<p class="font-headline-sm text-headline-sm text-on-secondary">142</p>
+</div>
+<div class="bg-surface-container-low/10 border border-white/5 p-sm rounded-xl">
+<p class="font-label-md text-label-md text-secondary-fixed-dim">Active Sales</p>
+<p class="font-headline-sm text-headline-sm text-primary-fixed-dim">PKR 12,450</p>
+</div>
+</div>
+<!-- Categories List -->
+<div class="flex flex-col gap-sm">
+<!-- Category Card: Fast Food -->
+<div class="bg-surface-container-low/10 border border-white/5 rounded-xl p-sm flex items-center justify-between group active:scale-95 transition-transform duration-150">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-headline-sm" data-icon="lunch_dining">lunch_dining</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-secondary leading-tight">Fast Food</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">42 Items</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-secondary-fixed-dim hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</div>
+<!-- Category Card: Chinese Food -->
+<div class="bg-surface-container-low/10 border border-white/5 rounded-xl p-sm flex items-center justify-between group active:scale-95 transition-transform duration-150">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-headline-sm" data-icon="ramen_dining">ramen_dining</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-secondary leading-tight">Chinese Food</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">28 Items</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-secondary-fixed-dim hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</div>
+<!-- Category Card: BBQ -->
+<div class="bg-surface-container-low/10 border border-white/5 rounded-xl p-sm flex items-center justify-between group active:scale-95 transition-transform duration-150">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-headline-sm" data-icon="outdoor_grill">outdoor_grill</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-secondary leading-tight">BBQ</h3>
+<p class="font-label-md text-label-md text-on-surface-variant">72 Items</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-secondary-fixed-dim hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</div>
+</div>
+<!-- Help Section (Subtle) -->
+<div class="mt-lg p-md border border-dashed border-white/10 rounded-xl">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim">info</span>
+<div>
+<p class="font-label-md text-label-md text-on-secondary">Pro Tip</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Drag categories to reorder how they appear on the customer app.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed right-sm bottom-20 w-14 h-14 bg-primary-container text-on-primary-container rounded-xl shadow-lg flex items-center justify-center z-50 active:scale-90 duration-150 transition-transform">
+<span class="material-symbols-outlined text-headline-md" data-weight="fill">add</span>
+</button>
+<!-- Bottom Navigation Bar (Shell) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined text-label-md" data-icon="home">home</span>
+<span class="font-label-md text-[10px] mt-1">Home</span>
+</a>
+<!-- Orders -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined text-label-md" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-[10px] mt-1">Orders</span>
+</a>
+<!-- Menu (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1" href="#">
+<span class="material-symbols-outlined text-label-md active-icon" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label-md text-[10px] mt-1">Menu</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined text-label-md" data-icon="person">person</span>
+<span class="font-label-md text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple haptic feedback simulation on interactions
+        const buttons = document.querySelectorAll('button, a');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(10);
+                }
+            });
+        });
+
+        // Initialize Material Symbols
+        document.querySelectorAll('[data-icon]').forEach(el => {
+            const iconName = el.getAttribute('data-icon');
+            el.classList.add('material-symbols-outlined');
+            el.textContent = iconName;
+            if (el.hasAttribute('data-weight')) {
+                el.style.fontVariationSettings = "'FILL' 1";
+            }
+        });
+    </script>
+</body></html>

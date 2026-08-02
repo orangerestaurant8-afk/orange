@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange - Karachi Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 3px;
+            background-color: #9d4300;
+            border-radius: 4px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Custom micro-interactions */
+        .add-btn:active {
+            transform: scale(0.9);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#783200",
+                      "secondary-fixed": "#d9e3f6",
+                      "on-secondary-container": "#596373",
+                      "primary-fixed-dim": "#ffb690",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#ccc5bc",
+                      "outline": "#8c7164",
+                      "on-surface-variant": "#584237",
+                      "tertiary": "#625e56",
+                      "surface-tint": "#9d4300",
+                      "on-surface": "#151c27",
+                      "background": "#f9f9ff",
+                      "on-tertiary-container": "#36322c",
+                      "surface": "#f9f9ff",
+                      "inverse-surface": "#2a313d",
+                      "surface-container": "#e7eefe",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#d3daea",
+                      "secondary": "#555f6f",
+                      "outline-variant": "#e0c0b1",
+                      "tertiary-container": "#a09a91",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "surface-container-high": "#e2e8f8",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#f9f9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed": "#1e1b15",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#e9e1d8",
+                      "on-secondary-fixed": "#121c2a",
+                      "surface-variant": "#dce2f3",
+                      "on-primary-container": "#582200",
+                      "on-background": "#151c27",
+                      "inverse-primary": "#ffb690",
+                      "primary-container": "#f97316",
+                      "primary": "#9d4300",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#341100",
+                      "primary-fixed": "#ffdbca",
+                      "surface-container-low": "#f0f3ff",
+                      "inverse-on-surface": "#ebf1ff",
+                      "secondary-container": "#d6e0f3",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#dce2f3",
+                      "on-tertiary-fixed-variant": "#4a463f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "64px",
+                      "lg": "40px",
+                      "container-max": "1280px",
+                      "xs": "8px",
+                      "gutter": "20px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "price-display": ["Montserrat"],
+                      "display-lg": ["Montserrat"],
+                      "label-md": ["Inter"],
+                      "display-lg-mobile": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Montserrat"],
+                      "headline-sm": ["Montserrat"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                      "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen max-w-[390px] mx-auto overflow-x-hidden relative shadow-2xl">
+<!-- Top Navigation Bar (Shared Component Reference) -->
+<header class="sticky top-0 z-40 bg-surface shadow-sm px-md py-xs flex justify-between items-center w-full">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Orange</h1>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="search">search</span>
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</div>
+</header>
+<!-- Category Tabs -->
+<nav class="sticky top-[56px] z-30 bg-surface border-b border-outline-variant/30 flex justify-around items-center h-12 shadow-sm">
+<button class="relative h-full flex items-center px-md font-label-md text-label-md text-primary font-bold">
+            Fast Food
+            <div class="active-tab-indicator"></div>
+</button>
+<button class="h-full flex items-center px-md font-label-md text-label-md text-on-surface-variant">
+            Chinese Food
+        </button>
+<button class="h-full flex items-center px-md font-label-md text-label-md text-on-surface-variant">
+            BBQ
+        </button>
+</nav>
+<!-- Main Content: Dish Feed -->
+<main class="px-sm py-md pb-48">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-sm px-xs">Delicious Fast Food</h2>
+<div class="grid grid-cols-2 gap-sm">
+<!-- Dish Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] overflow-hidden flex flex-col border border-outline-variant/10">
+<div class="relative w-full aspect-square bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A juicy, premium beef burger with melting cheddar cheese, crisp lettuce, and heirloom tomatoes on a toasted brioche bun. The lighting is warm and cinematic, highlighting the texture of the meat and the sheen of the bun. The background is a soft-focus Karachi street scene at dusk, emphasizing a modern corporate yet appetizing food-tech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0VT6dlXqPh8NB5rsPO05DSAZ-oE-ZldozuKBI9fjxRhs69mxY3pLQpCPJXHvPrnSZZZE9lOXGI3x2qqLYUV1EBjS2ccWPvqV4FRs8q3n1ib_soXpLZ2mqzWWJfBlS9cNg-ZunAYO-fDv0zFxuOPaTFa3O3C3u2UJxchiEPT4bVp5u78VnHBNl8CSZ-IzKQhclHxSqvdicwZmbSSpKKyvSfZ7VXTPovOvedE-hRQ8Bh0lex6Bf0z881w"/>
+<div class="absolute top-2 right-2 bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Top Rated</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Zinger Supreme</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 mb-2 line-clamp-1">Classic crispy delight</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">PKR 650</span>
+<button class="add-btn w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center text-white transition-transform">
+<span class="material-symbols-outlined" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] overflow-hidden flex flex-col border border-outline-variant/10">
+<div class="relative w-full aspect-square bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Golden, double-fried crispy chicken wings glazed in a spicy, vibrant orange buffalo sauce. The wings are garnished with fresh green scallions and served with a side of cool ranch dressing. The photography is sharp and high-contrast, emphasizing the 'appetite-appealing' brand goal for a premium Pakistani marketplace experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBihVrbGcHu8FWMbkI7jOjytTZrCQdc07gfGx1P1nVdrqjoOzRDo7-4RtSuAnZwu-f7x60cwJMS9Vcr12ODnnKsF2KAqpGVuEuVWl_x94E7k33welTOXqOhqJcAYwxH78WmTcGDPe6NhbvnXXkQhocyVFIL_0QvKuSXcfYdpCHOp24DR1gLNwrd6cxlRSOmJG-CuNPoEDzFnu--dXQvImr36i-C61FqXsoIqzaIkZ6PU6LvoEiz6JxFbA"/>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Spicy Wings (6pc)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 mb-2 line-clamp-1">Hot & Tangy glaze</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">PKR 550</span>
+<button class="add-btn w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center text-white transition-transform">
+<span class="material-symbols-outlined" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] overflow-hidden flex flex-col border border-outline-variant/10">
+<div class="relative w-full aspect-square bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A loaded pepperoni pizza with stretching mozzarella cheese and a thick, charred sourdough crust. The lighting is focused and warm, capturing the oil droplets on the pepperoni slices. The overall mood is reliable and energetic, fitting the vibrant orange brand identity of Orange Food Pakistan." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUHWlZYFP9MwNBIX1whxjG6NC0YoTR255W4NyS8_tYstOWjWrTFKAhbTMmD1aZqnIp_54WYBr2VZyv6gkVutRWHlAQ5J1U-fplMrDzCOO_WAt-CV-84W8JCMwLW1ZOEAULA33rJSbXFqL6VOc8XkT08Y7-2Yq3q_dURrtDT_CeKc3hbbRMO1Cl4IFU4t7BMSnOPARO_BYCbgebfE2gCverQHyXnM-gvBbRjkHGwAPPCutcMWGTqkdeQQ"/>
+<div class="absolute top-2 right-2 bg-on-secondary-fixed-variant text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Chef's Choice</div>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Pepperoni Feast</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 mb-2 line-clamp-1">Extra cheese load</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">PKR 1200</span>
+<button class="add-btn w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center text-white transition-transform">
+<span class="material-symbols-outlined" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] overflow-hidden flex flex-col border border-outline-variant/10">
+<div class="relative w-full aspect-square bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Three soft-shell tacos overflowing with grilled fish, mango salsa, and purple cabbage slaw. The lighting is high-key and bright, evoking a fresh and clean minimalist leaning. Vibrant orange accents in the plating tie back to the restaurant's primary brand color." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjqmPXvgtqOHQFeEVlKHSiDNBRSvwRYvAZ7eyCD4ajpXxqsYFoSSBqPw8-JCxjipy-bZxsoS2bm3MArt3sh5CFfnIHv0sLNvFYSTbrB4bX3yax0cI8JdFo_zRByBn3OQtcTcMA6gt8EvFxFnl9CrzR2jUlmJAUcUyJND7-t_o0Vs9bvbLmfjv__jYVTj5U3sb23N42gjgxoUBUzEM0gtjFvIsdpB28348D9-uqK94n9xKCBB5Y3OqOQA"/>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Fish Tacos</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 mb-2 line-clamp-1">Fresh ocean flavors</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">PKR 850</span>
+<button class="add-btn w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center text-white transition-transform">
+<span class="material-symbols-outlined" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] overflow-hidden flex flex-col border border-outline-variant/10">
+<div class="relative w-full aspect-square bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A tower of thick-cut, beer-battered onion rings served on a dark slate plate. The golden-brown crust is perfectly textured, captured with a macro lens. The background is a clean white gallery-style space, maintaining the modern corporate aesthetic of the food-tech platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL6YdGKXwTz0TeF6uEd2Nyqu3fQ6rQsduu0zvH15yxK7Bs_kAEvSu6fiXAcDzDolp7FQ9dH62eXIpRSC1e0UJom2Y-MJMBUQ7OLPZGsMIzC49a4jhlpsAj6xhu5adzfEN9a9vDWoWdJnG8aLiOaF3fnNS7Gw5DTFonk2Uv3UT878HkEaioY9vESrIgCN9SlKsreKgDL7xNNRCyOgl9MHey0HJs4ZUpoxZGQomPJdebJLEvypFXr2sMEw"/>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Crispy Rings</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 mb-2 line-clamp-1">Jumbo batter fried</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">PKR 400</span>
+<button class="add-btn w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center text-white transition-transform">
+<span class="material-symbols-outlined" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] overflow-hidden flex flex-col border border-outline-variant/10">
+<div class="relative w-full aspect-square bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A vibrant salad bowl with grilled chicken, avocado slices, quinoa, and a drizzle of honey mustard dressing. The arrangement is artistic and colorful, emphasizing health and freshness within the appetizing marketplace. Shot from a top-down angle in a bright, modern light-mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdRov_SR7ELdNjZl-R853DQxaSyDoN28x7qkpsoYSJUNYUZlOyqJp6CPU_uaWIFe2rd01ZBaJN_8d6WNWUWs7CcpE90y1ide99kJ6_qHEhk67M19wpEEJB1teZvgthGBL70pNLwrWY7AUp3teXJ9ueUl44-Hw3Es0gg_DeMB1VdTHKOYj7pViQGSoQ94pB7UbsxzHwZfQ9j1GiX-P6DWf-fZERoCA0dJyn4edOSeT4Ol-XFNp393BkSg"/>
+</div>
+<div class="p-3 flex flex-col flex-grow">
+<h3 class="font-label-md text-label-md text-on-surface line-clamp-1">Power Salad</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 mb-2 line-clamp-1">Healthy & Filling</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-price-display text-price-display text-primary">PKR 750</span>
+<button class="add-btn w-8 h-8 bg-primary-container rounded-lg flex items-center justify-center text-white transition-transform">
+<span class="material-symbols-outlined" data-icon="add" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Filter Button -->
+<button class="fixed bottom-36 right-4 z-50 w-14 h-14 bg-primary text-white rounded-full shadow-[0px_8px_20px_rgba(31,41,55,0.1)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[28px]" data-icon="tune">tune</span>
+</button>
+<!-- Sticky Cart Bar -->
+<div class="fixed bottom-16 left-0 right-0 z-40 px-sm pb-2">
+<div class="bg-primary text-white h-12 rounded-xl flex items-center justify-between px-md shadow-lg active:scale-95 duration-150 cursor-pointer">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="shopping_bag" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-label-md text-label-md">2 Items • PKR 1,200</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-label-md text-label-md uppercase tracking-wider">View Cart</span>
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Shared Component Logic) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="restaurant_menu" data-weight="fill" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+<span class="font-label-md text-label-md">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-md text-label-md">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for adding items
+        const addButtons = document.querySelectorAll('.add-btn');
+        addButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Subtle feedback animation could be added here
+                console.log('Item added to cart');
+            });
+        });
+
+        // Tab switching logic (Visual only)
+        const tabs = document.querySelectorAll('nav button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('text-primary', 'font-bold');
+                    t.classList.add('text-on-surface-variant');
+                    const indicator = t.querySelector('.active-tab-indicator');
+                    if(indicator) indicator.remove();
+                });
+                tab.classList.add('text-primary', 'font-bold');
+                tab.classList.remove('text-on-surface-variant');
+                const newIndicator = document.createElement('div');
+                newIndicator.className = 'active-tab-indicator';
+                tab.appendChild(newIndicator);
+            });
+        });
+    </script>
+</body></html>

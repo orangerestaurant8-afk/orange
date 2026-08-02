@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "surface-container-highest": "#dce2f3",
+                    "surface-dim": "#151c27", /* Overridden for dark theme charcoal */
+                    "on-surface-variant": "#584237",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface": "#151c27",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#625e56",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#9d4300",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#ffb690",
+                    "tertiary-container": "#a09a91",
+                    "primary-fixed": "#ffdbca",
+                    "on-background": "#f9f9ff",
+                    "background": "#0a0f16",
+                    "on-surface": "#f9f9ff",
+                    "on-primary-fixed": "#341100",
+                    "surface-container-high": "#1e2632",
+                    "secondary-container": "#2a313d",
+                    "primary-container": "#f97316",
+                    "surface-container": "#1a212c",
+                    "secondary": "#555f6f",
+                    "primary": "#f97316",
+                    "outline": "#8c7164",
+                    "on-secondary-fixed": "#121c2a",
+                    "inverse-surface": "#2a313d",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "surface-container-low": "#111823",
+                    "on-primary-container": "#ffffff",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-tertiary-container": "#36322c",
+                    "on-primary-fixed-variant": "#783200",
+                    "secondary-fixed": "#d9e3f6",
+                    "surface-variant": "#1a212c",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#bdc7d9",
+                    "outline-variant": "#e0c0b1",
+                    "surface-bright": "#1a212c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "container-max": "1280px",
+                    "sm": "16px",
+                    "gutter": "20px",
+                    "lg": "40px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "display-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #0a0f16; color: #f9f9ff; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .zebra-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #2a313d; border-radius: 10px; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 bg-inverse-surface dark:bg-surface-container-low docked left-0 h-full w-64 z-50">
+<div class="p-md flex items-center gap-xs">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary-fixed">Orange Merchant</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Partner Portal</p>
+</div>
+</div>
+<nav class="mt-sm flex-grow overflow-y-auto">
+<!-- Dashboard Active -->
+<a class="bg-on-secondary-fixed-variant text-white rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-sm Active: opacity-80 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm hover:bg-secondary-container/10 transition-all" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm hover:bg-secondary-container/10 transition-all" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-md text-label-md">Menu</span>
+</a>
+<a class="text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm hover:bg-secondary-container/10 transition-all" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="font-label-md text-label-md">Categories</span>
+</a>
+<a class="text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm hover:bg-secondary-container/10 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Customers</span>
+</a>
+<a class="text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm hover:bg-secondary-container/10 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-md border-t border-secondary-container/20">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-sm rounded-lg hover:opacity-90 transition-all">
+                    View Live Store
+                </button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 flex-1 flex flex-col h-full bg-background overflow-y-auto">
+<!-- TopNavBar Cluster -->
+<header class="sticky top-0 z-40 bg-surface dark:bg-background shadow-[0px_2px_8px_rgba(0,0,0,0.2)] px-md py-sm flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="bg-surface-container-high px-sm py-xs rounded-lg flex items-center gap-xs cursor-pointer border border-outline/10">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="font-label-md text-label-md">Oct 24 - Oct 30, 2023</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="relative p-xs text-on-surface hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="flex items-center gap-sm pl-sm border-l border-outline/20">
+<div class="text-right hidden sm:block">
+<p class="font-label-md text-label-md leading-none">M. Ali Jinnah</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Store Admin</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary/20" data-alt="A professional studio portrait of a modern Pakistani businessman in a crisp dark grey suit, set against a dark, minimalist executive office background with warm orange accent lighting. The photography style is high-end, editorial, and features sharp focus and shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsjun_y8s8jNb0VfwAj_CVg9fnJ1ytLukTx7V2OTW-Dv1sv2_hwC_9cj6vbXs8U-clDOJOIogXdccx6nKrbOZsnwnckxx2x-hFt033xZpdOWS45M1yQr6umzBLGl6JDZpHlJAzfEuChY1Omn6bihQz9Ey7VseLKex4yS_1wus1UjR6jG6PhpPfJsViLtEL_s4-0KwFuVPp5MecvHFQuIOiGP5l6b0dbRUb45rGkWMhwkF10enmuCLmGQ"/>
+</div>
+</div>
+</header>
+<div class="p-md space-y-md">
+<!-- KPI Section -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Card 1 -->
+<div class="bg-surface-container rounded-xl p-md border border-outline/5 hover:border-primary/30 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-xs bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<span class="text-green-500 font-label-md text-label-md flex items-center">+12% <span class="material-symbols-outlined text-[16px]">trending_up</span></span>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md">Today's Revenue</p>
+<h3 class="font-price-display text-[28px] mt-xs">₨ 45,200</h3>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container rounded-xl p-md border border-outline/5 hover:border-primary/30 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-xs bg-secondary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-secondary-fixed-dim">shopping_bag</span>
+</div>
+<span class="text-green-500 font-label-md text-label-md flex items-center">+8% <span class="material-symbols-outlined text-[16px]">trending_up</span></span>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md">Orders</p>
+<h3 class="font-price-display text-[28px] mt-xs">128</h3>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container rounded-xl p-md border border-outline/5 hover:border-primary/30 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-xs bg-tertiary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary-fixed-dim">analytics</span>
+</div>
+<span class="text-red-400 font-label-md text-label-md flex items-center">-2% <span class="material-symbols-outlined text-[16px]">trending_down</span></span>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md">Avg. Order Value</p>
+<h3 class="font-price-display text-[28px] mt-xs">₨ 353</h3>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container rounded-xl p-md border border-outline/5 hover:border-primary/30 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="p-xs bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary">person_add</span>
+</div>
+<span class="text-green-500 font-label-md text-label-md flex items-center">+24% <span class="material-symbols-outlined text-[16px]">trending_up</span></span>
+</div>
+<p class="text-on-surface-variant font-label-md text-label-md">New Customers</p>
+<h3 class="font-price-display text-[28px] mt-xs">24</h3>
+</div>
+</section>
+<!-- Charts Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- Area Chart (Revenue) -->
+<div class="lg:col-span-2 bg-surface-container rounded-xl p-md border border-outline/5 h-[360px] flex flex-col">
+<div class="flex justify-between items-center mb-md">
+<h4 class="font-headline-sm text-headline-sm">Revenue over Time</h4>
+<div class="flex gap-xs">
+<button class="px-sm py-base bg-secondary-container rounded-md font-label-md text-[12px]">Weekly</button>
+<button class="px-sm py-base text-on-surface-variant hover:bg-secondary-container rounded-md font-label-md text-[12px]">Monthly</button>
+</div>
+</div>
+<div class="flex-1 relative flex items-end gap-2 px-2">
+<!-- Visual placeholder for Recharts Area Chart -->
+<div class="w-full h-full absolute inset-0 flex items-end">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#f97316;stop-opacity:0.3"></stop>
+<stop offset="100%" style="stop-color:#f97316;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,180 Q100,160 200,140 T400,100 T600,60 T800,20 L800,200 L0,200 Z" fill="url(#gradient)"></path>
+<path d="M0,180 Q100,160 200,140 T400,100 T600,60 T800,20" fill="none" stroke="#f97316" stroke-width="3"></path>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="absolute bottom-[-24px] left-0 w-full flex justify-between font-label-md text-[10px] text-on-surface-variant px-md">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Bar Chart (Orders by Category) -->
+<div class="bg-surface-container rounded-xl p-md border border-outline/5 h-[360px] flex flex-col">
+<h4 class="font-headline-sm text-headline-sm mb-md">Orders by Category</h4>
+<div class="flex-1 space-y-md mt-sm">
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md">
+<span>Fast Food</span>
+<span class="text-primary">45%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md">
+<span>Chinese</span>
+<span class="text-secondary-fixed-dim">30%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between font-label-md text-label-md">
+<span>BBQ</span>
+<span class="text-tertiary-fixed-dim">25%</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim rounded-full" style="width: 25%"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Orders Table -->
+<section class="bg-surface-container rounded-xl border border-outline/5 overflow-hidden">
+<div class="p-md flex justify-between items-center border-b border-outline/10">
+<h4 class="font-headline-sm text-headline-sm">Recent Orders</h4>
+<button class="text-primary font-label-md text-label-md flex items-center gap-xs hover:underline">
+                            View All Orders <span class="material-symbols-outlined text-md">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full zebra-table text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-[11px]">
+<th class="px-md py-sm">Order ID</th>
+<th class="px-md py-sm">Customer</th>
+<th class="px-md py-sm">Items</th>
+<th class="px-md py-sm">Total</th>
+<th class="px-md py-sm">Status</th>
+<th class="px-md py-sm text-center">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline/5">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-md py-md font-label-md text-white">#ORD-9910</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center font-bold text-[12px]">AK</div>
+<span>Ahmed K.</span>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant">2x Zinger, 1x Coke</td>
+<td class="px-md py-md font-price-display text-white">₨ 1,200</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 bg-primary/20 text-primary-fixed-dim rounded-full text-[11px] font-bold">Preparing</span>
+</td>
+<td class="px-md py-md text-center">
+<button class="p-xs hover:bg-white/10 rounded transition-colors text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-md py-md font-label-md text-white">#ORD-9909</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center font-bold text-[12px]">SM</div>
+<span>Sara M.</span>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant">1x Chicken Biryani, 1x Raita</td>
+<td class="px-md py-md font-price-display text-white">₨ 450</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 bg-green-500/20 text-green-400 rounded-full text-[11px] font-bold">Delivered</span>
+</td>
+<td class="px-md py-md text-center">
+<button class="p-xs hover:bg-white/10 rounded transition-colors text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-md py-md font-label-md text-white">#ORD-9908</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center font-bold text-[12px]">UR</div>
+<span>Usman R.</span>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant">3x Seekh Kabab, 2x Naan</td>
+<td class="px-md py-md font-price-display text-white">₨ 880</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 bg-blue-500/20 text-blue-400 rounded-full text-[11px] font-bold">On the Way</span>
+</td>
+<td class="px-md py-md text-center">
+<button class="p-xs hover:bg-white/10 rounded transition-colors text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-md py-md font-label-md text-white">#ORD-9907</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center font-bold text-[12px]">FQ</div>
+<span>Fatima Q.</span>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant">1x Large Pizza, 1.5L Dew</td>
+<td class="px-md py-md font-price-display text-white">₨ 1,850</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 bg-red-500/20 text-red-400 rounded-full text-[11px] font-bold">Cancelled</span>
+</td>
+<td class="px-md py-md text-center">
+<button class="p-xs hover:bg-white/10 rounded transition-colors text-primary">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-sm bg-surface-container-low flex justify-between items-center font-label-md text-[12px] text-on-surface-variant">
+<span>Showing 4 of 128 orders</span>
+<div class="flex gap-base">
+<button class="w-8 h-8 rounded border border-outline/20 flex items-center justify-center hover:bg-white/5"><span class="material-symbols-outlined text-md">chevron_left</span></button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded border border-outline/20 flex items-center justify-center hover:bg-white/5">2</button>
+<button class="w-8 h-8 rounded border border-outline/20 flex items-center justify-center hover:bg-white/5"><span class="material-symbols-outlined text-md">chevron_right</span></button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Component -->
+<footer class="mt-auto w-full py-lg px-md flex flex-col items-center gap-md bg-surface-container-low border-t border-outline/5">
+<div class="flex gap-md flex-wrap justify-center">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">About Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">Contact Support</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Orange Food Pakistan. All rights reserved.</p>
+</footer>
+</main>
+</div>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = 'scale(1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simulating chart interactivity
+        const areaChart = document.querySelector('svg path[stroke="#f97316"]');
+        if (areaChart) {
+            areaChart.style.transition = 'all 1s ease-in-out';
+            // Subtle pulse effect
+            setInterval(() => {
+                areaChart.style.opacity = '0.8';
+                setTimeout(() => areaChart.style.opacity = '1', 1000);
+            }, 2000);
+        }
+    </script>
+</body></html>

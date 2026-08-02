@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking - Orange</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#ffb690",
+                    "primary": "#9d4300",
+                    "surface-tint": "#9d4300",
+                    "on-primary-fixed": "#341100",
+                    "on-background": "#151c27",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-secondary-fixed": "#121c2a",
+                    "tertiary-container": "#a09a91",
+                    "inverse-surface": "#2a313d",
+                    "on-primary-container": "#582200",
+                    "secondary": "#555f6f",
+                    "primary-fixed": "#ffdbca",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#151c27",
+                    "inverse-primary": "#ffb690",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "on-tertiary-container": "#36322c",
+                    "surface-dim": "#d3daea",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-high": "#e2e8f8",
+                    "on-secondary-container": "#596373",
+                    "surface-variant": "#dce2f3",
+                    "outline": "#8c7164",
+                    "surface-container": "#e7eefe",
+                    "on-primary-fixed-variant": "#783200",
+                    "surface-container-highest": "#dce2f3",
+                    "tertiary-fixed": "#e9e1d8",
+                    "primary-container": "#f97316",
+                    "tertiary": "#625e56",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#584237",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f0f3ff",
+                    "secondary-container": "#d6e0f3",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "outline-variant": "#e0c0b1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "lg": "40px",
+                    "xl": "64px",
+                    "gutter": "20px",
+                    "container-max": "1280px",
+                    "sm": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "price-display": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "headline-sm": ["Montserrat"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9ff;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .header-anchor {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+        .shimmer {
+            background: linear-gradient(90deg, #f0f3ff 25%, #e7eefe 50%, #f0f3ff 75%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .map-overlay-vignette {
+            box-shadow: inset 0 0 100px rgba(157, 67, 0, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen text-on-surface overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] w-full">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-sm">
+<button class="p-base active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">Track Order</h1>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant bg-surface-container-low px-sm py-1 rounded-full">
+                #OR-59283
+            </div>
+</div>
+</header>
+<main class="flex-grow flex flex-col w-full max-w-md mx-auto relative">
+<!-- Status Stepper Section -->
+<section class="bg-surface px-md py-md mt-base shadow-sm">
+<div class="flex justify-between items-start relative">
+<!-- Progress Line Background -->
+<div class="absolute top-5 left-0 w-full h-[2px] bg-surface-variant z-0"></div>
+<!-- Progress Line Active -->
+<div class="absolute top-5 left-0 w-1/3 h-[2px] bg-primary-container z-0"></div>
+<!-- Step 1: Confirmed -->
+<div class="flex flex-col items-center gap-xs z-10 w-1/4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white shadow-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="check" data-weight="fill">check</span>
+</div>
+<span class="font-label-md text-label-md text-center text-on-primary-container">Confirmed</span>
+</div>
+<!-- Step 2: Preparing (Active State) -->
+<div class="flex flex-col items-center gap-xs z-10 w-1/4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white ring-4 ring-primary/20 shadow-lg scale-110">
+<span class="material-symbols-outlined text-[20px]" data-icon="restaurant" data-weight="fill">restaurant</span>
+</div>
+<span class="font-label-md text-label-md text-center text-primary font-bold">Preparing</span>
+</div>
+<!-- Step 3: Out for Delivery -->
+<div class="flex flex-col items-center gap-xs z-10 w-1/4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="delivery_dining">delivery_dining</span>
+</div>
+<span class="font-label-md text-label-md text-center text-on-surface-variant">Shipping</span>
+</div>
+<!-- Step 4: Delivered -->
+<div class="flex flex-col items-center gap-xs z-10 w-1/4">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="celebration">celebration</span>
+</div>
+<span class="font-label-md text-label-md text-center text-on-surface-variant">Delivered</span>
+</div>
+</div>
+</section>
+<!-- Map Preview Section -->
+<section class="h-64 relative overflow-hidden bg-surface-container">
+<div class="w-full h-full" data-location="Karachi, Pakistan" style="">
+<img class="w-full h-full object-cover" data-alt="A high-angle bird's eye view map of a bustling Karachi neighborhood street with vibrant orange location markers and a sleek delivery bike icon moving along a route. The aesthetic is clean and modern light mode, using a sophisticated palette of off-whites and vibrant primary oranges. The lighting is bright and clear, reflecting a mid-day atmosphere with soft ambient shadows for depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADn7Vyfp5qf72qt43OTkXvB2OicYCMpBYX6gBwwSCoNGcy1VbvGSJLea8qqvwtULOCPZkV04AXcYXmCYyI5TVrwNjJEIuihEncCp5YRHLoMxR8d7iTi3O4Px0Sw3FR9X3SXu000GEZrrhocXanRM8a6NcCiaDNrtC4MKSdmtL4DKWZt0-pL4juUrcNJGhtiZ9MsqQOzoGvfexy1EH605jHV1V60I33rKLyuQKMcX42fyFX0cudOY3ehQ"/>
+</div>
+<!-- Map Vignette Overlay -->
+<div class="absolute inset-0 map-overlay-vignette pointer-events-none"></div>
+<!-- Floating Rider Info Overlay -->
+<div class="absolute bottom-4 left-4 right-4 bg-surface/90 backdrop-blur-md rounded-xl p-sm flex items-center justify-between shadow-lg border border-white/20">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-secondary-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly delivery partner wearing a bright orange uniform and helmet, smiling warmly. The photo is set against a clean, blurred urban backdrop in Karachi. The visual style is modern, vibrant, and high-quality, emphasizing reliability and service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV46sUX-eSpYFYoO99RaIioOWAzbKwEyQG1TnG6mima4cNh5eAezh4r6OHWzZAvkGeuTP6Uj3jShz3XLyyhXndfrmV3iKATDaenDLaE9CGtk390bVkoVda4KX3Ff3c9jN6Gi8p5L33_bCNzd6rIVGo3gliyXtDrTmABnEDp-a6_hdviZIAUo5TThKCET4P3E1cRWCzyDrwY__jNrq9L6VRFCK2p3R8SZDtskkSGVVLfXdix5_JchQiLw"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Ahmed K.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="star" data-weight="fill">star</span>
+                            4.8 • Your Rider
+                        </p>
+</div>
+</div>
+<div class="flex gap-xs">
+<button class="w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Order Details Scrollable Card -->
+<section class="flex-grow bg-white rounded-t-[32px] -mt-8 relative z-20 shadow-[0px_-8px_32px_rgba(31,41,55,0.08)] px-md pt-lg pb-xl overflow-y-auto">
+<div class="w-12 h-1.5 bg-surface-variant rounded-full mx-auto mb-md opacity-50"></div>
+<div class="flex justify-between items-center mb-lg">
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Estimated Delivery</p>
+<h2 class="font-headline-md text-headline-md text-primary font-extrabold">25 mins</h2>
+</div>
+<div class="text-right">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Amount Payable</p>
+<p class="font-price-display text-price-display text-on-surface">Rs. 2,450</p>
+</div>
+</div>
+<div class="space-y-md">
+<h3 class="font-headline-sm text-headline-sm font-bold border-b border-surface-variant pb-xs">Order Summary</h3>
+<!-- Order Item -->
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up, appetizing studio shot of a gourmet beef burger with melting cheese and fresh lettuce on a brioche bun. The lighting is warm and dramatic, highlighting the textures of the food. The background is a soft, minimalist light grey, maintaining a clean and modern food-tech brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUqx9fhBOf867jy9sO_iImt9ZFdOp2JRA3Y18MGvxFOlyqQInIl8HxopQlT6qGBHMJgqvgcKuSu-0n55yXypmuA_xapj6uh8AKjajVPeFRwiinPjSpVGvT_WTNbGLKlW5AJ23A2Uald5f-xfpJFPRehvt2DrwRQ1d55G0PmB3Y9hWJD4M4b5QqSQjnojE0brzJFrhvKRwcaHoqNZZKYBr7LrmlkD8m1CbYIv9xQANSbolfcgF_FeDYUA"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<span class="font-label-md text-label-md">2x Classic Beef Burger</span>
+<span class="font-label-md text-label-md">Rs. 1,600</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">No onions, Extra cheese</p>
+</div>
+</div>
+<!-- Order Item -->
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container-low flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A top-down view of golden, crispy french fries in a minimalist orange carton. The photography is sharp and high-key, with a clean aesthetic suitable for a high-end food delivery app. The style is energetic and appetizing, emphasizing freshness and quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0eirc7f6sKGMtT2l29R0vznsI9kHhlitrkf3BFC0vdeS7gLkVmKf295pEplwXQCcUPkyeZlH7vmrDZnfd5gXiB83DSl2f8FS0kljgMube70aOdhGo2mDMMq-v9ZlncThB4XQr3ukDFBN8B67ZCVRogaBAzbFjDI2VlGf1jlU--KG18Ur3kacqjRH6G-NgwmpOFB8AVT6BhkiuBHk0qnWXBKPKaAdORZm5wA6IakkTHVDmr29b6nw0Ig"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between">
+<span class="font-label-md text-label-md">1x Large Loaded Fries</span>
+<span class="font-label-md text-label-md">Rs. 650</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">With Jalapeño sauce</p>
+</div>
+</div>
+<!-- Price Breakdown -->
+<div class="bg-surface-container-low p-md rounded-2xl space-y-xs mt-lg">
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Subtotal</span>
+<span>Rs. 2,250</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Delivery Fee</span>
+<span>Rs. 150</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Taxes (GST)</span>
+<span>Rs. 50</span>
+</div>
+<div class="flex justify-between pt-xs mt-xs border-t border-surface-variant font-label-md text-label-md text-on-surface">
+<span class="font-bold">Total</span>
+<span class="text-primary font-bold">Rs. 2,450</span>
+</div>
+</div>
+<!-- Address Section -->
+<div class="pt-lg">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-xs">Delivery Address</h3>
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<p class="font-body-sm text-body-sm">Apartment 402, Al-Azam Square, Block 13, Gulshan-e-Iqbal, Karachi</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Floating Action Button -->
+<div class="fixed bottom-24 right-md z-40">
+<button class="bg-inverse-surface text-white flex items-center gap-xs px-md py-sm rounded-full shadow-lg active:scale-95 transition-transform hover:shadow-xl group">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="support_agent">support_agent</span>
+<span class="font-label-md text-label-md">Contact Support</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Suppressed on Task-Focused Screens, but present as per JSON hierarchy for Top Level context if needed - Here we use it for app shell consistency) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1">
+<span class="material-symbols-outlined" data-icon="receipt_long" data-weight="fill">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for the status stepper
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = document.querySelectorAll('.step-icon');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('scale-100', 'opacity-100');
+                }, index * 200);
+            });
+            
+            // Random map jitter for a 'live' effect
+            const riderMarker = document.querySelector('[data-location]');
+            if (riderMarker) {
+                setInterval(() => {
+                    const x = (Math.random() - 0.5) * 2;
+                    const y = (Math.random() - 0.5) * 2;
+                    riderMarker.style.transform = `translate(${x}px, ${y}px)`;
+                }, 3000);
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant - Order Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d3daea",
+                    "primary-container": "#f97316",
+                    "outline": "#8c7164",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-background": "#151c27",
+                    "error": "#ba1a1a",
+                    "background": "#f9f9ff",
+                    "on-tertiary-container": "#36322c",
+                    "on-surface-variant": "#584237",
+                    "on-secondary-container": "#596373",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#582200",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#d9e3f6",
+                    "outline-variant": "#e0c0b1",
+                    "secondary-container": "#d6e0f3",
+                    "secondary": "#555f6f",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-tint": "#9d4300",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-secondary-fixed": "#121c2a",
+                    "surface-variant": "#dce2f3",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#625e56",
+                    "surface": "#f9f9ff",
+                    "primary-fixed": "#ffdbca",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-surface": "#151c27",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#a09a91",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary-fixed": "#341100",
+                    "inverse-surface": "#2a313d",
+                    "surface-container": "#e7eefe",
+                    "primary": "#9d4300",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#ffb690"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "sm": "16px",
+                    "container-max": "1280px",
+                    "lg": "40px",
+                    "gutter": "20px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "price-display": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Montserrat"]
+            },
+            "fontSize": {
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+        .montserrat { font-family: 'Montserrat', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .status-pill-active {
+            @apply bg-primary-container text-on-primary-container;
+        }
+        .order-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .order-card:active {
+            transform: scale(0.98);
+        }
+        .bottom-sheet {
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+        }
+        .bottom-sheet.active {
+            transform: translateY(0);
+        }
+        .overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-inverse-surface text-white min-h-screen">
+<!-- Desktop Side Navigation (Mirroring JSON style) -->
+<aside class="hidden md:flex flex-col h-screen fixed left-0 top-0 bg-inverse-surface dark:bg-surface-container-low docked left-0 h-full w-64 z-40">
+<div class="px-md py-lg flex flex-col items-center gap-xs">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional minimalist logo for a food delivery platform called Orange Merchant. The logo features a stylized geometric orange fruit in vibrant shades of primary orange and white, set against a clean, deep charcoal circular background. The style is modern corporate, symbolizing efficiency and fresh quality in a high-tech logistics environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFRyqN7OWXkxticOI0Ook7rPV5qpWWadPJW6S5WAU3EgT0Orqkg3Ub7X2tnhLveNHdmVgM-xWAQ_gFcZVGdc2hHcpvmovPpa_Fsu94Vweg1WOApTTut2PsS_Ct2s5V26FhhTlcaGGtEf5dFtWXNWIP0qOK_yNG925jqwsGxz5kIAmszq1GpRA9FDw30isZ21OzHIH2q4mqqR2fA2ahWcmT9gmCBN9gwhv6eZKejeO3_sA6R_vx1FWnsg"/>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary-fixed montserrat">Orange Merchant</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Partner Portal</p>
+</div>
+<nav class="flex-1 mt-md">
+<a class="text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm font-label-md text-label-md hover:bg-secondary-container/10 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="bg-on-secondary-fixed-variant text-white rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-sm font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">list_alt</span> Orders
+            </a>
+<a class="text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm font-label-md text-label-md hover:bg-secondary-container/10 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span> Menu
+            </a>
+<a class="text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm font-label-md text-label-md hover:bg-secondary-container/10 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+<a class="text-surface-variant dark:text-on-surface-variant mx-2 my-1 px-4 py-3 flex items-center gap-sm font-label-md text-label-md hover:bg-secondary-container/10 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="p-md">
+<button class="w-full py-sm bg-primary text-white rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors">
+                View Live Store
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 pb-32 min-h-screen flex flex-col">
+<!-- Top Bar / Header -->
+<header class="sticky top-0 z-30 bg-inverse-surface/95 backdrop-blur-md px-md py-sm">
+<div class="flex justify-between items-center mb-sm">
+<h2 class="font-headline-md text-headline-md montserrat font-bold text-white">Orders</h2>
+<div class="flex gap-xs">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-xs overflow-x-auto pb-xs scrollbar-hide no-scrollbar">
+<button class="px-md py-xs rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md flex-shrink-0">
+                    New (12)
+                </button>
+<button class="px-md py-xs rounded-full bg-white/10 text-white font-label-md text-label-md flex-shrink-0 hover:bg-white/20">
+                    Preparing (5)
+                </button>
+<button class="px-md py-xs rounded-full bg-white/10 text-white font-label-md text-label-md flex-shrink-0 hover:bg-white/20">
+                    Out for Delivery (3)
+                </button>
+<button class="px-md py-xs rounded-full bg-white/10 text-white font-label-md text-label-md flex-shrink-0 hover:bg-white/20">
+                    Completed
+                </button>
+</div>
+</header>
+<!-- Order List -->
+<section class="px-md mt-sm flex flex-col gap-sm flex-1">
+<!-- Order Card 1 (New) -->
+<div class="order-card bg-surface-container-low/10 rounded-xl overflow-hidden border-l-8 border-primary-container flex flex-col cursor-pointer shadow-sm" onclick="openBottomSheet('ORD-9284')">
+<div class="p-md flex justify-between items-start">
+<div>
+<div class="flex items-center gap-xs mb-1">
+<span class="font-label-md text-label-md text-primary-fixed-dim montserrat">ORD-9284</span>
+<span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
+<span class="font-body-sm text-body-sm opacity-60">2 mins ago</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white montserrat">Zeeshan Khan</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-80 mt-1">2x Chicken Biryani, 1x Coke (1.5L)</p>
+</div>
+<div class="text-right">
+<p class="font-price-display text-price-display text-primary-container">PKR 1,450</p>
+<span class="inline-block mt-2 px-xs py-0.5 rounded bg-primary-container/20 text-primary-container font-label-md text-label-md">NEW</span>
+</div>
+</div>
+</div>
+<!-- Order Card 2 (Preparing) -->
+<div class="order-card bg-surface-container-low/10 rounded-xl overflow-hidden border-l-8 border-secondary-fixed flex flex-col cursor-pointer shadow-sm" onclick="openBottomSheet('ORD-9280')">
+<div class="p-md flex justify-between items-start">
+<div>
+<div class="flex items-center gap-xs mb-1">
+<span class="font-label-md text-label-md text-primary-fixed-dim montserrat">ORD-9280</span>
+<span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
+<span class="font-body-sm text-body-sm opacity-60">15 mins ago</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white montserrat">Ayesha Ahmed</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-80 mt-1">1x Beef Karahi, 4x Garlic Naan</p>
+</div>
+<div class="text-right">
+<p class="font-price-display text-price-display text-primary-container">PKR 2,890</p>
+<span class="inline-block mt-2 px-xs py-0.5 rounded bg-secondary-container/20 text-secondary-container font-label-md text-label-md uppercase">Preparing</span>
+</div>
+</div>
+</div>
+<!-- Order Card 3 (New) -->
+<div class="order-card bg-surface-container-low/10 rounded-xl overflow-hidden border-l-8 border-primary-container flex flex-col cursor-pointer shadow-sm" onclick="openBottomSheet('ORD-9285')">
+<div class="p-md flex justify-between items-start">
+<div>
+<div class="flex items-center gap-xs mb-1">
+<span class="font-label-md text-label-md text-primary-fixed-dim montserrat">ORD-9285</span>
+<span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
+<span class="font-body-sm text-body-sm opacity-60">Just now</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white montserrat">Bilal Siddiqui</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-80 mt-1">3x Seekh Kebab Platter</p>
+</div>
+<div class="text-right">
+<p class="font-price-display text-price-display text-primary-container">PKR 3,200</p>
+<span class="inline-block mt-2 px-xs py-0.5 rounded bg-primary-container/20 text-primary-container font-label-md text-label-md">NEW</span>
+</div>
+</div>
+</div>
+<!-- Order Card 4 (Out for delivery) -->
+<div class="order-card bg-surface-container-low/10 rounded-xl overflow-hidden border-l-8 border-surface-tint flex flex-col cursor-pointer shadow-sm" onclick="openBottomSheet('ORD-9275')">
+<div class="p-md flex justify-between items-start">
+<div>
+<div class="flex items-center gap-xs mb-1">
+<span class="font-label-md text-label-md text-primary-fixed-dim montserrat">ORD-9275</span>
+<span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
+<span class="font-body-sm text-body-sm opacity-60">45 mins ago</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white montserrat">Mariam Fatima</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-80 mt-1">1x Party Pack (Small)</p>
+</div>
+<div class="text-right">
+<p class="font-price-display text-price-display text-primary-container">PKR 1,800</p>
+<span class="inline-block mt-2 px-xs py-0.5 rounded bg-surface-tint/20 text-surface-tint font-label-md text-label-md uppercase">On Way</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Overlay -->
+<div class="overlay fixed inset-0 bg-black/60 z-40" id="overlay" onclick="closeBottomSheet()"></div>
+<!-- Bottom Sheet -->
+<div class="bottom-sheet fixed bottom-0 left-0 right-0 z-50 bg-inverse-surface rounded-t-[2rem] p-md shadow-2xl md:max-w-md md:mx-auto" id="bottomSheet">
+<div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-md"></div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<h4 class="font-headline-sm text-headline-sm montserrat text-primary-fixed-dim" id="sheetOrderId">ORD-9284</h4>
+<p class="font-body-lg text-body-lg text-white font-semibold" id="sheetCustomer">Zeeshan Khan</p>
+<p class="font-body-sm text-body-sm opacity-60">Gulberg III, Lahore</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center" onclick="closeBottomSheet()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="bg-white/5 rounded-xl p-sm mb-lg">
+<h5 class="font-label-md text-label-md text-primary-container mb-xs uppercase tracking-wider">Update Status</h5>
+<div class="grid grid-cols-1 gap-sm">
+<button class="w-full py-md rounded-xl bg-white/10 hover:bg-white/20 text-white font-headline-sm text-headline-sm flex items-center justify-center gap-sm transition-all active:scale-95" onclick="updateStatus('Preparing')">
+<span class="material-symbols-outlined text-secondary-container">restaurant</span> Preparing
+                </button>
+<button class="w-full py-md rounded-xl bg-white/10 hover:bg-white/20 text-white font-headline-sm text-headline-sm flex items-center justify-center gap-sm transition-all active:scale-95" onclick="updateStatus('Out for Delivery')">
+<span class="material-symbols-outlined text-primary-fixed-dim">delivery_dining</span> Out for Delivery
+                </button>
+<button class="w-full py-md rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm flex items-center justify-center gap-sm transition-all active:scale-95" onclick="updateStatus('Completed')">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span> Complete Order
+                </button>
+</div>
+</div>
+<div class="flex items-center justify-between py-sm border-t border-white/10">
+<button class="flex items-center gap-xs font-label-md text-label-md text-error">
+<span class="material-symbols-outlined">cancel</span> Cancel Order
+            </button>
+<button class="flex items-center gap-xs font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined">print</span> Print Receipt
+            </button>
+</div>
+</div>
+<!-- Mobile Bottom Navigation (JSON Anchor) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-md text-label-md">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        function openBottomSheet(orderId) {
+            document.getElementById('sheetOrderId').innerText = orderId;
+            document.getElementById('bottomSheet').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBottomSheet() {
+            document.getElementById('bottomSheet').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateStatus(status) {
+            const orderId = document.getElementById('sheetOrderId').innerText;
+            console.log(`Updating ${orderId} to ${status}`);
+            
+            // Simulating update with visual feedback
+            const btn = event.currentTarget;
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">sync</span> Updating...`;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined">check</span> Success`;
+                setTimeout(() => {
+                    closeBottomSheet();
+                    btn.innerHTML = originalContent;
+                }, 800);
+            }, 1000);
+        }
+
+        // Horizontal scroll animation for filter chips
+        const chipsContainer = document.querySelector('.overflow-x-auto');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        chipsContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - chipsContainer.offsetLeft;
+            scrollLeft = chipsContainer.scrollLeft;
+        });
+        chipsContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        chipsContainer.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        chipsContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - chipsContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            chipsContainer.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+</body></html>

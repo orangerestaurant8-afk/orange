@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | Orange Food Pakistan</title>
+<!-- Google Fonts: Montserrat for Headings, Inter for Body -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            background-color: #f9f9ff;
+            color: #151c27;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#9d4300",
+                      "surface-container": "#e7eefe",
+                      "on-surface": "#151c27",
+                      "surface-variant": "#dce2f3",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "tertiary": "#625e56",
+                      "primary": "#9d4300",
+                      "outline-variant": "#e0c0b1",
+                      "on-tertiary-container": "#36322c",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#ccc5bc",
+                      "secondary-container": "#d6e0f3",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#f97316",
+                      "surface-dim": "#d3daea",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#584237",
+                      "surface-container-low": "#f0f3ff",
+                      "on-primary-container": "#582200",
+                      "inverse-primary": "#ffb690",
+                      "on-secondary-container": "#596373",
+                      "on-primary-fixed": "#341100",
+                      "surface-bright": "#f9f9ff",
+                      "secondary": "#555f6f",
+                      "primary-fixed-dim": "#ffb690",
+                      "on-secondary-fixed": "#121c2a",
+                      "tertiary-container": "#a09a91",
+                      "inverse-surface": "#2a313d",
+                      "secondary-fixed": "#d9e3f6",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e2e8f8",
+                      "tertiary-fixed": "#e9e1d8",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#783200",
+                      "surface-container-highest": "#dce2f3",
+                      "on-tertiary-fixed": "#1e1b15",
+                      "inverse-on-surface": "#ebf1ff",
+                      "on-background": "#151c27",
+                      "background": "#f9f9ff",
+                      "surface": "#f9f9ff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "outline": "#8c7164",
+                      "on-tertiary-fixed-variant": "#4a463f",
+                      "primary-fixed": "#ffdbca"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "gutter": "20px",
+                      "base": "4px",
+                      "xl": "64px",
+                      "xs": "8px",
+                      "lg": "40px"
+              },
+              "fontFamily": {
+                      "price-display": ["Montserrat"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-sm": ["Montserrat"],
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Montserrat"],
+                      "body-lg": ["Inter"],
+                      "display-lg": ["Montserrat"],
+                      "display-lg-mobile": ["Montserrat"]
+              },
+              "fontSize": {
+                      "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="font-body-md text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-background shadow-[0px_2px_8px_rgba(31,41,55,0.05)] sticky top-0 z-50">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Orange</span>
+<nav class="hidden md:flex gap-md">
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary py-1" href="#">Lahore</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-secondary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors py-1" href="#">Karachi</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-secondary-container hover:text-primary dark:hover:text-primary-fixed-dim transition-colors py-1" href="#">Islamabad</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 relative rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim overflow-hidden ml-2 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A portrait of a smiling user against a warm, soft-lit background, reflecting the modern corporate yet approachable design system of Orange food app. The lighting is bright and inviting with subtle orange accents in the environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSmz3oNe6t97Z_Tqjra81CPkFRf9ws4WYSKDFcEOF0GyfM18cJRexKY8rV4KFPQm47MR3f0fSumBuiKFWUE1l_tOYKDy_vchPXQEAlQ-gVhF0ZFPRwZfclRxxk8vd9acGZGW18E_J1eXZnWWhK5jaCQ3g0cMOHT7vYKto1SIYyu3BOMslL6w_mXUrDhVwlDsm4EAUlHnCGjohdELgp8HSxQorz6LGdFsJNCD-m7FLs7m5YltlQ48Tqeg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-md py-lg grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Checkout Details -->
+<section class="lg:col-span-8 space-y-lg">
+<h1 class="font-headline-md text-headline-md mb-md text-on-background">Checkout</h1>
+<!-- Delivery Address Section -->
+<div class="bg-white rounded-xl p-md shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border border-surface-variant">
+<div class="flex items-center gap-sm mb-md">
+<div class="w-10 h-10 bg-primary-container/10 text-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined fill-icon" data-icon="location_on">location_on</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm">Delivery Address</h2>
+<p class="text-on-surface-variant text-body-sm">Your order will be delivered here</p>
+</div>
+<button class="ml-auto text-primary font-semibold text-label-md hover:underline">Change</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="md:col-span-1 rounded-lg overflow-hidden h-32 relative border border-surface-variant">
+<img class="w-full h-full object-cover" data-location="Lahore" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2gLz_d3tG9uG8Eh-e11fsMN0zgcZB0r5apIb-QAObTmlclAGyo8ByyLzfJy21FbjAOaK7iQOHgG1peD8M0vKsFWGluahML23cWkMmsJ144pPrrex9aElogcud0a3PAHP0Ubvij-dAHtcOs9O8OyOqVf1glwu_AYWWi6nNdjmWT5XpyqYk4Q_cqjHx2d141Yjis0ykHgxsH775pz36n0Df7Gxe9LkUmT4RzsfC6D9ZInyew6qxI2-MWg"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-primary text-4xl drop-shadow-md fill-icon">location_on</span>
+</div>
+</div>
+<div class="md:col-span-2 flex flex-col justify-center">
+<p class="font-bold text-body-md mb-1">Home (Primary)</p>
+<p class="text-on-surface-variant text-body-md leading-relaxed">House 42, Block L, Gulberg III,<br/>Lahore, Pakistan</p>
+<p class="text-on-surface-variant text-body-sm mt-2">+92 300 1234567</p>
+</div>
+</div>
+</div>
+<!-- Delivery Time Slot -->
+<div class="bg-white rounded-xl p-md shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border border-surface-variant">
+<div class="flex items-center gap-sm mb-md">
+<div class="w-10 h-10 bg-primary-container/10 text-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined fill-icon" data-icon="schedule">schedule</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm">Delivery Time</h2>
+<p class="text-on-surface-variant text-body-sm">Select your preferred slot</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-sm">
+<button class="flex-1 min-w-[140px] border-2 border-primary bg-primary-container/5 rounded-xl px-md py-sm text-center transition-all scale-95 ring-2 ring-primary/20">
+<p class="text-primary font-bold text-label-md">ASAP</p>
+<p class="text-primary text-body-sm">25 - 35 mins</p>
+</button>
+<button class="flex-1 min-w-[140px] border border-surface-variant rounded-xl px-md py-sm text-center hover:bg-surface-container-low transition-colors group">
+<p class="text-on-surface-variant group-hover:text-primary font-bold text-label-md">Schedule</p>
+<p class="text-on-surface-variant group-hover:text-primary text-body-sm">Today, 8:00 PM</p>
+</button>
+<button class="flex-1 min-w-[140px] border border-surface-variant rounded-xl px-md py-sm text-center hover:bg-surface-container-low transition-colors group">
+<p class="text-on-surface-variant group-hover:text-primary font-bold text-label-md">Late Night</p>
+<p class="text-on-surface-variant group-hover:text-primary text-body-sm">Today, 11:30 PM</p>
+</button>
+</div>
+</div>
+<!-- Payment Method Selection -->
+<div class="bg-white rounded-xl p-md shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border border-surface-variant">
+<div class="flex items-center gap-sm mb-md">
+<div class="w-10 h-10 bg-primary-container/10 text-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined fill-icon" data-icon="payments">payments</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm">Payment Method</h2>
+<p class="text-on-surface-variant text-body-sm">Secure transactions and easy checkout</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<!-- Cash on Delivery -->
+<label class="relative flex items-center gap-md p-md border-2 border-primary bg-primary-container/5 rounded-xl cursor-pointer">
+<input checked="" class="hidden" name="payment" type="radio"/>
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm border border-surface-variant">
+<span class="material-symbols-outlined text-primary-container text-3xl">payments</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-label-md">Cash on Delivery</p>
+<p class="text-on-surface-variant text-body-sm">Pay when you receive</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</label>
+<!-- Credit/Debit Card -->
+<label class="relative flex items-center gap-md p-md border border-surface-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="hidden" name="payment" type="radio"/>
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm border border-surface-variant">
+<span class="material-symbols-outlined text-secondary text-3xl">credit_card</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-label-md group-hover:text-primary transition-colors">Credit/Debit Card</p>
+<p class="text-on-surface-variant text-body-sm">Visa, Mastercard, PayPak</p>
+</div>
+<span class="material-symbols-outlined text-surface-variant group-hover:text-primary/40">radio_button_unchecked</span>
+</label>
+<!-- JazzCash -->
+<label class="relative flex items-center gap-md p-md border border-surface-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="hidden" name="payment" type="radio"/>
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm border border-surface-variant overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="A clean, minimalist 3D icon of JazzCash logo on a vibrant background. Professional FinTech aesthetic, sharp details, high contrast, warm neutral lighting, and sleek modern corporate UI design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtv_-HduzeMEGtsJiDMhmwQjrazpmVV3tuEth_h4MSL_9FjTK7sNbP3oFrcWbGFeeibBQrJmn3H6gfSqQGwKOhEiFyE0ILrRlh6TGIFEmdJZPbJPhM80bkLWnURSpThUJvZeuk3XzK8sRgtm7Z_wwbO1nqlhi9X5gcIau-ycQbjPl6flhMP67P7mihA79Et9-jncIdzqQP7wNa8203jKHDS9VwAmO1UVdmPfNyun4KzB4h9J8C_APnuQ"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-label-md group-hover:text-primary transition-colors">JazzCash</p>
+<p class="text-on-surface-variant text-body-sm">Pay via JazzCash Wallet</p>
+</div>
+<span class="material-symbols-outlined text-surface-variant group-hover:text-primary/40">radio_button_unchecked</span>
+</label>
+<!-- EasyPaisa -->
+<label class="relative flex items-center gap-md p-md border border-surface-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="hidden" name="payment" type="radio"/>
+<div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-sm border border-surface-variant overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="A high-quality 3D minimalist icon for EasyPaisa mobile wallet. The design uses clean lines, soft shadows, and vibrant colors that fit a modern food tech app interface. Bright studio lighting on a neutral white surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVu2scLn6tU6gG7iMpeyMVsS9nakYnUMNkWBFhogpU1panUtPdr6j-lH9CmuSi53tGaYmR7da1JnckWeH3hPWTGpwjLjwpn8Vu0OvAt6KGIDsgOYrsX6ukmol72Fynr6LEOB-si020o8V5pUpXm_UJKMb-TabG28V-fYdQ0HAlBHX3IImZu1yKQNZk-nRIRSuIeIKCYg8l5z5Tr7LWQ5MgVZ0ZNqwz8FuR2P3L76-rEr1HpI789SLw4A"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-label-md group-hover:text-primary transition-colors">EasyPaisa</p>
+<p class="text-on-surface-variant text-body-sm">Pay via EasyPaisa Wallet</p>
+</div>
+<span class="material-symbols-outlined text-surface-variant group-hover:text-primary/40">radio_button_unchecked</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Right Column: Order Summary Sidebar -->
+<aside class="lg:col-span-4">
+<div class="sticky top-24 space-y-md">
+<div class="bg-white rounded-xl shadow-[0px_8px_20px_rgba(31,41,55,0.1)] border border-surface-variant overflow-hidden">
+<div class="p-md bg-surface-container-low border-b border-surface-variant">
+<h2 class="font-headline-sm text-headline-sm">Order Summary</h2>
+<p class="text-body-sm text-on-surface-variant">3 items from <span class="font-semibold text-primary">Savory Bites</span></p>
+</div>
+<div class="p-md space-y-sm">
+<!-- Items Preview (Compact) -->
+<div class="space-y-xs pb-md border-b border-surface-variant">
+<div class="flex justify-between items-center text-body-md">
+<span class="text-on-surface-variant"><span class="font-bold text-on-surface">1x</span> Zinger Burger Combo</span>
+<span class="font-medium">Rs. 850</span>
+</div>
+<div class="flex justify-between items-center text-body-md">
+<span class="text-on-surface-variant"><span class="font-bold text-on-surface">2x</span> Masala Fries (L)</span>
+<span class="font-medium">Rs. 440</span>
+</div>
+</div>
+<!-- Promo Code -->
+<div class="py-md">
+<div class="flex gap-xs">
+<input class="flex-1 rounded-lg border-surface-variant focus:ring-primary focus:border-primary px-sm py-2 text-body-md" placeholder="Promo Code" type="text"/>
+<button class="bg-inverse-surface text-white px-md py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity">Apply</button>
+</div>
+</div>
+<!-- Calculations -->
+<div class="space-y-xs">
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Subtotal</span>
+<span>Rs. 1,290</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">Delivery Fee</span>
+<span class="text-primary font-medium">Rs. 99</span>
+</div>
+<div class="flex justify-between text-body-md">
+<span class="text-on-surface-variant">GST (16%)</span>
+<span>Rs. 206</span>
+</div>
+<div class="flex justify-between text-body-md text-error">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+                                    Discount (OFFER50)
+                                </span>
+<span>- Rs. 150</span>
+</div>
+</div>
+<!-- Total -->
+<div class="pt-md border-t-2 border-dashed border-surface-variant mt-md">
+<div class="flex justify-between items-end mb-lg">
+<span class="font-bold text-headline-sm">Total</span>
+<div class="text-right">
+<span class="text-primary font-price-display text-price-display block">Rs. 1,445</span>
+<span class="text-xs text-on-surface-variant italic">Inclusive of all taxes</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-lg rounded-xl font-headline-sm text-headline-sm shadow-[0px_8px_20px_rgba(249,115,22,0.3)] hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-sm">
+                                Place Order
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Assistance Card -->
+<div class="bg-surface-container-highest/30 rounded-xl p-md flex items-start gap-md border border-surface-variant/50">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-body-sm text-on-surface-variant leading-relaxed">
+                        By placing the order, you agree to our <strong>Terms of Service</strong>. Delivery estimates are subject to traffic conditions in Gulberg.
+                    </p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer (JSON Derived) -->
+<footer class="w-full py-lg px-md flex flex-col items-center gap-md bg-surface-container-low dark:bg-surface-dim mt-xl">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Orange</span>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">About Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Contact Support</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface dark:text-on-secondary-container opacity-60">
+            © 2024 Orange Food Pakistan. All rights reserved.
+        </p>
+</footer>
+<!-- Bottom Navigation (Mobile Only - JSON Derived) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 scale-90 duration-150">
+<span class="material-symbols-outlined fill-icon" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</button>
+</nav>
+<!-- Micro-interaction Scripts -->
+<script>
+        // Subtle hover effects for payment cards
+        document.querySelectorAll('label[class*="cursor-pointer"]').forEach(label => {
+            label.addEventListener('click', function() {
+                // Reset all
+                document.querySelectorAll('label[class*="cursor-pointer"]').forEach(l => {
+                    l.classList.remove('border-primary', 'bg-primary-container/5', 'scale-95');
+                    l.classList.add('border-surface-variant');
+                    const icon = l.querySelector('span:last-child');
+                    if(icon) {
+                        icon.textContent = 'radio_button_unchecked';
+                        icon.classList.remove('text-primary');
+                        icon.classList.add('text-surface-variant');
+                    }
+                });
+                
+                // Set active
+                this.classList.remove('border-surface-variant');
+                this.classList.add('border-primary', 'bg-primary-container/5');
+                const icon = this.querySelector('span:last-child');
+                if(icon) {
+                    icon.textContent = 'check_circle';
+                    icon.classList.add('text-primary');
+                    icon.classList.remove('text-surface-variant');
+                }
+            });
+        });
+
+        // Time slot selection logic
+        document.querySelectorAll('button[class*="min-w-[140px]"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('button[class*="min-w-[140px]"]').forEach(b => {
+                    b.className = "flex-1 min-w-[140px] border border-surface-variant rounded-xl px-md py-sm text-center hover:bg-surface-container-low transition-colors group";
+                    const p1 = b.querySelector('p:first-child');
+                    const p2 = b.querySelector('p:last-child');
+                    p1.className = "text-on-surface-variant group-hover:text-primary font-bold text-label-md";
+                    p2.className = "text-on-surface-variant group-hover:text-primary text-body-sm";
+                });
+                
+                this.className = "flex-1 min-w-[140px] border-2 border-primary bg-primary-container/5 rounded-xl px-md py-sm text-center transition-all scale-95 ring-2 ring-primary/20";
+                const p1 = this.querySelector('p:first-child');
+                const p2 = this.querySelector('p:last-child');
+                p1.className = "text-primary font-bold text-label-md";
+                p2.className = "text-primary text-body-sm";
+            });
+        });
+    </script>
+</body></html>

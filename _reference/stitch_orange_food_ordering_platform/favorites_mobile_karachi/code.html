@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange - Your Favorites</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-surface": "#2a313d",
+                    "tertiary": "#625e56",
+                    "surface-container": "#e7eefe",
+                    "inverse-primary": "#ffb690",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-secondary-container": "#596373",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary-fixed": "#341100",
+                    "outline-variant": "#e0c0b1",
+                    "primary-container": "#f97316",
+                    "outline": "#8c7164",
+                    "on-background": "#151c27",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container-highest": "#dce2f3",
+                    "surface": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#dce2f3",
+                    "primary-fixed": "#ffdbca",
+                    "secondary-container": "#d6e0f3",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-surface": "#151c27",
+                    "surface-dim": "#d3daea",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-error-container": "#93000a",
+                    "secondary": "#555f6f",
+                    "on-secondary-fixed": "#121c2a",
+                    "error-container": "#ffdad6",
+                    "primary": "#9d4300",
+                    "tertiary-container": "#a09a91",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "background": "#f9f9ff",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "surface-container-low": "#f0f3ff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#584237",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-primary-container": "#582200",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#9d4300",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary-container": "#36322c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "xl": "64px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "container-max": "1280px",
+                    "gutter": "20px",
+                    "sm": "16px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "price-display": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-white">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 left-0 right-0 z-50 shadow-[0px_2px_8px_rgba(31,41,55,0.05)] bg-surface">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xs">
+<span class="font-headline-md text-headline-md font-bold text-primary">Orange</span>
+</div>
+<div class="hidden md:flex gap-md items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Lahore</a>
+<a class="text-primary font-bold border-b-2 border-primary transition-colors font-body-md text-body-md" href="#">Karachi</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Islamabad</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young Pakistani man smiling warmly, set against a blurred modern cafe background in Karachi. The lighting is soft and natural, emphasizing a clean and approachable aesthetic that fits the modern corporate UI style of the Orange food delivery app. The overall tone is bright and friendly, reflecting premium customer service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBbwC9rpcip70pzoEJkrBiyQpairurBZ2BDQp_jkXHjKQhgWViVLH3238J3vUI8Rkpk6E6Lygxze6uM4Q_kry9m1YBNope3NxrQbxh6iSvUQgP7Pyu12u8VPbryM-jgP246Rf2xzrNp7NX0_66xhtxKLB_1SpaJgvlhX4uFnoATmk61vJFOlT6NIz3NcBBMut8xx8PmMn1gX2e6XQu2rYUuFltJwZWHwS9yTaX22vCkSWTpExLgJsPuA"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-24 px-sm max-w-lg mx-auto min-h-screen">
+<!-- Header Section -->
+<section class="mb-lg">
+<h1 class="font-headline-md text-headline-md-mobile md:text-headline-md text-on-surface mb-xs">Your Favorites</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quickly reorder your most loved dishes from Karachi's top restaurants.</p>
+</section>
+<!-- Search / Filter (Contextual for better UX) -->
+<div class="mb-md relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-xl border-outline-variant focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 bg-surface-container-lowest outline-none transition-all font-body-md" placeholder="Search saved items..." type="text"/>
+</div>
+<!-- Favorites List -->
+<div class="flex flex-col gap-sm">
+<!-- Item 1: Special Karachi Karahi -->
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all group">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sizzling, authentic Special Karachi Karahi served in a traditional iron wok. The dish is garnished with fresh ginger slivers, green chilies, and coriander. The lighting is warm and dramatic, highlighting the rich tomato-based gravy and tender chicken pieces. The style is appetizing and high-end, fitting for a premium food marketplace app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXswySQtLE7FGrfrZvRKiUq_d_ZHKDVXApks1o0A_kye6LqJBMXJvvYzKHXy-JehGZ4bP29CxhEMwUpj4atsXGPlJKyFU6leI0WWb3NqqbIwQ4tME8ChPaTQkLfuojG-bjRvDdWvFLmAlSCknyylZA-rbOSshjo24x_c4kqgFpkOcpPVdySO5ulY5LYJ3QVjNvSY89IJ_so18bW-JqZwBvo5cZNRjNKKeHeeTojbFlgr0uKN06qfe80Q"/>
+<div class="absolute top-1 right-1 bg-white/90 rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Special Karachi Karahi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Kolachi Express</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-price-display text-primary">₨ 1,850</span>
+<button class="bg-primary-container text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all" onclick="this.classList.add('scale-90'); setTimeout(()=&gt;this.classList.remove('scale-90'),150)">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 2: Club Sandwich -->
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all group">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A multi-layered classic Club Sandwich sliced into triangles, showing layers of grilled chicken, fried egg, fresh lettuce, and tomatoes. Served with a side of golden crispy french fries on a minimalist white plate. The aesthetic is clean, bright, and modern, using high-key lighting to emphasize freshness and texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEBBzcIsdam-3LFsC3ZJk_FqcZOSRG9ThyQ_H9Mm17XbIzJE-zc16lxk_fvB1yuh8vDFrjUSir9q4QjeD-_xbbdzRrd4lws2VuX4ThcYPwPToxSx_jTQy2cER7u8-f8atkFctZVc2Yi3rM8xon6mITmVDUSB6iX_3tT07aJcz1E94EH0eR0IIEPTDQH9nuqpT2CLRJ8qlPODdiI_NRDvduqoZuV6XGwNmufCn5ZxKqdYi-zL8L1CGWwg"/>
+<div class="absolute top-1 right-1 bg-white/90 rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Club Sandwich</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">The Deli Karachi</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-price-display text-primary">₨ 750</span>
+<button class="bg-primary-container text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 3: Egg Fried Rice -->
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all group">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A bowl of steaming Egg Fried Rice with vibrant green peas, finely chopped carrots, and scrambled egg bits. The rice is fluffy and perfectly separated, presented in a minimalist dark ceramic bowl. The lighting is soft and directional, creating a cozy and appetizing mood typical of high-end Pan-Asian restaurants in Karachi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFC4Ox86f53W0F4dNYcSoIpvTtQzfrXUncZS6Eer8DiTs5V1PV7MyYOS4_uRzE2nmAi6k3YFYT3wbg56qBfq6b4bIsEAH2qDgQql_j74PjH80lU9P3NWY1kCRtyL6CHGid_5lG8qt-To-juU-cRZ4p-3TuEWIboqKrPk7eX180I4DT63zTW4VTL9eKAdaKVhgpswxzNXSr1UxaJEhUPqdcMRdWtPJ1kYtLvP_0cplvsQg6jb34BTZC1w"/>
+<div class="absolute top-1 right-1 bg-white/90 rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Egg Fried Rice</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Ginsoy - Extreme Chinese</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-price-display text-primary">₨ 650</span>
+<button class="bg-primary-container text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Item 4: Beef Burger -->
+<div class="flex items-center gap-md p-sm bg-surface-container-lowest rounded-xl shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all group">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A juicy gourmet Beef Burger with melted cheddar cheese, caramelized onions, and secret sauce on a toasted brioche bun. The image is a close-up macro shot showing the texture of the meat and the sheen of the sauce. The lighting is warm and moody, focusing on the appetizing qualities of the burger." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoy9TJttayHuJX1MjWE4NN0buomXAtJ1v9lODgM178TT_OVBE4y8o7GxfCuCfj_QDNVOCdfaMzkF_7Exild4an0wbud51MAL5lhRywxNv6YalXnx5hmp3qbV4nsujZGofPvJdIMwaaZ_X0MvTyUdnqfHjvpCoe3awJKZmvlzZp90ryGlSJ-n2qEdizrhsC8MQDjHrm2bthNpCdugTkoHydhxThgW1IHEjMthuC5KEauRgA4wznxF6J4g"/>
+<div class="absolute top-1 right-1 bg-white/90 rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div class="flex-grow">
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Signature Beef Burger</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-xs">Burger O'Clock</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-price-display text-primary">₨ 1,200</span>
+<button class="bg-primary-container text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State Logic (Visual Only) -->
+<div class="hidden flex-col items-center justify-center py-xl text-center">
+<span class="material-symbols-outlined text-on-surface-variant text-6xl mb-md">favorite_border</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">No favorites yet</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[240px] mt-xs">Tap the heart on any dish to save it here for later.</p>
+</div>
+</main>
+<!-- BottomNavBar (Shared Component) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Floating Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-90');
+                setTimeout(() => this.classList.remove('scale-90'), 150);
+            });
+        });
+
+        // Simple scroll shadow effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cart - Orange Food Pakistan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-border {
+            position: relative;
+        }
+        .active-nav-border::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #9d4300;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#e9e1d8",
+                        "on-primary-fixed-variant": "#783200",
+                        "primary": "#9d4300",
+                        "surface-container": "#e7eefe",
+                        "on-tertiary-container": "#36322c",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#121c2a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#1e1b15",
+                        "on-surface-variant": "#584237",
+                        "on-primary-fixed": "#341100",
+                        "surface-variant": "#dce2f3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#151c27",
+                        "primary-fixed": "#ffdbca",
+                        "tertiary": "#625e56",
+                        "surface-tint": "#9d4300",
+                        "inverse-surface": "#2a313d",
+                        "surface": "#f9f9ff",
+                        "on-secondary-container": "#596373",
+                        "background": "#f9f9ff",
+                        "surface-container-low": "#f0f3ff",
+                        "on-primary-container": "#582200",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#dce2f3",
+                        "primary-container": "#f97316",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#ebf1ff",
+                        "inverse-primary": "#ffb690",
+                        "tertiary-fixed-dim": "#ccc5bc",
+                        "tertiary-container": "#a09a91",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-secondary-fixed-variant": "#3d4756",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d3daea",
+                        "secondary-fixed": "#d9e3f6",
+                        "secondary": "#555f6f",
+                        "on-tertiary-fixed-variant": "#4a463f",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#151c27",
+                        "outline-variant": "#e0c0b1",
+                        "outline": "#8c7164",
+                        "surface-container-high": "#e2e8f8",
+                        "secondary-fixed-dim": "#bdc7d9",
+                        "secondary-container": "#d6e0f3",
+                        "surface-bright": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "base": "4px",
+                        "xl": "64px",
+                        "sm": "16px",
+                        "container-max": "1280px",
+                        "md": "24px",
+                        "gutter": "20px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "label-md": ["Inter"],
+                        "price-display": ["Montserrat"],
+                        "headline-sm": ["Montserrat"],
+                        "display-lg-mobile": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "price-display": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] sticky top-0 z-50">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Orange</h1>
+<nav class="hidden md:flex gap-sm">
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary py-1 px-2" href="#">Karachi</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors py-1 px-2" href="#">Lahore</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors py-1 px-2" href="#">Islamabad</a>
+</nav>
+</div>
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-high" data-icon="search">search</button>
+<button class="material-symbols-outlined text-primary p-2 rounded-full bg-primary-fixed-dim/20" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-high" data-icon="notifications">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional studio headshot of a friendly young Pakistani man with dark hair and a neat beard, wearing a casual collared shirt. The lighting is soft and even, typical of a high-end profile avatar, set against a neutral, light gray background that emphasizes the modern digital interface aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVF8RJ1A9yTRqzYfj4n4xSMw57CUu7uTVfbcm0I40pz7nodCCTEfx-oq2ZXdmFsbD6TuMnsUQAGpUW0MbIsZAawPiOXI1ocXH8uZ9uHTVo3JH9WO1W0AaV03jJ9-j8fkT1ExntaQSF-rQH1Thmzn8hah9z4QWjc31iblCkcLP5Yx9Om0xo28Vft12uyF35bbdUVTwE9sOi4LYs95bHxpgNU6fj_OnoIk00qmNphBzg8BLjg85U5mtTSg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-md py-lg">
+<div class="flex flex-col lg:flex-row gap-lg">
+<!-- Left Column: Order Items -->
+<div class="flex-1 space-y-md">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">Your Cart</h2>
+<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-sm py-1 rounded-full">3 Items</span>
+</div>
+<!-- Cart Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-[0px_2px_8px_rgba(31,41,55,0.05)] flex items-center gap-md group hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-resolution, close-up shot of a gourmet 'Monster Zinger' burger. The burger features a thick, extra-crispy fried chicken fillet topped with fresh green lettuce, creamy mayonnaise, and melted cheese, sandwiched between a glossy toasted brioche bun. The lighting is warm and appetizing, reflecting a vibrant orange brand palette and high-energy food marketplace style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaaQ56fLuyhrkNIirugsJhSbo8LWp71bx6U3iZSaCxHeklQcsMm27ZpiV1J-p8ciCkx-zuhTiQv8bhdr-ForhqU0U4Q4cmDMvHtPanz94amMePKmV4akTLkOwkAuw7IKkz0wmOdCw9CJ9SazWFcpKkkiymg6aP-E--GurCE7ZEjwueavNG4eEpFBooeL8OCqA1jzUb9yWm6vVIlq69fE8dLt6dahEfjHue6Q3RAP2Qri3tsBbN67XEQw"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Monster Zinger</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Extra Spice, No Onions</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-price-display text-primary">Rs. 850</span>
+<div class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="remove">remove</span>
+</button>
+<span class="px-4 font-label-md text-label-md text-on-surface">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-2" data-icon="delete">delete</button>
+</div>
+<!-- Cart Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-[0px_2px_8px_rgba(31,41,55,0.05)] flex items-center gap-md group hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A top-down view of six pieces of 'Spicy Wings', glistening with a rich, fiery red glaze and sprinkled with white sesame seeds. The wings are served in a modern, minimalist container. The food photography is clean and vibrant, focusing on texture and the appetizing nature of the snack, set against a bright, airy background consistent with the Orange app design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn2l5WGsHMgWFolg4jsKWtdnhzqnGu6stYJenhI8ktdkDNiPGl6He3bhqkB9TQ2bYSL7iOBLYwG2A_8cw2iT2IFCz5uQ6OI026flafJaoxUdhTS3vLjdgrxpL7rsVAgEgmdfzOBrT_uzA2QBdsWyLnJiIk_kBRnLFsBiceQJzSnU09_8keBg-1kB0IPpcE1Pbrjd5K-4aY1ekzS_AfN8iIkjk9TT1AVqgQkNjp0gfpEvfmMDFWpVPIkw"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Spicy Wings</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">6 Pieces with Dip</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-price-display text-primary">Rs. 490</span>
+<div class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="remove">remove</span>
+</button>
+<span class="px-4 font-label-md text-label-md text-on-surface">2</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-2" data-icon="delete">delete</button>
+</div>
+<!-- Cart Item 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-sm shadow-[0px_2px_8px_rgba(31,41,55,0.05)] flex items-center gap-md group hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A cold, condensation-covered glass bottle of a popular soft drink, reflecting bright studio lights. The bottle is placed on a sleek white surface with a few ice cubes scattered around it to evoke a sense of refreshment. The aesthetic is clean and modern, highlighting the crispness of the beverage within the energetic context of a Pakistani food app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwuZ1bmMx3EcWOotb6rIoPRsd06Quc2r_lwAF2hI8jhZrcefkL7RlG3dcLV9H4oqSvVJTWht6OgJ6ldNZmKRnbJouDGcPTomFkSJGptW0WUfZ_Glz_MdB8YgS5ga5-zDzZvjT7sVZ0jr1UOwWH6LkY3qHlBlt9_QQS3CM4pS9k4Vzt1BcfOQvokR5ldODQnVTHcQwMotj6b02JtbTa-JkbNsgduM-8s7M0GzDn2me3ifbw4tIvoJTZ2w"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Cold Drink</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">500ml Bottle</p>
+<div class="flex items-center justify-between">
+<span class="font-price-display text-price-display text-primary">Rs. 120</span>
+<div class="flex items-center bg-surface-container-low rounded-lg p-1 border border-outline-variant">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="remove">remove</span>
+</button>
+<span class="px-4 font-label-md text-label-md text-on-surface">1</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-2" data-icon="delete">delete</button>
+</div>
+</div>
+<!-- Right Column: Summary -->
+<aside class="w-full lg:w-96">
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_12px_32px_rgba(31,41,55,0.15)] sticky top-24 border border-surface-container-high">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-md">Order Summary</h2>
+<div class="space-y-sm mb-lg">
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Subtotal</span>
+<span>Rs. 1,460</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>Delivery Fee</span>
+<span>Rs. 99</span>
+</div>
+<div class="flex justify-between font-body-md text-body-md text-on-surface-variant">
+<span>GST (Tax)</span>
+<span>Rs. 234</span>
+</div>
+<div class="pt-sm border-t border-surface-variant">
+<div class="flex justify-between font-headline-sm text-headline-sm text-on-surface">
+<span>Total Amount</span>
+<span class="text-primary">Rs. 1,793</span>
+</div>
+</div>
+</div>
+<div class="mb-lg">
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Promo Code</label>
+<div class="flex gap-xs">
+<input class="flex-1 bg-white border border-outline-variant rounded-lg px-sm py-2 font-body-sm focus:ring-2 focus:ring-primary-container focus:outline-none transition-all" placeholder="Enter code" type="text"/>
+<button class="bg-secondary-container text-on-secondary-container font-label-md px-md rounded-lg hover:bg-secondary-fixed transition-colors">Apply</button>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="w-full py-md bg-primary-container text-white font-headline-sm rounded-xl shadow-[0px_8px_20px_rgba(249,115,22,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-150">
+                            Proceed to Checkout
+                        </button>
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
+                            Secure Payment Gateway
+                        </p>
+</div>
+<!-- App Tip (Engagement Card) -->
+<div class="mt-lg p-sm bg-tertiary-fixed rounded-lg border border-tertiary-container/30">
+<div class="flex gap-sm">
+<span class="material-symbols-outlined text-on-tertiary-fixed" data-icon="info">info</span>
+<p class="font-body-sm text-body-sm text-on-tertiary-fixed-variant">
+                                Add Rs. 200 more to unlock <span class="font-bold">Free Delivery</span> for this order!
+                            </p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer Section -->
+<footer class="w-full py-lg px-md flex flex-col items-center gap-md bg-surface-container-low mt-xl">
+<h2 class="font-headline-sm text-headline-sm text-primary">Orange Food Pakistan</h2>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">About Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Contact Support</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-70">© 2024 Orange Food Pakistan. All rights reserved.</p>
+</footer>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] md:hidden rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for stepper buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+    </script>
+</body></html>

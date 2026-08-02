@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant - Customer Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#582200",
+                    "surface-container-low": "#f0f3ff",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e2e8f8",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-surface": "#151c27",
+                    "surface-container": "#e7eefe",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "on-tertiary-container": "#36322c",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "outline": "#8c7164",
+                    "on-primary-fixed": "#341100",
+                    "secondary-fixed": "#d9e3f6",
+                    "surface": "#f9f9ff",
+                    "secondary": "#555f6f",
+                    "primary-container": "#f97316",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "inverse-primary": "#ffb690",
+                    "surface-dim": "#d3daea",
+                    "inverse-surface": "#2a313d",
+                    "on-background": "#151c27",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "primary-fixed": "#ffdbca",
+                    "primary": "#9d4300",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#9d4300",
+                    "outline-variant": "#e0c0b1",
+                    "on-surface-variant": "#584237",
+                    "surface-bright": "#f9f9ff",
+                    "tertiary-container": "#a09a91",
+                    "secondary-container": "#d6e0f3",
+                    "tertiary": "#625e56",
+                    "background": "#f9f9ff",
+                    "on-secondary-fixed": "#121c2a",
+                    "surface-variant": "#dce2f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#596373",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "md": "24px",
+                    "base": "4px",
+                    "gutter": "20px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "container-max": "1280px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #151c27; /* Near-black / on-background equivalent for dark theme */
+            color: #ebf1ff;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bottom-sheet.hidden-sheet {
+            transform: translateY(100%);
+        }
+        .customer-card:active {
+            transform: scale(0.98);
+            background-color: #2a313d;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-40 shadow-[0px_2px_8px_rgba(31,41,55,0.05)] bg-inverse-surface">
+<div class="flex justify-between items-center px-sm py-xs h-16 max-w-container-max mx-auto">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary-fixed-dim">Customers</h1>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-primary-fixed-dim active:scale-95 transition-transform" onclick="toggleSearch()">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a restaurant manager in Karachi, lit with warm ambient lighting in a modern workspace. The background shows a hint of a high-end commercial kitchen with stainless steel accents. The person has a friendly, authoritative expression, embodying the reliable and efficient spirit of the Orange food-tech brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3MmxyenOQ5AXglfPxxN6rxTAUmGu_FhYmX7vbddqgOXEEpcpC8s8Om8eytggoX7BWuz9udL4w_Nazt_-FdkHdjjB1re3hUPsxG2D3wYwiQcvQfCE5SfS4B8tunpyWhJH5VgNlOevBNdjGRbGfO09Go1QjJjkl8wPj-kC-C71Sw8v3otoEXND55HCCFZ5uhoO1c6Q8-9-qj-WpOVCIHhc9TfN4_CsueDYpc5sZ5_nilM0vZwFjOL32xg"/>
+</div>
+</div>
+</div>
+<!-- Expandable Search Bar -->
+<div class="hidden px-sm pb-sm bg-inverse-surface" id="search-container">
+<div class="relative">
+<input class="w-full bg-surface-container-low/10 border-outline-variant text-on-primary-fixed placeholder-on-surface-variant/50 rounded-lg py-2 pl-10 focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="Search by name or phone..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant/60" data-icon="search">search</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-20 pb-24 px-sm">
+<!-- Location Context -->
+<div class="mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary-container text-body-sm" data-icon="location_on">location_on</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Karachi Central Branch</span>
+</div>
+<!-- Customer List -->
+<div class="flex flex-col gap-sm">
+<!-- Customer Card 1 -->
+<div class="customer-card bg-surface-container-low/5 border border-outline-variant/20 p-sm rounded-xl flex items-center justify-between transition-all duration-200" onclick="openDetail('Ahmed Khan', '+92 300 1234567', '42', 'PKR 85,400')">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-primary-fixed-dim font-bold">AK</div>
+<div>
+<h3 class="font-headline-sm text-[16px] text-white">Ahmed Khan</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+92 300 1234567</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center bg-primary-container/10 text-primary-container font-label-md text-xs px-2 py-1 rounded-full border border-primary-container/20">
+                        42 Orders
+                    </span>
+<p class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wider">Top Buyer</p>
+</div>
+</div>
+<!-- Customer Card 2 -->
+<div class="customer-card bg-surface-container-low/5 border border-outline-variant/20 p-sm rounded-xl flex items-center justify-between transition-all duration-200" onclick="openDetail('Sara Malik', '+92 321 9876543', '15', 'PKR 12,200')">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-primary-fixed-dim font-bold">SM</div>
+<div>
+<h3 class="font-headline-sm text-[16px] text-white">Sara Malik</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+92 321 9876543</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center bg-secondary-container/10 text-on-secondary-container font-label-md text-xs px-2 py-1 rounded-full border border-secondary-container/20">
+                        15 Orders
+                    </span>
+<p class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wider">Regular</p>
+</div>
+</div>
+<!-- Customer Card 3 -->
+<div class="customer-card bg-surface-container-low/5 border border-outline-variant/20 p-sm rounded-xl flex items-center justify-between transition-all duration-200" onclick="openDetail('Zain Ali', '+92 345 5556677', '8', 'PKR 6,450')">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-primary-fixed-dim font-bold">ZA</div>
+<div>
+<h3 class="font-headline-sm text-[16px] text-white">Zain Ali</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+92 345 5556677</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center bg-secondary-container/10 text-on-secondary-container font-label-md text-xs px-2 py-1 rounded-full border border-secondary-container/20">
+                        8 Orders
+                    </span>
+<p class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wider">Returning</p>
+</div>
+</div>
+<!-- Customer Card 4 -->
+<div class="customer-card bg-surface-container-low/5 border border-outline-variant/20 p-sm rounded-xl flex items-center justify-between transition-all duration-200" onclick="openDetail('Fatima Jinnah', '+92 312 0001111', '120', 'PKR 310,200')">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-fixed-dim font-bold">FJ</div>
+<div>
+<h3 class="font-headline-sm text-[16px] text-white">Fatima Jinnah</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+92 312 0001111</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center bg-primary-container/20 text-primary-container font-label-md text-xs px-2 py-1 rounded-full border border-primary-container">
+                        120 Orders
+                    </span>
+<p class="text-[10px] text-primary-container mt-1 uppercase tracking-wider font-bold">VIP</p>
+</div>
+</div>
+<!-- Customer Card 5 -->
+<div class="customer-card bg-surface-container-low/5 border border-outline-variant/20 p-sm rounded-xl flex items-center justify-between transition-all duration-200" onclick="openDetail('Bilal Hassan', '+92 333 4445556', '3', 'PKR 2,100')">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-primary-fixed-dim font-bold">BH</div>
+<div>
+<h3 class="font-headline-sm text-[16px] text-white">Bilal Hassan</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">+92 333 4445556</p>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center bg-secondary-container/5 text-on-surface-variant font-label-md text-xs px-2 py-1 rounded-full border border-outline-variant/10">
+                        3 Orders
+                    </span>
+<p class="text-[10px] text-on-surface-variant mt-1 uppercase tracking-wider">New</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Predicted Shared Component) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-[10px]">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-[10px]">Customers</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-[10px]">Insights</span>
+</button>
+</nav>
+<!-- Full-Screen Detail View / Bottom Sheet -->
+<div class="fixed inset-0 z-[60] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300" id="detail-overlay"></div>
+<div class="fixed bottom-0 left-0 w-full bg-inverse-surface z-[70] rounded-t-3xl bottom-sheet hidden-sheet p-sm max-h-[751px] overflow-y-auto" id="bottom-sheet">
+<div class="w-12 h-1 bg-outline-variant/30 rounded-full mx-auto mb-md" onclick="closeDetail()"></div>
+<div class="flex items-center justify-between mb-lg">
+<div class="flex items-center gap-sm">
+<div class="w-16 h-16 rounded-2xl bg-primary-container flex items-center justify-center text-headline-md font-black text-white" id="sheet-avatar">AK</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-white" id="sheet-name">Ahmed Khan</h2>
+<p class="font-body-md text-on-surface-variant" id="sheet-phone">+92 300 1234567</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container-low/10 flex items-center justify-center text-white" onclick="closeDetail()">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Spend Summary Bento -->
+<div class="grid grid-cols-2 gap-sm mb-lg">
+<div class="bg-surface-container-low/5 p-sm rounded-2xl border border-outline-variant/20">
+<p class="text-on-surface-variant text-xs uppercase font-semibold mb-xs tracking-tight">Total Spend</p>
+<h4 class="font-price-display text-price-display text-primary-fixed-dim" id="sheet-spend">PKR 85,400</h4>
+</div>
+<div class="bg-surface-container-low/5 p-sm rounded-2xl border border-outline-variant/20">
+<p class="text-on-surface-variant text-xs uppercase font-semibold mb-xs tracking-tight">Orders</p>
+<h4 class="font-price-display text-price-display text-primary-fixed-dim" id="sheet-order-count">42</h4>
+</div>
+</div>
+<!-- Order History -->
+<div>
+<div class="flex justify-between items-center mb-sm">
+<h3 class="font-headline-sm text-[16px] text-white">Recent Orders</h3>
+<button class="text-primary-container font-label-md text-sm">See All</button>
+</div>
+<div class="space-y-sm">
+<!-- Order Item -->
+<div class="flex items-center justify-between py-xs border-b border-outline-variant/10">
+<div>
+<p class="text-white font-label-md">#78291 • BBQ Platter</p>
+<p class="text-on-surface-variant text-xs">Today, 2:30 PM</p>
+</div>
+<p class="font-price-display text-sm text-primary-fixed-dim">PKR 2,450</p>
+</div>
+<!-- Order Item -->
+<div class="flex items-center justify-between py-xs border-b border-outline-variant/10">
+<div>
+<p class="text-white font-label-md">#78104 • Chicken Biryani</p>
+<p class="text-on-surface-variant text-xs">Oct 24, 8:15 PM</p>
+</div>
+<p class="font-price-display text-sm text-primary-fixed-dim">PKR 1,200</p>
+</div>
+<!-- Order Item -->
+<div class="flex items-center justify-between py-xs">
+<div>
+<p class="text-white font-label-md">#77550 • Zinger Burger x 3</p>
+<p class="text-on-surface-variant text-xs">Oct 22, 1:05 PM</p>
+</div>
+<p class="font-price-display text-sm text-primary-fixed-dim">PKR 1,850</p>
+</div>
+</div>
+</div>
+<div class="mt-xl flex gap-sm">
+<button class="flex-1 bg-primary-container text-on-primary-container font-label-md py-4 rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+                Call Customer
+            </button>
+<button class="w-14 bg-surface-container-low/10 text-white rounded-xl flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</button>
+</div>
+</div>
+<script>
+        function toggleSearch() {
+            const container = document.getElementById('search-container');
+            container.classList.toggle('hidden');
+        }
+
+        function openDetail(name, phone, orders, spend) {
+            const sheet = document.getElementById('bottom-sheet');
+            const overlay = document.getElementById('detail-overlay');
+            
+            document.getElementById('sheet-name').innerText = name;
+            document.getElementById('sheet-phone').innerText = phone;
+            document.getElementById('sheet-order-count').innerText = orders;
+            document.getElementById('sheet-spend').innerText = spend;
+            document.getElementById('sheet-avatar').innerText = name.split(' ').map(n => n[0]).join('');
+
+            overlay.classList.remove('pointer-events-none');
+            overlay.classList.add('opacity-100');
+            sheet.classList.remove('hidden-sheet');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetail() {
+            const sheet = document.getElementById('bottom-sheet');
+            const overlay = document.getElementById('detail-overlay');
+
+            overlay.classList.add('pointer-events-none');
+            overlay.classList.remove('opacity-100');
+            sheet.classList.add('hidden-sheet');
+            document.body.style.overflow = '';
+        }
+
+        // Close on overlay click
+        document.getElementById('detail-overlay').addEventListener('click', closeDetail);
+    </script>
+</body></html>

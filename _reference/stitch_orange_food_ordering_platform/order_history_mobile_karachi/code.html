@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Orange - Order History</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#9d4300",
+                    "tertiary-fixed": "#e9e1d8",
+                    "surface-container-high": "#e2e8f8",
+                    "primary-fixed": "#ffdbca",
+                    "surface-dim": "#d3daea",
+                    "surface-bright": "#f9f9ff",
+                    "outline-variant": "#e0c0b1",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-container": "#d6e0f3",
+                    "on-surface-variant": "#584237",
+                    "primary-container": "#f97316",
+                    "background": "#f9f9ff",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#582200",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#625e56",
+                    "secondary-fixed": "#d9e3f6",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "outline": "#8c7164",
+                    "on-tertiary-container": "#36322c",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-primary-fixed": "#341100",
+                    "surface-variant": "#dce2f3",
+                    "surface-tint": "#9d4300",
+                    "surface-container-low": "#f0f3ff",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2a313d",
+                    "inverse-primary": "#ffb690",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-background": "#151c27",
+                    "surface-container-highest": "#dce2f3",
+                    "surface-container": "#e7eefe",
+                    "on-secondary-fixed": "#121c2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "16px",
+                    "container-max": "1280px",
+                    "lg": "40px",
+                    "gutter": "20px",
+                    "xl": "64px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-background shadow-[0px_2px_8px_rgba(31,41,55,0.05)]">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Orange</h1>
+<div class="flex items-center gap-sm">
+<button class="p-base text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a smiling user against a soft, cream-colored studio background. The lighting is warm and cinematic, highlighting the friendly expression. The aesthetic is clean and modern, matching a high-end food technology application interface. Shallow depth of field ensures the subject is the focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgzWik1csNyUGniRLUNvYIGrQsDIEUDy1NmPgLAqkjf34XNrEaR-NzzqlhXk0TeHij2kB4vt1lXB-oNlvwtOF4zNcymGXzoi9qJFV781UVGQTjXnGbKMdRa96GXPMr_JVwJAPPxgY90qxB5LZ6cGS30kubWhL9fE-zr6P3tGJsKpPNEJgbC1TtQJFHWrwPec2gGPyxHMaTQjxF3oYnkvpEyX3ObCAp9ih8sOQuxPT892WsQBbRPQiR7g"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="min-h-screen pb-32 px-md pt-sm max-w-md mx-auto">
+<!-- Title Section -->
+<div class="mb-md">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Order History</h2>
+<div class="flex gap-xs overflow-x-auto pb-xs no-scrollbar">
+<span class="bg-primary text-white px-sm py-1 rounded-full text-label-md font-label-md">All Orders</span>
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-1 rounded-full text-label-md font-label-md whitespace-nowrap">In Progress</span>
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-1 rounded-full text-label-md font-label-md whitespace-nowrap">Completed</span>
+</div>
+</div>
+<!-- Order List -->
+<div class="flex flex-col gap-sm">
+<!-- Order Card 1 (Delivered) -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] active:scale-95 transition-transform cursor-pointer" onclick="void(0)">
+<div class="p-sm flex gap-sm">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-angle, close-up shot of a gourmet beef burger with melting cheddar cheese and crisp lettuce, served on a rustic wooden board. The lighting is warm and appetizing, emphasizing the textures of the food. Vibrant orange accents in the background hint at the brand identity. Professional food photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz8TqKzJbhzUgv7oM3AGpWlyzptyFVRiOZaN7r3WP_w4cC743yv4HZeLv6eTGiZqEx9n9UUSgTD0zCQZhSit63Army__HwRgX3Xtn8MicWX06KZaYEFFDyIe2aCPUecKbLRWdG7pDswP7Vai48ZHqJw34JAjcGiovivAknbXYluN3OQgBTYRO1uJ-VPYPWvCioj-KovwTI5RooU6CwJ-0RC6YK_6Mtr3x_kREIal5QNZmk4FeRRBGqbg"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-md font-label-md text-primary">#ORD-8821</span>
+<span class="bg-secondary-container text-on-secondary-container px-xs py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Delivered</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface truncate">The Classic BBQ Burger Combo</h3>
+<p class="text-body-sm text-on-surface-variant font-body-sm">3 Items • 12 Oct, 2024</p>
+<p class="text-price-display font-price-display text-primary mt-xs">₨ 1,450</p>
+</div>
+</div>
+<div class="px-sm pb-sm pt-base flex gap-sm border-t border-surface-variant/30">
+<button class="flex-1 bg-primary text-white py-sm rounded-lg font-label-md text-label-md active:scale-95 transition-transform">
+                        Reorder
+                    </button>
+<button class="px-sm py-sm rounded-lg border border-outline text-on-surface-variant font-label-md text-label-md active:scale-95 transition-transform">
+                        Help
+                    </button>
+</div>
+</div>
+<!-- Order Card 2 (In Progress) -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border-l-4 border-primary-container active:scale-95 transition-transform cursor-pointer">
+<div class="p-sm flex gap-sm">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A mouth-watering plate of spicy chicken karahi garnished with fresh ginger and green chilies, steaming hot in a traditional wok. The lighting is rich and atmospheric, highlighting the vibrant reds and oranges of the gravy. Traditional Pakistani restaurant setting with a modern, high-key clean finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1haFBRW9xj7R4K-NuFq9_qlAEKf7Mq6fPcEboTQCRt3eIJB2V_MwCBuFvm2n5RW6S4hmkD-xGr_tkWNd5NYtQm6Ew4D5KSt6ybXv7EB6Kj95GfL6UfRhNrC_o3NOMLTJQn2Ij8BvOraFAUSh_zW4EFogSl23xspHwGk83_UsH8ExYLFsMlhIrxLuYhsEqVsuK_N9dWmdIqavkGxm1G4GENyb2V4zFW_NP5JaM5h0ZMj6xfOCYwNC4Pg"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-md font-label-md text-primary">#ORD-8945</span>
+<span class="bg-primary-container text-on-primary-container px-xs py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">On the Way</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface truncate">Special Karachi Karahi</h3>
+<p class="text-body-sm text-on-surface-variant font-body-sm">2 Items • Today, 08:30 PM</p>
+<p class="text-price-display font-price-display text-primary mt-xs">₨ 2,100</p>
+</div>
+</div>
+<div class="px-sm pb-sm pt-base border-t border-surface-variant/30">
+<button class="w-full bg-on-surface text-surface py-sm rounded-lg font-label-md text-label-md active:scale-95 transition-transform">
+                        Track Order
+                    </button>
+</div>
+</div>
+<!-- Order Card 3 (Cancelled) -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] opacity-80 active:scale-95 transition-transform cursor-pointer">
+<div class="p-sm flex gap-sm">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 grayscale">
+<img class="w-full h-full object-cover" data-alt="Refreshing tall glass of vibrant orange mango lassi with a mint garnish, set on a clean white table. Soft morning sunlight creates a bright and airy atmosphere. The colors are punchy but the overall mood is serene. Professional lifestyle beverage photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-KyhWVLHbYIC3ilWpSyLKLpSNo2vRM88Xs9uOidLTE5J0fGSMv3jHypK_DrGFbt9aVTBjE1jqasCAX424jlDFFWCdsJvrVrwC8lXmd6m8VBvr82x6uPPUuXdf7qLvWnjTXqTDVz5Bo8-2YInPDRY9EvG7AkkOlYutj7EySeuQQroCsr5UdyGuMwjJrEOEgP_JgVfPp89Y3XKXC1QeMemi9Ipe3rpEsrZCgW890-uR8XNJVqnPXVeNQA"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-md font-label-md text-on-surface-variant">#ORD-8711</span>
+<span class="bg-error-container text-on-error-container px-xs py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Cancelled</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface truncate">Summer Drink Pack</h3>
+<p class="text-body-sm text-on-surface-variant font-body-sm">4 Items • 08 Oct, 2024</p>
+<p class="text-price-display font-price-display text-on-surface-variant mt-xs line-through">₨ 850</p>
+</div>
+</div>
+<div class="px-sm pb-sm pt-base border-t border-surface-variant/30">
+<button class="w-full bg-surface-container-high text-on-surface-variant py-sm rounded-lg font-label-md text-label-md active:scale-95 transition-transform">
+                        Reorder
+                    </button>
+</div>
+</div>
+<!-- Order Card 4 (Delivered) -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] active:scale-95 transition-transform cursor-pointer">
+<div class="p-sm flex gap-sm">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="An artisanal thin-crust pizza topped with fresh basil, mozzarella, and juicy tomatoes, being lifted from a stone oven. The crust is perfectly charred. Warm, rustic lighting with a focus on texture and heat. Vibrant and energetic food tech branding style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1fkR2jlWms1VmsxORmw8G9b-HetMt2A7S7TmZ0f57hql8i4xljI95cebLgKvVu6jBArjwgyoNHUtndVMkI15DJPcJb3y1PGUV50oa4xXvsemzMuohud9c3k-G9Cpfr8t7uybAzPNpqFECKufZRmx6ap9x4N_WDLf_-Nzvly85T_TEI7CZNe9bsj6ZIycp7gJ6tQOy6FjRyBOFp3J1BDf-6C1IogFegOpW2Fb6oppSHtc9gPug6V3qLw"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-base">
+<span class="text-label-md font-label-md text-primary">#ORD-8692</span>
+<span class="bg-secondary-container text-on-secondary-container px-xs py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">Delivered</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-tight text-on-surface truncate">Stone Baked Margherita</h3>
+<p class="text-body-sm text-on-surface-variant font-body-sm">1 Item • 05 Oct, 2024</p>
+<p class="text-price-display font-price-display text-primary mt-xs">₨ 1,200</p>
+</div>
+</div>
+<div class="px-sm pb-sm pt-base flex gap-sm border-t border-surface-variant/30">
+<button class="flex-1 bg-primary text-white py-sm rounded-lg font-label-md text-label-md">
+                        Reorder
+                    </button>
+<button class="px-sm py-sm rounded-lg border border-outline text-on-surface-variant font-label-md text-label-md">
+                        Rate
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<!-- Search -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+<!-- Orders (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined active-nav-icon">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- FAB (Contextually suppressed on sub-screens but kept here if user needs to quickly order again from global) -->
+<!-- Suppressed per instructions for Details/History pages to prioritize content -->
+<script>
+        // Micro-interaction for reorder button feedback
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', function() {
+                this.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', function() {
+                this.classList.remove('scale-95');
+            });
+        });
+
+        // Simple scroll appearance for top bar shadow
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "surface-container-highest": "#dce2f3",
+                    "surface-dim": "#d3daea",
+                    "on-surface-variant": "#584237",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#625e56",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#9d4300",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#ffb690",
+                    "tertiary-container": "#a09a91",
+                    "primary-fixed": "#ffdbca",
+                    "on-background": "#151c27",
+                    "background": "#f9f9ff",
+                    "on-surface": "#151c27",
+                    "on-primary-fixed": "#341100",
+                    "surface-container-high": "#e2e8f8",
+                    "secondary-container": "#d6e0f3",
+                    "primary-container": "#f97316",
+                    "surface-container": "#e7eefe",
+                    "secondary": "#555f6f",
+                    "primary": "#9d4300",
+                    "outline": "#8c7164",
+                    "on-secondary-fixed": "#121c2a",
+                    "inverse-surface": "#2a313d",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary-container": "#582200",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-tertiary-container": "#36322c",
+                    "on-primary-fixed-variant": "#783200",
+                    "secondary-fixed": "#d9e3f6",
+                    "surface-variant": "#dce2f3",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#596373",
+                    "outline-variant": "#e0c0b1",
+                    "surface-bright": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "container-max": "1280px",
+                    "sm": "16px",
+                    "gutter": "20px",
+                    "lg": "40px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "display-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #151c27; /* Fallback for dark theme background */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-on-background text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-[60] bg-inverse-surface shadow-sm px-sm py-xs flex justify-between items-center h-14">
+<div class="flex items-center gap-sm">
+<button class="text-on-primary flex items-center justify-center p-xs active:scale-90 transition-transform" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-black text-primary-container tracking-tight">Orange</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant dark:text-on-secondary-container p-xs relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary-container rounded-full ring-2 ring-inverse-surface"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a merchant dashboard user, high-quality studio lighting, minimalist dark background, wearing modern business attire. The image uses high contrast and a sophisticated, professional color palette consistent with a high-end food technology platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0N9FEB5aSuB6Kf6X_gIkdxxFWCIXv5g70sgq07kiPdyVPSGEXNDvJQ-GcTxxuq2ux72oonOFzVqiqsMfPao9d7dxv1_bw6XKYW9o8DUtImg7BjqngzeoQv9_W99_bHL52VAX3IBiTQD9hJCA1lEJj8fqgTDMr48ZkKnFUV8jvRJISR2kaj-0pbfBZh2iJsyZgpUL8Jr2uicetcBjb_uigoR3M7yt1qxDX-XQZ86kV2bWaoXcwUARVGw"/>
+</div>
+</div>
+</header>
+<!-- Navigation Drawer (Overlay) -->
+<div class="fixed inset-0 bg-black/60 z-[70] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300" id="drawer-overlay"></div>
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-inverse-surface z-[80] -translate-x-full transition-transform duration-300 ease-in-out flex flex-col" id="side-nav">
+<div class="p-md flex flex-col gap-base border-b border-white/5">
+<h2 class="font-headline-sm text-headline-sm font-black text-primary-fixed">Orange Merchant</h2>
+<p class="font-label-md text-label-md text-surface-variant/70">Partner Portal</p>
+</div>
+<nav class="flex-1 py-md overflow-y-auto custom-scrollbar">
+<div class="flex flex-col gap-1">
+<a class="bg-on-secondary-fixed-variant text-white rounded-lg mx-2 px-4 py-3 flex items-center gap-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant/80 hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-md transition-all" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="text-on-surface-variant/80 hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-md transition-all" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-md text-label-md">Menu</span>
+</a>
+<a class="text-on-surface-variant/80 hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-md transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant/80 hover:bg-white/5 rounded-lg mx-2 px-4 py-3 flex items-center gap-md transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<div class="p-md border-t border-white/5">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md py-3 rounded-lg active:scale-95 transition-transform">
+                View Live Store
+            </button>
+</div>
+</aside>
+<main class="pt-14 pb-lg px-sm">
+<!-- Page Title -->
+<div class="py-md">
+<h2 class="font-headline-md text-headline-md text-white font-bold">Today's Overview</h2>
+<p class="font-body-sm text-body-sm text-on-secondary-container">Performance across all categories</p>
+</div>
+<!-- KPI Grid -->
+<div class="grid grid-cols-2 gap-sm mb-lg">
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined !text-4xl text-primary-container">payments</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Revenue</p>
+<p class="font-price-display text-price-display text-white">PKR 45,280</p>
+<div class="flex items-center gap-1 text-primary-container">
+<span class="material-symbols-outlined !text-sm">arrow_upward</span>
+<span class="text-[10px] font-bold">12.5%</span>
+</div>
+</div>
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined !text-4xl text-primary-container">shopping_bag</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Orders</p>
+<p class="font-price-display text-price-display text-white">128</p>
+<div class="flex items-center gap-1 text-primary-container">
+<span class="material-symbols-outlined !text-sm">arrow_upward</span>
+<span class="text-[10px] font-bold">8.2%</span>
+</div>
+</div>
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined !text-4xl text-primary-container">avg_pace</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">AOV</p>
+<p class="font-price-display text-price-display text-white">PKR 354</p>
+<div class="flex items-center gap-1 text-error">
+<span class="material-symbols-outlined !text-sm">arrow_downward</span>
+<span class="text-[10px] font-bold">2.1%</span>
+</div>
+</div>
+<div class="glass-card p-sm rounded-xl flex flex-col gap-xs relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined !text-4xl text-primary-container">group_add</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">New</p>
+<p class="font-price-display text-price-display text-white">24</p>
+<div class="flex items-center gap-1 text-primary-container">
+<span class="material-symbols-outlined !text-sm">arrow_upward</span>
+<span class="text-[10px] font-bold">14.0%</span>
+</div>
+</div>
+</div>
+<!-- Revenue Chart -->
+<div class="glass-card rounded-xl p-md mb-lg">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-label-md text-label-md text-white">Revenue Flow</h3>
+<select class="bg-transparent text-primary-container font-label-md text-xs border-none focus:ring-0 p-0">
+<option class="bg-inverse-surface">Last 7 Days</option>
+<option class="bg-inverse-surface">Last 24 Hours</option>
+</select>
+</div>
+<div class="h-40 w-full relative flex items-end justify-between gap-1 mt-4">
+<div class="w-full h-full absolute inset-0 flex items-end">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 160">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#f97316" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#f97316" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,140 C50,130 80,150 120,80 C160,20 200,60 250,40 C300,25 350,70 400,30 L400,160 L0,160 Z" fill="url(#chartGradient)"></path>
+<path d="M0,140 C50,130 80,150 120,80 C160,20 200,60 250,40 C300,25 350,70 400,30" fill="none" stroke="#f97316" stroke-width="3"></path>
+</svg>
+</div>
+<div class="flex justify-between w-full absolute -bottom-6 px-1">
+<span class="text-[10px] text-on-surface-variant font-bold">MON</span>
+<span class="text-[10px] text-on-surface-variant font-bold">TUE</span>
+<span class="text-[10px] text-on-surface-variant font-bold">WED</span>
+<span class="text-[10px] text-on-surface-variant font-bold">THU</span>
+<span class="text-[10px] text-on-surface-variant font-bold">FRI</span>
+<span class="text-[10px] text-on-surface-variant font-bold">SAT</span>
+<span class="text-[10px] text-on-surface-variant font-bold">SUN</span>
+</div>
+</div>
+</div>
+<!-- Category Bar Chart -->
+<div class="glass-card rounded-xl p-md mb-lg">
+<h3 class="font-label-md text-label-md text-white mb-md">Category Distribution</h3>
+<div class="flex flex-col gap-sm">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-[11px] text-on-surface-variant uppercase font-bold tracking-widest">
+<span>Fast Food</span>
+<span class="text-white">45%</span>
+</div>
+<div class="h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[45%]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-[11px] text-on-surface-variant uppercase font-bold tracking-widest">
+<span>Desi Cuisine</span>
+<span class="text-white">32%</span>
+</div>
+<div class="h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container/80 w-[32%]"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-[11px] text-on-surface-variant uppercase font-bold tracking-widest">
+<span>Desserts</span>
+<span class="text-white">15%</span>
+</div>
+<div class="h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container/60 w-[15%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Orders -->
+<div class="mb-xl">
+<div class="flex justify-between items-center mb-md px-1">
+<h3 class="font-headline-sm text-headline-sm text-white font-bold">Recent Orders</h3>
+<a class="text-primary-container font-label-md text-sm" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-sm">
+<!-- Order Item -->
+<div class="glass-card rounded-xl p-sm flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">fastfood</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-white">#ORD-9021</p>
+<p class="text-xs text-on-surface-variant">Zeeshan Khan • 12:45 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md text-white">PKR 1,240</p>
+<span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-primary-container/20 text-primary-container uppercase">Preparing</span>
+</div>
+</div>
+<!-- Order Item -->
+<div class="glass-card rounded-xl p-sm flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">delivery_dining</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-white">#ORD-9018</p>
+<p class="text-xs text-on-surface-variant">Amna Ahmed • 12:30 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md text-white">PKR 850</p>
+<span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-secondary-container/20 text-secondary uppercase">Shipped</span>
+</div>
+</div>
+<!-- Order Item -->
+<div class="glass-card rounded-xl p-sm flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-white">#ORD-9015</p>
+<p class="text-xs text-on-surface-variant">Bilal Shah • 12:15 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md text-white">PKR 2,100</p>
+<span class="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-surface-container-high/20 text-on-surface-variant uppercase">Done</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Shared Component) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-inverse-surface shadow-[-4px_0_12px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-[10px]">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-[10px]">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px]">Profile</span>
+</a>
+</nav>
+<!-- Simple Interactivity for Drawer -->
+<script>
+        const menuBtn = document.getElementById('menu-toggle');
+        const sideNav = document.getElementById('side-nav');
+        const overlay = document.getElementById('drawer-overlay');
+
+        function toggleMenu() {
+            const isOpen = !sideNav.classList.contains('-translate-x-full');
+            if (isOpen) {
+                sideNav.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                overlay.classList.remove('opacity-100');
+            } else {
+                sideNav.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Micro-interactions for KPI cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('touchstart', () => card.style.transform = 'scale(0.98)');
+            card.addEventListener('touchend', () => card.style.transform = 'scale(1)');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange - Premium Dining in Karachi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f9f9ff",
+                    "on-error": "#ffffff",
+                    "tertiary": "#625e56",
+                    "on-surface": "#151c27",
+                    "surface-tint": "#9d4300",
+                    "primary": "#9d4300",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-surface-variant": "#584237",
+                    "on-secondary-fixed": "#121c2a",
+                    "on-primary-container": "#582200",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f0f3ff",
+                    "surface-bright": "#f9f9ff",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "on-primary-fixed-variant": "#783200",
+                    "outline-variant": "#e0c0b1",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-background": "#151c27",
+                    "inverse-surface": "#2a313d",
+                    "outline": "#8c7164",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#ffb690",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#555f6f",
+                    "error": "#ba1a1a",
+                    "primary-container": "#f97316",
+                    "primary-fixed-dim": "#ffb690",
+                    "surface": "#f9f9ff",
+                    "surface-variant": "#dce2f3",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-secondary-container": "#596373",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-high": "#e2e8f8",
+                    "on-primary-fixed": "#341100",
+                    "secondary-container": "#d6e0f3",
+                    "tertiary-container": "#a09a91",
+                    "surface-container": "#e7eefe",
+                    "on-tertiary-container": "#36322c",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "surface-dim": "#d3daea",
+                    "primary-fixed": "#ffdbca",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "64px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "sm": "16px",
+                    "gutter": "20px",
+                    "md": "24px",
+                    "base": "4px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "price-display": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-[100] bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)]">
+<div class="max-w-container-max mx-auto flex justify-between items-center px-md py-xs h-20">
+<div class="flex items-center gap-lg">
+<a class="font-headline-md text-headline-md font-bold text-primary" href="#">Orange</a>
+<div class="hidden md:flex items-center gap-xs text-primary font-bold border-b-2 border-primary py-1 cursor-pointer">
+<span class="material-symbols-outlined text-md">location_on</span>
+<span class="font-body-md text-body-md">Karachi</span>
+</div>
+</div>
+<div class="flex-1 max-w-xl mx-xl hidden md:block">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-3 pl-12 pr-6 focus:ring-2 focus:ring-primary-container transition-all text-body-md" placeholder="Search for dishes, cuisines..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative cursor-pointer group hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant text-[28px] group-hover:text-primary">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary-container text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">3</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border-2 border-primary overflow-hidden cursor-pointer active:scale-95 transition-transform">
+<img class="w-full h-full object-cover" data-alt="A professional, high-end studio portrait of a young Pakistani gourmet chef or food critic, looking friendly and welcoming. The lighting is soft and natural, emphasizing a light mode aesthetic with warm skin tones and a clean, minimalist background that fits the Orange food brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBi9HNF43KrtXcn8MX3CKgD6sbXgwpPZSXHZRwl0tNrHIZ4-x8QEii5xSR-DQvv7Aar9yZNiD9vRteI0sSVe6kYCIqPn9k1OOvpVO8A0lTlZLikUppkeFbdadwR96p2XtI5USskT47EPyLihVEJPNtHNtWkxk1CZAzlGyuC1H1WJrm2TnCOOUFY2dh_yrRHx1YCGyB5-O79vD7PGNZsXJ4j0Q5coa7-vNe6yD35h4t1WCW70DFJaeRYw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative w-full h-[600px] overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-angle shot of a steaming, aromatic Pakistani Mutton Biryani served in a traditional copper pot. Grains of long Basmati rice are perfectly separated, garnished with fresh mint leaves and saffron. The lighting is warm and dramatic, highlighting the steam rising from the dish, set against a dark, rustic wooden table in a premium restaurant setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCngU3-Qg4bRCtgKT3eEloNGSMTY1ASiWFRP2DrTH5kenIhhG0GQAb6gxq8fBXRjTHP9Eteiu8xLE1zrZjhYIaJMEmF4a0P1KsOMJP9UoUHe0_e1y6WjWPGzMsJLyW61kdfnKrFbPkIrWgEG82nbfWTxTBGkCowq6pB9fhlWUuv3_IyranBWV9UPUtgQLke2k2t6POxvDCMNMVylbi_42fSilMwOtJqWg3_iYpdjqLrxaKcD_SF3pIGug"/>
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto h-full flex flex-col justify-center px-md">
+<div class="bg-primary-container text-white px-sm py-2 rounded-lg font-bold w-fit mb-md animate-bounce">
+                    FLAT 25% OFF
+                </div>
+<h1 class="font-display-lg text-display-lg text-white mb-sm max-w-2xl leading-tight">
+                    The Most Authentic <br/><span class="text-primary-fixed">Karachi Flavors</span>
+</h1>
+<p class="text-white/90 font-body-lg text-body-lg mb-lg max-w-lg">
+                    Experience the legendary taste of Orange. From steaming Biryanis to sizzling BBQ, we bring the heart of Karachi to your doorstep.
+                </p>
+<button class="bg-primary-container text-white px-xl py-4 rounded-xl font-bold text-lg w-fit shadow-lg hover:bg-surface-tint hover:-translate-y-1 transition-all active:scale-95">
+                    Order Now
+                </button>
+</div>
+</section>
+<!-- Category Quick-Links (Bento Style) -->
+<section class="max-w-container-max mx-auto py-xl px-md">
+<h2 class="font-headline-md text-headline-md mb-lg">Explore Cuisines</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Fast Food -->
+<div class="group relative h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A close-up of a gourmet double-patty beef burger with melting cheddar cheese, crisp lettuce, and a vibrant orange spicy mayo sauce. The burger is held in a soft, toasted brioche bun sprinkled with sesame seeds. Bright, appetizing studio lighting with a soft-focus Karachi street background at sunset." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjfj_P3cKjFDFVFvVOypnWu2WVOMCh0d4DILg60FpvMNQ6Ejs2ck3Onmv6-f3gWrTZY18fBl4NmfLz3y6NRypY5tV0yXknoIR2-PkjhLNzoUq2YWihFWckRxO5VlC7TpWdHvruvkg5e3y7Nb2skPtp_TGwPuAQkwcEndecbE_0HwI1f8wPWBdA_udXIOPuwU_Czm2_Sr_EiD48MMDR-hZBAehWAUf6tMS_p6AhSkxqf9p4c9x1jrXFYg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<p class="font-headline-sm text-headline-sm">Fast Food</p>
+<span class="text-body-sm flex items-center gap-1 group-hover:gap-3 transition-all">Order Burgers &amp; More <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+<!-- Chinese -->
+<div class="group relative h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Vibrant Chinese Egg Fried Rice served in a white ceramic bowl, topped with sizzling Kung Pao chicken and scattered green onions. The dish is styled with a modern, clean aesthetic, featuring bright colors of orange bell peppers and dark soy-glazed chicken. High-contrast lighting that makes the food look fresh and hot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMH5THv1wxLwUWekyQhM_H3e6JHSOLfpj9mzlDBrW0BgI9Bvy7kZwvXPWgfC4JtA4juIAvtrtBp2WlDluf_N8CgNPI47HadCC6aaQnR5Lt0YTuTOmoR83jev2ZAeuJ6TphKOWR1zGl2sjJbH3yzWfq-CqgzX5t2y3Xn0SfdpD5j16Zw4CiUjb-sESlOrkjcDTxna2dBNm_LSOgXWVnRl5ixwtIz47otWn-EcmOM3aYGrc_vgCsa_uGIw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<p class="font-headline-sm text-headline-sm">Chinese Food</p>
+<span class="text-body-sm flex items-center gap-1 group-hover:gap-3 transition-all">Pan-Asian Favorites <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+<!-- BBQ -->
+<div class="group relative h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Traditional Pakistani BBQ platter featuring charred Beef Seekh Kababs and Malai Boti, served on a hot iron sizzler with lemon wedges and mint chutney. Wisps of smoke rise from the grilled meats. The scene is shot with warm, inviting lighting that emphasizes the juicy textures and spice-rubbed exterior of the meat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEPnUtRUb1q8XA-LtZTfXgnuCME9LGHYMCi7ymTXWsnJomm7BBgkCefp2I8VJB0wLGU6vB1ljfkEEqLAd_CVy_MKkf2eCXWbd2NBCO4SxwmRU1Sv0Q_jvs5yBELBDbcNL1m4Wc1rwzFm1j_naFayaX4vbBPeTpI314OnJhEXs_f9ibjh8OKATF44COWr1txd8NnM_6jj-NkyJpOH73-TAT5bJdhsnNWafZm29MJpSlsTCb_fjG8LKj0w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<p class="font-headline-sm text-headline-sm">BBQ</p>
+<span class="text-body-sm flex items-center gap-1 group-hover:gap-3 transition-all">Smoky &amp; Grilled <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Right Now (Horizontal Scroll) -->
+<section class="bg-surface-container-low py-xl">
+<div class="max-w-container-max mx-auto px-md">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md">Popular Right Now</h2>
+<p class="text-on-surface-variant font-body-md">Most ordered items in your area</p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-white transition-colors active:scale-90">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-white transition-colors active:scale-90">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-md overflow-x-auto no-scrollbar pb-xs">
+<!-- Dish Card 1 -->
+<div class="min-w-[280px] bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+<div class="h-44 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A juicy, oversized Zinger Burger with a thick, crispy-fried chicken thigh, layers of fresh iceberg lettuce, and a generous pour of signature orange-tinted spicy sauce. The bun is perfectly round and golden. High-quality food photography with a shallow depth of field, focusing on the texture of the crispy chicken." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMaNlOj8neZY3RDSSXaRcqo5u1Md6wEtQgXb0HgIgV8PFD_lDK8reIHylCVKGy1H5h2yPrb4PrAvCDxkDh3n8SOeJRsJnWsyGLvfP01Ho7oib9-bV6KHy2PfknOB6f5jhmw7nmeIVfhbEYyNSyuUYYpSZ0b-9RwD6UmqHZIUJEcHTfh7ffdxc2xXxK_tiU7oSsqkDYTb9bFv7JzAOCT6SacboVsdC79bE8XuqYH6uPMmHReC0SVuuKrQ"/>
+<div class="absolute top-3 right-3 bg-white/90 px-2 py-1 rounded-full flex items-center gap-1 text-sm font-bold text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-yellow-500 text-xs" style="font-variation-settings: 'FILL' 1;">star</span> 4.8
+                            </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-lg mb-1">Mighty Zinger</h3>
+<p class="text-on-surface-variant text-body-sm mb-md line-clamp-1">Classic crispy burger with cheese &amp; mayo</p>
+<div class="flex justify-between items-center">
+<span class="font-price-display text-primary font-bold">₨ 650</span>
+<button class="w-10 h-10 bg-primary-container text-white rounded-xl flex items-center justify-center hover:bg-surface-tint active:scale-90 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 2 -->
+<div class="min-w-[280px] bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+<div class="h-44 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Pakistani Beef Seekh Kababs, skewered and grilled to perfection with visible char marks. Served on a platter with sliced onions and a small bowl of spicy green raita. The lighting is bright and crisp, highlighting the juicy, tender interior of the meat against a warm, neutral table background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzI0dvLdK-4L4FlkCGG0SIXOzm8bOESXncIF4Rte7elfD8MoZ5M9_XAcLXSAuq79qOjNL32h282CzLr_o0N4X6Iyp0ZKr_Xwc6WaZkqjt8OheqTEc7e8iRDJmhuN32-1BO1y7kPA6oXCRYxhnbQmexH66Vh-wJReHFcV1S3-gayQVmBufwzqwAQC2jz2aNiroz07IxnuZEbbKiVIwA8gKNFgiQzo57jCyvealAXgdP-TLIM91CH_p9qw"/>
+<div class="absolute top-3 right-3 bg-white/90 px-2 py-1 rounded-full flex items-center gap-1 text-sm font-bold text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-yellow-500 text-xs" style="font-variation-settings: 'FILL' 1;">star</span> 4.9
+                            </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-lg mb-1">Beef Seekh Kabab</h3>
+<p class="text-on-surface-variant text-body-sm mb-md line-clamp-1">4 pieces of tender, spiced beef skewers</p>
+<div class="flex justify-between items-center">
+<span class="font-price-display text-primary font-bold">₨ 890</span>
+<button class="w-10 h-10 bg-primary-container text-white rounded-xl flex items-center justify-center hover:bg-surface-tint active:scale-90 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 3 -->
+<div class="min-w-[280px] bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+<div class="h-44 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A bowl of hot Egg Fried Rice, glistening with light soy sauce and featuring colorful bits of scrambled eggs, peas, and thinly sliced carrots. Steam is visible above the bowl. The aesthetic is clean and modern, with a focus on the freshness of the ingredients. Light mode, bright and airy photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB38bU7b8is8E5YKwHibpEHoDyubuzTweCkbVJB7betug8AKK1AgmkGHfU-kKWt8Q_4xX6kxnKdapcmvCJSFRLtCLlX5aAjBcTFk_7u0HN2Lvn5ZRzjYFZOc3I6D5Mw5ArwJ_4f_U6m6LWxKB3W8xUv6P1QStuKBMAMJf3pwNgICo1QD9d6gSf5AgMMBgYw0twg3FH8YS2LjX2lh5bPZBYLxDeo9Imqa0UgecxVrP-T-K6-zCxblLWFQ"/>
+<div class="absolute top-3 right-3 bg-white/90 px-2 py-1 rounded-full flex items-center gap-1 text-sm font-bold text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-yellow-500 text-xs" style="font-variation-settings: 'FILL' 1;">star</span> 4.6
+                            </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-lg mb-1">Egg Fried Rice</h3>
+<p class="text-on-surface-variant text-body-sm mb-md line-clamp-1">Wok-tossed rice with spring vegetables</p>
+<div class="flex justify-between items-center">
+<span class="font-price-display text-primary font-bold">₨ 550</span>
+<button class="w-10 h-10 bg-primary-container text-white rounded-xl flex items-center justify-center hover:bg-surface-tint active:scale-90 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dish Card 4 -->
+<div class="min-w-[280px] bg-surface rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+<div class="h-44 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A delicious serving of Chicken Chow Mein, featuring long noodles tossed in a dark savory sauce with tender strips of chicken and vibrant stir-fried vegetables like cabbage and green peppers. The lighting is high-key and professional, giving the dish an appetizing shine. Minimalist light-colored background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_voPgFU1ZbmIivAtI7q_ZpNnSWZE6tj5walDb35sUZSkmF_zvBZ93iT3JPNYIrONFoApKbwszjJesfW0jJmnvisThf07umxVNFxdxrkqAPvYQdYmdYYHvzgETqWj7Tt2t3d5FS_Blksq-8ap2poFRwB8LWqrTMvsknJd6nngoCksQaotW_Vy8DmzKLYWlvfucQw2wG8dactt_E2DayuVYy78i-KeQM5jnga1VqO3K0HvQBDae0vBoNw"/>
+<div class="absolute top-3 right-3 bg-white/90 px-2 py-1 rounded-full flex items-center gap-1 text-sm font-bold text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-yellow-500 text-xs" style="font-variation-settings: 'FILL' 1;">star</span> 4.7
+                            </div>
+</div>
+<div class="p-md">
+<h3 class="font-headline-sm text-lg mb-1">Chicken Chow Mein</h3>
+<p class="text-on-surface-variant text-body-sm mb-md line-clamp-1">Traditional stir-fry with spicy sauce</p>
+<div class="flex justify-between items-center">
+<span class="font-price-display text-primary font-bold">₨ 720</span>
+<button class="w-10 h-10 bg-primary-container text-white rounded-xl flex items-center justify-center hover:bg-surface-tint active:scale-90 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Top Picks (Grid) -->
+<section class="max-w-container-max mx-auto py-xl px-md">
+<div class="mb-lg">
+<h2 class="font-headline-md text-headline-md">Top Picks</h2>
+<div class="flex gap-4 mt-sm">
+<span class="bg-primary-container text-white px-4 py-1 rounded-full text-sm font-semibold cursor-pointer">All</span>
+<span class="bg-surface-container text-on-surface-variant px-4 py-1 rounded-full text-sm font-semibold cursor-pointer hover:bg-primary/10 transition-colors">Best Sellers</span>
+<span class="bg-surface-container text-on-surface-variant px-4 py-1 rounded-full text-sm font-semibold cursor-pointer hover:bg-primary/10 transition-colors">New Arrival</span>
+<span class="bg-surface-container text-on-surface-variant px-4 py-1 rounded-full text-sm font-semibold cursor-pointer hover:bg-primary/10 transition-colors">Vegetarian</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Item 1 -->
+<div class="bg-white rounded-2xl border border-outline-variant p-3 hover:border-primary transition-colors cursor-pointer flex flex-col group">
+<div class="aspect-[16/9] rounded-xl overflow-hidden mb-3">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A bowl of creamy, aromatic Chicken Karahi topped with julienned ginger and green chilies. The lighting is warm and invites the viewer to taste. Background shows a blurred Pakistani restaurant interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXsy32tniGA7F4z9k3UG3EsVp8NGDMOK9gGpiBD1NZrIjiR5l1bFOYxzwWrRtE7qNvycUP2ohZdxf4TuP4z1bd-G8kEGJu6c2jpygmwhk4qViPcBetTyVSxe1-qxG2sv_PM8P1y3KsH89dwkqMhTbYFJLHGccscaKSK-vOq7CdTlAVtJXHXu8Pc7U7EyGGIFs0x4KLz8KbN4brFACbemJNkguV4tfELjvKoouJGGW2NdhGq3jb3gTQlQ"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-md mb-1">Chicken Karahi</h4>
+<div class="flex items-center gap-1 text-sm text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-xs">schedule</span> 30-40 mins
+                        </div>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-bold text-lg">₨ 1,200</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-white rounded-2xl border border-outline-variant p-3 hover:border-primary transition-colors cursor-pointer flex flex-col group">
+<div class="aspect-[16/9] rounded-xl overflow-hidden mb-3">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A full-size grilled fish with Pakistani spices, served with citrus wedges and roasted vegetables. The image is bright and colorful, shot from a professional culinary perspective." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx8bToSAr8wm-US2L8KrcQyZ_cdTMuXKc-_AGacvaCwzDDSGcOQySvDh5hWrURoBj1UojdDOVOyFQ4fYlfPXBbKl02LkkmRJ7q9Tk1C6Jbfh03dB1RLfJh5ptn9FvGyIWr4rEkgCg1UCqpwkn0R17iN6gKhgyO8FgENWhVY4bsUHDlCSi_vNWgtBrKcEjawXTlGZd_IK12ha_zSCrejTIg5gRsxf9JC6Znu7RpPSVoRf5hYVny7WHdUQ"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-md mb-1">Grilled BBQ Fish</h4>
+<div class="flex items-center gap-1 text-sm text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-xs">schedule</span> 45-55 mins
+                        </div>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-bold text-lg">₨ 1,850</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-white rounded-2xl border border-outline-variant p-3 hover:border-primary transition-colors cursor-pointer flex flex-col group">
+<div class="aspect-[16/9] rounded-xl overflow-hidden mb-3">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Two massive Zinger Stackers stacked with cheese and sauces, looking incredibly appetizing and tall. Studio lighting on a clean white table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYyanjNedcI0gONX3cUM3NAGL07syzviNYQ75Qwm-a_I1Kmf2LKQwYHR-eMEi_h4CmK2wJGHOJj06N2cuZ7Nz6Z5VBm3tH0eiMxLFjjR1GoMLKTuDVAWHi3XWSajqXKyWhljWL_HG_OOT9L-wckC7GgeGGJwXSs3fZUX5INy3Wkw-n3tR9OvGMmPQ9lIz8EOvDftqgSGwojxyridt2owrc08BVuOnutWs2KGWGE30Gy2Blyj4zLyC9Yg"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-md mb-1">Zinger Stacker</h4>
+<div class="flex items-center gap-1 text-sm text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-xs">schedule</span> 20-25 mins
+                        </div>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-bold text-lg">₨ 950</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="bg-white rounded-2xl border border-outline-variant p-3 hover:border-primary transition-colors cursor-pointer flex flex-col group">
+<div class="aspect-[16/9] rounded-xl overflow-hidden mb-3">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A high-end presentation of Garlic Naan and Raita, with the bread being buttery and slightly charred. Warm lighting and a premium feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAZkpaz_HeTYXX7ZpfSoCX1xl-_zLBYYaD1wzQM3svBe1_BTmTd0r6LP2WfIPpV0R7p-H5X9ulTIW4j8rXbltnqH2cCJ0AyartiFHmTQISR9As6S2PkbDp-NHrjLl_dUO2qJM4Iqz7JFowqbetTv5LpyNI9KyGEmMassWzyNNtUkJoNzIwPNuAE1fMrF90DTpHA6H-Doy8APxyKjmY89PTF_SRl0z8l8eLy79B6N49JPNrkPMjflM0Lw"/>
+</div>
+<div class="flex-1">
+<h4 class="font-headline-sm text-md mb-1">Garlic Naan Basket</h4>
+<div class="flex items-center gap-1 text-sm text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-xs">schedule</span> 15-20 mins
+                        </div>
+<div class="flex justify-between items-center mt-auto">
+<span class="font-bold text-lg">₨ 350</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant">
+<div class="max-w-container-max mx-auto py-xl px-md">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-xl mb-lg">
+<div class="col-span-1 md:col-span-1">
+<h2 class="font-headline-md text-headline-md font-bold text-primary mb-md">Orange</h2>
+<p class="text-on-surface-variant text-body-sm leading-relaxed mb-lg">
+                        Delivering authentic flavors and premium dining experiences across Karachi. From tradition to modern innovation, we define taste.
+                    </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">qr_code_2</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">photo_camera</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">alternate_email</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-md">Menu</h4>
+<ul class="space-y-3 text-on-surface-variant text-body-sm">
+<li class="hover:text-primary cursor-pointer transition-colors">Fast Food</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Chinese Cuisine</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Pakistani BBQ</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Desserts</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Beverages</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-md">Quick Links</h4>
+<ul class="space-y-3 text-on-surface-variant text-body-sm">
+<li class="hover:text-primary cursor-pointer transition-colors">About Us</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Contact Support</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Order Tracking</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Privacy Policy</li>
+<li class="hover:text-primary cursor-pointer transition-colors">Terms of Service</li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-md">Contact</h4>
+<ul class="space-y-3 text-on-surface-variant text-body-sm">
+<li class="flex gap-2"><span class="material-symbols-outlined text-sm">location_on</span> DHA Phase 6, Karachi, Pakistan</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-sm">call</span> +92 21 3456 7890</li>
+<li class="flex gap-2"><span class="material-symbols-outlined text-sm">mail</span> info@orangefood.pk</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="text-on-surface-variant text-body-sm">© 2024 Orange Food Pakistan. All rights reserved.</p>
+<div class="flex gap-4">
+<img alt="Visa" class="h-6 opacity-60 grayscale hover:grayscale-0 transition-all cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpEhr7Iikwlky4TcDHDLzDm6sqF5eUOYJtHGgjczGKyKoTUtSvcx3LpDyxVQACKdL30tIWL1egCg01xFAKDBdvfsi7oioFHwIhL2MroeBcnO5jPvBDkpW-sDTB5SDoaIwZvNPtebQV1JU9y2RzvDG7JhmLxzzLJdKEQKTkcwYEoY5QlKFDIrnWDzdEon1QFD9r6DJQpD57xVCmNvt1pQDMprIs4E2E5bXpk3aXC19fncIt6QTeu_ucaA"/>
+<img alt="Mastercard" class="h-6 opacity-60 grayscale hover:grayscale-0 transition-all cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOPqhFhbCW8Cq81d4v6o8i74Ov3B0ab-9PKyN1GpU4f1ydyqRA4xpEKCcIJjApw2ixOZiMLJgjjMidXO3LPDzPuJ2qipW4rUCXamG7Dqn1CWMhBjK9wDReNPWFuQx_my-0g8IqnsdZksld7gnS2FKQfd_6y98jGkVCKxEA1j21VGKLVDcJgUF9Y_BwrHuUPfmCLUfc86RjF09NNZAF_vtG35zNbYNzQT2d6P4-XrKMwdUFcmachpq1Eg"/>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and scrolling effects
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        // Add to cart feedback
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

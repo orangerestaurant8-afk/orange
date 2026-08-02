@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange - Your Favorites</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-surface": "#2a313d",
+                    "tertiary": "#625e56",
+                    "surface-container": "#e7eefe",
+                    "inverse-primary": "#ffb690",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-secondary-container": "#596373",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary-fixed": "#341100",
+                    "outline-variant": "#e0c0b1",
+                    "primary-container": "#f97316",
+                    "outline": "#8c7164",
+                    "on-background": "#151c27",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container-highest": "#dce2f3",
+                    "surface": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#dce2f3",
+                    "primary-fixed": "#ffdbca",
+                    "secondary-container": "#d6e0f3",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-surface": "#151c27",
+                    "surface-dim": "#d3daea",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-error-container": "#93000a",
+                    "secondary": "#555f6f",
+                    "on-secondary-fixed": "#121c2a",
+                    "error-container": "#ffdad6",
+                    "primary": "#9d4300",
+                    "tertiary-container": "#a09a91",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "background": "#f9f9ff",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "surface-container-low": "#f0f3ff",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#584237",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-primary-container": "#582200",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#9d4300",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary-container": "#36322c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "xl": "64px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "container-max": "1280px",
+                    "gutter": "20px",
+                    "sm": "16px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "price-display": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fav-active .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+            color: #9d4300;
+        }
+        .food-card:hover .add-to-cart-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-fixed-dim">
+<!-- TopNavBar -->
+<header class="docked full-width top-0 z-50 bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)]">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<!-- Brand -->
+<div class="font-headline-md text-headline-md font-bold text-primary">Orange</div>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Lahore</a>
+<a class="text-primary font-bold border-b-2 border-primary font-body-md text-body-md" href="#">Karachi</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">Islamabad</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<button class="text-primary hover:scale-95 transition-transform">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="text-primary hover:scale-95 transition-transform">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up headshot of a friendly person in Karachi, Pakistani attire, with a soft blurred background of an urban setting. The lighting is warm and cinematic, reflecting a modern corporate professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzLeiM19l1CxLYf4JdLlJwcUVsmqYOfHmwixKIOfq_JLLtnIv8Uig8rjWMH5n4pF-LmdgbteIxjE1fxLelSmv9r5Y2d7gCGBYDuPG0b2FpG4VzsRak7lyJ5ySPIHZG9WfANBbTwA6oXvrM8g1hjmD6WrmW1z_up2mNDqz0G3-fyoDgrtwuDMv_fjrFpclUfC3wXhkCYb-qVVXCUU2DlYeSsRXUfm_D52tz4ouKJXPLId7huKKNCGflFg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="min-h-screen pt-lg pb-xl px-sm md:px-lg max-w-container-max mx-auto">
+<!-- Page Header -->
+<div class="mb-lg">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-xs">Your Favorites</h1>
+<p class="font-body-lg text-body-lg text-on-secondary-container">Handpicked delights from Karachi's finest kitchens.</p>
+</div>
+<!-- Filter Chips (Custom Component for context) -->
+<div class="flex overflow-x-auto gap-sm mb-lg pb-xs scrollbar-hide">
+<button class="flex-shrink-0 px-md py-xs bg-primary-container text-on-primary-fixed font-label-md text-label-md rounded-full shadow-sm">All Favorites</button>
+<button class="flex-shrink-0 px-md py-xs bg-surface-container text-on-secondary-container font-label-md text-label-md rounded-full hover:bg-secondary-container transition-colors">Fast Food</button>
+<button class="flex-shrink-0 px-md py-xs bg-surface-container text-on-secondary-container font-label-md text-label-md rounded-full hover:bg-secondary-container transition-colors">Chinese</button>
+<button class="flex-shrink-0 px-md py-xs bg-surface-container text-on-secondary-container font-label-md text-label-md rounded-full hover:bg-secondary-container transition-colors">BBQ</button>
+<button class="flex-shrink-0 px-md py-xs bg-surface-container text-on-secondary-container font-label-md text-label-md rounded-full hover:bg-secondary-container transition-colors">Desserts</button>
+</div>
+<!-- Favorites Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-md">
+<!-- Item 1: Zinger Burger -->
+<div class="food-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all duration-300 group cursor-pointer relative border border-outline-variant/10">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A mouth-watering, high-resolution close-up of a Zinger Burger with a crispy fried chicken fillet, fresh lettuce, and melting mayonnaise on a toasted sesame bun. The lighting is warm and appetizing, set against a clean, minimalist kitchen background in Karachi. Vibrant orange accents highlight the texture of the breading." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWYifPixZAqu-9K6SgHTqNJ3xyONAWcMx57NhMzHhDAZym-Pm4EuvCgEXFlhun8chcECghAQ3MhCeCcmEzgQdBBAF9VW2pAzQYIYN9BIf39kbVMDtuzAP73d4ykzKYJopWXwor-kK59CHrUOq8nSmZxbhIkRbii01xUTSaw5CtjgYdRvFWAXLJdybslP5WpU4G7-ddlnkyDrHCfQamVsVAaJ85mewyxylxTIM0sy8mRAIIv373-9WXaA"/>
+<button class="absolute top-sm right-sm bg-white/90 p-2 rounded-full fav-active hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Zinger Burger</h3>
+<span class="flex items-center text-primary-fixed-dim text-sm"><span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span> 4.8</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Classic spicy crispy chicken burger from Karachi's favorite joint.</p>
+<div class="flex justify-between items-center mt-sm">
+<span class="font-price-display text-price-display text-primary">₨ 550</span>
+<button class="add-to-cart-btn md:opacity-0 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-primary-container text-on-primary text-label-md font-label-md px-md py-xs rounded-lg flex items-center gap-2 hover:bg-primary">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span> Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+<!-- Item 2: Chicken Manchurian -->
+<div class="food-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all duration-300 group cursor-pointer relative border border-outline-variant/10">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A gourmet presentation of Chicken Manchurian with vibrant red gravy, diced peppers, and scallions in a sleek black bowl. Beside it sits a bowl of steaming egg fried rice. The shot is overhead with soft cinematic lighting, emphasizing fresh ingredients and an appetizing, modern culinary style typical of a high-end Karachi Chinese restaurant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJKh9PcvwMhR1GyvSdkOS26CzZF2V1Sevp7YteIZZ5OaDQNPi3L3a_UemQg69JGW0rPDjZsMA1cvfLEv80iHh-xR5yz-47h2LbKhAeHw6QDWe4PREcyCdf3NTrovD1REgAjZ_k9qeYELxa-nINnTm_GQQwuX0WVuN-3_qo3J8FMgxy0sRMLz1d2qcsqkQUdEHwRGoA7OaVS01sCReS-YynRdpLDZq8XXTqZsu6CT6KFZ_93E35xP-2Bg"/>
+<button class="absolute top-sm right-sm bg-white/90 p-2 rounded-full fav-active hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Chicken Manchurian</h3>
+<span class="flex items-center text-primary-fixed-dim text-sm"><span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span> 4.5</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tangy Indo-Chinese classic served with Egg Fried Rice.</p>
+<div class="flex justify-between items-center mt-sm">
+<span class="font-price-display text-price-display text-primary">₨ 850</span>
+<button class="add-to-cart-btn md:opacity-0 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-primary-container text-on-primary text-label-md font-label-md px-md py-xs rounded-lg flex items-center gap-2 hover:bg-primary">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span> Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+<!-- Item 3: Beef Seekh Kabab -->
+<div class="food-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all duration-300 group cursor-pointer relative border border-outline-variant/10">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Authentic succulent Beef Seekh Kababs charred to perfection over charcoal, garnished with onion rings, fresh mint, and lemon wedges on a rustic platter. Wisps of smoke are visible, set in a dimly lit, high-contrast environment that evokes the rich BBQ culture of Karachi. Vibrant orange embers glow in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsloSDb9m7Oko873etwqQAbwW3_Umh-vGY9Bwutk3p_FSLpRE4LnUnp2_qcvtMK0KGY_ysRNThZspCh4_Z9Gf9s-u1XvTCPY4kL_pzZVf7Csf7lf2A5DLj38Z3BdmSIt_fKqtgL4zrtWzkRDAlJVU_KIxlDplLUvx0ZGkJtLBKoFP0KLlRlwvEg05mro2-FB1I9QLEyswHaFlSWEO9M2MwhG5zXS4zTaGt06W_07FNhzOTRnoGSQgGmg"/>
+<button class="absolute top-sm right-sm bg-white/90 p-2 rounded-full fav-active hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Beef Seekh Kabab</h3>
+<span class="flex items-center text-primary-fixed-dim text-sm"><span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span> 4.9</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Traditional spiced minced beef skewers grilled over charcoal.</p>
+<div class="flex justify-between items-center mt-sm">
+<span class="font-price-display text-price-display text-primary">₨ 1,200</span>
+<button class="add-to-cart-btn md:opacity-0 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-primary-container text-on-primary text-label-md font-label-md px-md py-xs rounded-lg flex items-center gap-2 hover:bg-primary">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span> Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+<!-- Item 4: Loaded Fries -->
+<div class="food-card bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] hover:shadow-[0px_8px_20px_rgba(31,41,55,0.1)] transition-all duration-300 group cursor-pointer relative border border-outline-variant/10">
+<div class="relative aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A vibrant and messy portion of Loaded Fries topped with melted cheddar cheese, jalapeños, ranch dressing, and shredded chicken. The food is captured in a high-energy, bright commercial style with sharp focus on the textures of the sauce and crispy fries. The background is a clean white marble surface with orange napkins." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYNRvtHyVin-pg5PhUskIpI6I_u6_bb_dkSE6SmjzUQHpnviDB0DUTe7HeZqAhxz6jN2QZvG7nZG-r6jN_EhKPk3uQteZ-hg_5hJ_N4NAdGMhNz2ld4Hw2lml284lH21wEyD7C9R0hxhKqtRFRGcleg2pu4sGpCEtmc2LZV5u0P8nM8hvr5E6zI8vbgt-kT2i-8ckEaU0lD4Mea9yfdyW8O9IokAB7lPRxQQ2NfTWTnqGIh_waxUY9ww"/>
+<button class="absolute top-sm right-sm bg-white/90 p-2 rounded-full fav-active hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="p-sm flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Cheesy Loaded Fries</h3>
+<span class="flex items-center text-primary-fixed-dim text-sm"><span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span> 4.4</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Crispy fries smothered in cheese sauce, jalapeños, and chicken.</p>
+<div class="flex justify-between items-center mt-sm">
+<span class="font-price-display text-price-display text-primary">₨ 450</span>
+<button class="add-to-cart-btn md:opacity-0 translate-y-2 group-hover:translate-y-0 transition-all duration-300 bg-primary-container text-on-primary text-label-md font-label-md px-md py-xs rounded-lg flex items-center gap-2 hover:bg-primary">
+<span class="material-symbols-outlined text-sm">add_shopping_cart</span> Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default, shown if no favs) -->
+<div class="hidden flex flex-col items-center justify-center py-xl text-center" id="empty-state">
+<span class="material-symbols-outlined text-[64px] text-surface-variant mb-md">heart_broken</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">No favorites yet?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-lg">Start exploring Karachi's best cuisines and tap the heart icon to save them here.</p>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-xl py-md rounded-xl hover:scale-105 transition-transform active:scale-95 shadow-lg">Browse Restaurants</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-md flex flex-col items-center gap-md bg-surface-container-low border-t border-outline-variant/10">
+<div class="font-headline-sm text-headline-sm text-primary font-bold">Orange Food Pakistan</div>
+<nav class="flex flex-wrap justify-center gap-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">About Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all" href="#">Contact Support</a>
+</nav>
+<p class="font-body-sm text-body-sm text-on-secondary-container">© 2024 Orange Food Pakistan. All rights reserved.</p>
+</footer>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined">search</span>
+<span>Search</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>Favorites</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined">person</span>
+<span>Profile</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for the add-to-cart buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">sync</span> Adding...`;
+                btn.classList.add('bg-primary');
+                
+                setTimeout(() => {
+                    btn.innerHTML = `<span class="material-symbols-outlined text-sm">check</span> Added!`;
+                    btn.classList.replace('bg-primary-container', 'bg-tertiary-container');
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.replace('bg-tertiary-container', 'bg-primary-container');
+                    }, 2000);
+                }, 800);
+            });
+        });
+
+        // Toggle heart icon
+        document.querySelectorAll('.fav-active').forEach(fav => {
+            fav.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const span = fav.querySelector('span');
+                const isFilled = span.style.fontVariationSettings.includes("'FILL' 1");
+                
+                if(isFilled) {
+                    span.style.fontVariationSettings = "'FILL' 0";
+                    span.classList.remove('text-primary');
+                    span.classList.add('text-on-surface-variant');
+                } else {
+                    span.style.fontVariationSettings = "'FILL' 1";
+                    span.classList.remove('text-on-surface-variant');
+                    span.classList.add('text-primary');
+                }
+            });
+        });
+    </script>
+</body></html>

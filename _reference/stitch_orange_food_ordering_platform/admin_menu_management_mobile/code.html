@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant - Menu Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdbca",
+                    "secondary-container": "#d6e0f3",
+                    "background": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#dce2f3",
+                    "surface-container": "#e7eefe",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#a09a91",
+                    "primary": "#9d4300",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#36322c",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-primary-container": "#582200",
+                    "primary-container": "#f97316",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "inverse-primary": "#ffb690",
+                    "surface-container-high": "#e2e8f8",
+                    "on-secondary-fixed": "#121c2a",
+                    "inverse-surface": "#2a313d",
+                    "surface": "#f9f9ff",
+                    "on-primary-fixed": "#341100",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary": "#555f6f",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "inverse-on-surface": "#ebf1ff",
+                    "tertiary": "#625e56",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-primary-fixed-variant": "#783200",
+                    "surface-bright": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f0f3ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#151c27",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#e0c0b1",
+                    "surface-tint": "#9d4300",
+                    "on-surface-variant": "#584237",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#e9e1d8",
+                    "outline": "#8c7164",
+                    "on-background": "#151c27",
+                    "surface-container-highest": "#dce2f3",
+                    "surface-dim": "#d3daea",
+                    "on-secondary-container": "#596373"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "gutter": "20px",
+                    "base": "4px",
+                    "xl": "64px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "sm": "16px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "price-display": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-switch {
+            transform: translateX(1.25rem);
+        }
+        .form-overlay-enter {
+            animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9d4300;
+            border-radius: 10px;
+        }
+        .bento-card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 20px rgba(31, 41, 55, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24 overflow-x-hidden">
+<!-- TopNavBar (Execution from JSON) -->
+<header class="bg-surface dark:bg-background shadow-[0px_2px_8px_rgba(31,41,55,0.05)] docked full-width top-0 z-40 fixed w-full">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Menu Management</h1>
+<div class="flex items-center gap-sm">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+<div class="flex items-center gap-xs ml-2 md:flex hidden">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white font-bold">A</div>
+<span class="font-label-md text-label-md">Admin Portal</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-20 px-sm max-w-container-max mx-auto">
+<!-- Category Filter Chips -->
+<div class="flex overflow-x-auto gap-xs py-md no-scrollbar sticky top-16 bg-background/80 backdrop-blur-md z-30 mb-2">
+<button class="px-sm py-2 rounded-full bg-primary text-white font-label-md whitespace-nowrap">All Items</button>
+<button class="px-sm py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md whitespace-nowrap hover:bg-primary-container hover:text-white transition-all">Fast Food</button>
+<button class="px-sm py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md whitespace-nowrap hover:bg-primary-container hover:text-white transition-all">Chinese</button>
+<button class="px-sm py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md whitespace-nowrap hover:bg-primary-container hover:text-white transition-all">BBQ</button>
+<button class="px-sm py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md whitespace-nowrap hover:bg-primary-container hover:text-white transition-all">Beverages</button>
+<button class="px-sm py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md whitespace-nowrap hover:bg-primary-container hover:text-white transition-all">Desserts</button>
+</div>
+<!-- Menu Item List (Asymmetric Grid Pattern for high-end UI) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-sm mt-4">
+<!-- Item Card 1 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant flex items-center gap-md bento-card-hover transition-transform duration-300">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional studio photograph of a gourmet beef burger with melting cheddar cheese, crisp lettuce, and heirloom tomatoes on a toasted brioche bun. The lighting is warm and cinematic, highlighting the juicy texture of the meat and the glossy sheen of the bun. Set against a dark, minimalist charcoal background with a hint of vibrant orange accents from the brand palette. High-end food commercial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa02mGKB0M-WBGVRO9r21zQYZ4Ilk8n6JnIEYYLhxfOEvOogjPH20Dol1JtelSZEGK7Rs_miaD6BrKR9csmqs56Mug2-4KOKSF8s1jASawaICQ3YXhPbKG_vM6A8vLP_ZX-yOCHzVBlqi7mr3jBYxtT3gN_V4iwj09GSXUMS0LDGl6YRET2iXLorLmyZ2UZW3qrOyrvcdK9_rcaz9bImLS5R5RVgnXmW0sFpdoIXZFuy-x6lRGm7ecBQ"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Zinger Supreme</h3>
+<span class="text-primary font-price-display text-price-display">PKR 550</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Crispy chicken fillet with secret sauce.</p>
+<div class="flex justify-between items-center mt-3">
+<span class="text-label-md text-on-surface-variant">Available</span>
+<button class="w-10 h-5 bg-primary rounded-full relative transition-colors duration-200" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200 translate-x-5"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant flex items-center gap-md bento-card-hover transition-transform duration-300">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="An overhead shot of authentic chicken biryani served in a traditional clay pot, garnished with fresh cilantro and fried onions. The rice is multi-colored and aromatic, with tender pieces of saffron-infused chicken peeking through. Warm atmospheric lighting creates an appetizing and rich mood, emphasizing the vibrant orange and yellow hues of the dish. Professional restaurant menu photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa5l7we1F0h8vos2DF8OZrS8vYTVQ_ggN12EwI2lmMz1o2neJfBkaJGVDwhapV6NwuKa7CeUIXoai24F9PU0KQPOlWyUNjXyJ3Fd2rQ5wahmgVw4HPea0Ewi8v2z0wEWOCIt8ilTWVc7HEztDBvnCE4meYw23uSTXJDYX07OMIrbWd_mHH63q1BjOTOZlshWBAniGEh1ZCDIU7AzC2dKIXhmoapvZzMsrUrW83OcXis579ybfiBbTffg"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mutton Karahi</h3>
+<span class="text-primary font-price-display text-price-display">PKR 1,250</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Traditional wok-cooked spicy mutton.</p>
+<div class="flex justify-between items-center mt-3">
+<span class="text-label-md text-on-surface-variant">Available</span>
+<button class="w-10 h-5 bg-primary rounded-full relative transition-colors duration-200" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200 translate-x-5"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 3 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant flex items-center gap-md bento-card-hover transition-transform duration-300">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A macro shot of spicy Szechuan noodles with stir-fry vegetables and sesame seeds in a sleek black ceramic bowl. Steam gently rises from the bowl, captured against a moody dark background. The lighting is focused and dramatic, highlighting the textures of the noodles and the glossy sauce. Vibrant orange chili oil provides a pop of color in a sophisticated minimalist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCByzskrNA0UwTdQ4YBOM05DvNa8XvykXj0CTzaqD8YgRfJaGYX8FKkpObQAzgvI2akOICglXBJUrshFiU3wWdzZ1etqa5iknxTa3f61WZmYoRWQy9WVIO1wHbhdJwVzWJuk4tA4FGH1PUin5rO_crFzOFnOV_nxkTHzdw0MNYu-aCTsHqs3_AFdn7bzz3gz39gUUmabn53qgxJkb76xJkcvnrP4BdMIey0MTqHG43OV-AmApAt7YdmRA"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Dragon Noodles</h3>
+<span class="text-primary font-price-display text-price-display">PKR 890</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Spicy Szechuan style stir-fried noodles.</p>
+<div class="flex justify-between items-center mt-3">
+<span class="text-label-md text-on-surface-variant">Sold Out</span>
+<button class="w-10 h-5 bg-surface-variant rounded-full relative transition-colors duration-200" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 4 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant flex items-center gap-md bento-card-hover transition-transform duration-300">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Three perfectly grilled chicken skewers seasoned with Pakistani spices, served with a side of mint chutney on a rustic slate board. The meat is charred at the edges and glistening with juices. The scene is lit with natural, warm evening light, creating a high-end BBQ restaurant atmosphere. The color palette is dominated by deep charcoal and warm earthy tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt_8lGzKQR48Qu1s5J5kF1R983lAmV8Q7g6Z9pjqSwP_FdmBhj95wgkWkExMIDB9jbmuGF0E3tSRNFdm0HsnWnd7TrDGA-F5gw4-Eb0kvt4pl-vhvbT6kLfU3wABYodcVd83xrgOLST_0RfJt33wEJtq4r5QPxAtrynJ9hoCoJjyedmDrlOH7C9fDIpCpYqlL8VL3Nm3qqdnym-x82ohruqTFjtdZ0l1cO1AOkSfWewHuWxW07mHptUQ"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Chicken Boti</h3>
+<span class="text-primary font-price-display text-price-display">PKR 450</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Succulent grilled chicken skewers.</p>
+<div class="flex justify-between items-center mt-3">
+<span class="text-label-md text-on-surface-variant">Available</span>
+<button class="w-10 h-5 bg-primary rounded-full relative transition-colors duration-200" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200 translate-x-5"></div>
+</button>
+</div>
+</div>
+</div>
+<!-- Item Card 5 -->
+<div class="bg-surface-container-lowest p-sm rounded-xl shadow-sm border border-outline-variant flex items-center gap-md bento-card-hover transition-transform duration-300">
+<div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A refreshing lime and mint mojito in a tall frosted glass, garnished with fresh mint leaves and a slice of lime. Condensation beads on the outside of the glass. The background is a clean, bright, high-key minimalist space. The aesthetic is crisp and vibrant, with soft shadows and a focus on transparency and texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEfWwXRcb0bjz9jkJEQ6EVp0G3RVH9UeISFRyMrmdjWaINQXfmq7EsCvhbnoNQ1XG_jbbBoxigEf5C-UoAO7RF1ppnimWmn5AuySy8aWYKT8Ig_W5EaAxdqttE9uxMhlNF9p-hInpH5H1aDXN_FSwzdpe7hfnTWSEnC27nND861va4a9Wwkrvx3IN9k-2kM6VUKr5d8Q2w_Y3VihvOUn8GpjM4BJFoUGMAZ55rumVWDXlpJBQgQZeUqQ"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mint Lemonade</h3>
+<span class="text-primary font-price-display text-price-display">PKR 250</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mt-1">Refreshing mint and lime crush.</p>
+<div class="flex justify-between items-center mt-3">
+<span class="text-label-md text-on-surface-variant">Available</span>
+<button class="w-10 h-5 bg-primary rounded-full relative transition-colors duration-200" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200 translate-x-5"></div>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Button -->
+<button class="fixed bottom-20 right-6 w-14 h-14 bg-primary-container text-white rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40" onclick="toggleOverlay()">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<!-- BottomNavBar (Execution from JSON) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1" href="#">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-md text-label-md">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Full Screen Form Overlay -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-[60] hidden flex items-end sm:items-center justify-center p-0 sm:p-md" id="form-overlay">
+<div class="bg-surface-container-lowest w-full max-w-lg sm:rounded-2xl h-[795px] sm:h-auto overflow-y-auto form-overlay-enter shadow-2xl">
+<div class="p-md border-b border-outline-variant flex justify-between items-center sticky top-0 bg-surface-container-lowest">
+<h2 class="font-headline-md text-headline-md text-on-surface">Add New Item</h2>
+<button class="p-2 hover:bg-surface-container-high rounded-full" onclick="toggleOverlay()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-md space-y-md">
+<!-- Image Upload Placeholder -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface">Item Image</label>
+<div class="w-full aspect-video border-2 border-dashed border-outline rounded-xl flex flex-col items-center justify-center text-on-surface-variant hover:border-primary transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl group-hover:text-primary">add_a_photo</span>
+<span class="text-body-sm">Click to upload photo</span>
+</div>
+</div>
+<!-- Input Fields -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface">Item Name</label>
+<input class="w-full px-sm py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" placeholder="e.g. Zinger Supreme" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface">Category</label>
+<select class="w-full px-sm py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md bg-white">
+<option>Fast Food</option>
+<option>Chinese</option>
+<option>BBQ</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface">Price (PKR)</label>
+<input class="w-full px-sm py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" placeholder="0.00" type="number"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface">Availability</label>
+<div class="flex items-center gap-xs h-[48px]">
+<button class="w-10 h-5 bg-primary rounded-full relative transition-colors duration-200" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')" type="button">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200 translate-x-5"></div>
+</button>
+<span class="text-body-sm">In Stock</span>
+</div>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface">Description</label>
+<textarea class="w-full px-sm py-3 border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md resize-none" placeholder="Tell us more about this dish..." rows="3"></textarea>
+</div>
+<div class="pt-sm pb-md sm:pb-0">
+<button class="w-full py-4 bg-primary text-white font-headline-sm rounded-xl active:scale-[0.98] transition-transform shadow-md" onclick="toggleOverlay()" type="button">
+                        Save Item
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<script>
+        function toggleOverlay() {
+            const overlay = document.getElementById('form-overlay');
+            if (overlay.classList.contains('hidden')) {
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.classList.add('hidden');
+                overlay.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const overlay = document.getElementById('form-overlay');
+                if (!overlay.classList.contains('hidden')) toggleOverlay();
+            }
+        });
+    </script>
+</body></html>

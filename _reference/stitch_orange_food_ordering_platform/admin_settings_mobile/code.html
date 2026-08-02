@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange Merchant - Admin Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#e0c0b1",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#ffb690",
+                    "tertiary": "#625e56",
+                    "on-surface": "#151c27",
+                    "tertiary-fixed": "#e9e1d8",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-container": "#d6e0f3",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "outline": "#8c7164",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#a09a91",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-tertiary-container": "#36322c",
+                    "primary": "#9d4300",
+                    "primary-container": "#f97316",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-tint": "#9d4300",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#596373",
+                    "on-secondary-fixed": "#121c2a",
+                    "surface-container": "#e7eefe",
+                    "surface-dim": "#d3daea",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary-fixed-variant": "#783200",
+                    "inverse-primary": "#ffb690",
+                    "inverse-surface": "#2a313d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#341100",
+                    "primary-fixed": "#ffdbca",
+                    "background": "#f9f9ff",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-fixed": "#d9e3f6",
+                    "secondary": "#555f6f",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#584237",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "surface": "#f9f9ff",
+                    "on-background": "#151c27",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "surface-variant": "#dce2f3",
+                    "on-primary-container": "#582200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "24px",
+                    "base": "4px",
+                    "sm": "16px",
+                    "gutter": "20px",
+                    "container-max": "1280px",
+                    "xl": "64px",
+                    "xs": "8px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "display-lg": ["Montserrat"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #121c2a; /* Custom near-black for the dark theme core */
+            color: #ebf1ff;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .accordion-content.expanded {
+            max-height: 1000px;
+            opacity: 1;
+        }
+        .toggle-switch:checked + .toggle-bg {
+            background-color: #f97316;
+        }
+        .toggle-switch:checked + .toggle-bg .toggle-dot {
+            transform: translateX(100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md flex flex-col min-h-screen items-center overflow-x-hidden">
+<!-- Screen Wrapper (390px) -->
+<div class="w-full max-w-[390px] min-h-screen flex flex-col bg-inverse-surface relative pb-24">
+<!-- TopNavBar (Simulated Mobile Header) -->
+<header class="sticky top-0 z-50 bg-inverse-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] px-sm py-xs flex items-center gap-4">
+<button class="p-2 active:scale-95 transition-transform text-on-primary-fixed">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary-fixed">Settings</h1>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow p-4 flex flex-col gap-4">
+<!-- Restaurant Info Accordion (Expanded by Default) -->
+<section class="bg-surface-container-low/5 rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<button class="w-full px-md py-4 flex justify-between items-center bg-surface-container-low/10" onclick="toggleAccordion('restaurant-info')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">store</span>
+<span class="font-headline-sm text-headline-sm text-primary-fixed">Restaurant Info</span>
+</div>
+<span class="material-symbols-outlined rotate-180 transition-transform" id="icon-restaurant-info">expand_more</span>
+</button>
+<div class="accordion-content expanded p-md space-y-4" id="restaurant-info">
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Restaurant Name</label>
+<input class="w-full bg-surface-container-low/20 border border-outline/20 rounded-lg p-3 text-white focus:ring-2 focus:ring-primary-container outline-none transition-all" type="text" value="Orange Spice Kitchen"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Address</label>
+<textarea class="w-full bg-surface-container-low/20 border border-outline/20 rounded-lg p-3 text-white focus:ring-2 focus:ring-primary-container outline-none transition-all rows-2">Block H3, Johar Town, Lahore, Pakistan</textarea>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Opening Time</label>
+<input class="w-full bg-surface-container-low/20 border border-outline/20 rounded-lg p-3 text-white focus:ring-2 focus:ring-primary-container outline-none transition-all" type="time" value="10:00"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Closing Time</label>
+<input class="w-full bg-surface-container-low/20 border border-outline/20 rounded-lg p-3 text-white focus:ring-2 focus:ring-primary-container outline-none transition-all" type="time" value="23:30"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Delivery Zones Accordion -->
+<section class="bg-surface-container-low/5 rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<button class="w-full px-md py-4 flex justify-between items-center" onclick="toggleAccordion('delivery-zones')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">location_on</span>
+<span class="font-headline-sm text-headline-sm text-primary-fixed">Delivery Zones</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs bg-primary-container/20 text-primary-container px-2 py-0.5 rounded-full font-bold">3 Active</span>
+<span class="material-symbols-outlined transition-transform" id="icon-delivery-zones">expand_more</span>
+</div>
+</button>
+<div class="accordion-content p-md space-y-3" id="delivery-zones">
+<div class="flex items-center justify-between p-3 bg-surface-container-low/10 rounded-lg">
+<div>
+<p class="font-label-md text-white">Johar Town</p>
+<p class="text-xs text-on-surface-variant">5km Radius • Free Delivery</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">edit</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low/10 rounded-lg">
+<div>
+<p class="font-label-md text-white">Model Town</p>
+<p class="text-xs text-on-surface-variant">10km Radius • Rs. 150 Fee</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">edit</span>
+</div>
+<button class="w-full py-2 border-2 border-dashed border-outline/30 rounded-lg text-primary-container font-bold flex items-center justify-center gap-2 hover:bg-primary-container/5 transition-colors">
+<span class="material-symbols-outlined">add</span> Add New Zone
+                    </button>
+</div>
+</section>
+<!-- Payment Methods Accordion -->
+<section class="bg-surface-container-low/5 rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<button class="w-full px-md py-4 flex justify-between items-center" onclick="toggleAccordion('payment-methods')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">payments</span>
+<span class="font-headline-sm text-headline-sm text-primary-fixed">Payment Methods</span>
+</div>
+<span class="material-symbols-outlined transition-transform" id="icon-payment-methods">expand_more</span>
+</button>
+<div class="accordion-content p-md space-y-4" id="payment-methods">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">payments</span>
+<span class="font-body-md text-white">Cash on Delivery</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-switch" type="checkbox"/>
+<div class="toggle-bg w-10 h-5 bg-on-surface-variant/30 rounded-full transition-colors relative">
+<div class="toggle-dot absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">credit_card</span>
+<span class="font-body-md text-white">Online Banking</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-switch" type="checkbox"/>
+<div class="toggle-bg w-10 h-5 bg-on-surface-variant/30 rounded-full transition-colors relative">
+<div class="toggle-dot absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">account_balance_wallet</span>
+<span class="font-body-md text-white">JazzCash / EasyPaisa</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only toggle-switch" type="checkbox"/>
+<div class="toggle-bg w-10 h-5 bg-on-surface-variant/30 rounded-full transition-colors relative">
+<div class="toggle-dot absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</label>
+</div>
+</div>
+</section>
+<!-- Notifications Accordion -->
+<section class="bg-surface-container-low/5 rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<button class="w-full px-md py-4 flex justify-between items-center" onclick="toggleAccordion('notifications-settings')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">notifications</span>
+<span class="font-headline-sm text-headline-sm text-primary-fixed">Notifications</span>
+</div>
+<span class="material-symbols-outlined transition-transform" id="icon-notifications-settings">expand_more</span>
+</button>
+<div class="accordion-content p-md space-y-4" id="notifications-settings">
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-white">Push Notifications</p>
+<p class="text-xs text-on-surface-variant">Alerts for new orders</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-switch" type="checkbox"/>
+<div class="toggle-bg w-10 h-5 bg-on-surface-variant/30 rounded-full transition-colors relative">
+<div class="toggle-dot absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-md text-white">Sound Alerts</p>
+<p class="text-xs text-on-surface-variant">Louder alert for priority orders</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only toggle-switch" type="checkbox"/>
+<div class="toggle-bg w-10 h-5 bg-on-surface-variant/30 rounded-full transition-colors relative">
+<div class="toggle-dot absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</label>
+</div>
+</div>
+</section>
+<!-- Team Access Accordion -->
+<section class="bg-surface-container-low/5 rounded-xl border border-outline-variant/10 overflow-hidden shadow-sm">
+<button class="w-full px-md py-4 flex justify-between items-center" onclick="toggleAccordion('team-access')">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">group</span>
+<span class="font-headline-sm text-headline-sm text-primary-fixed">Team Access</span>
+</div>
+<span class="material-symbols-outlined transition-transform" id="icon-team-access">expand_more</span>
+</button>
+<div class="accordion-content p-md space-y-3" id="team-access">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low/10 rounded-lg">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="A focused headshot of a male Pakistani restaurant manager in a professional black shirt, smiling warmly with a modern office background, highly detailed lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM0P-lN-NLOoO001iArwLOzAC_tT2W-Bjx6M09FcBzocK2Fyl_8hXUAh1HUSVT1HPSk9c1qcXtI0xy2KyVAbtcDG803qIMlxnF9f57hk1wJSiohh-0dH_Px1X3eqwu2iBjZMAZnw7LT38w5HCgufeFYW0quESgBwzq5te_bbEWg942lZJLuwxBgyFfW0k3ioF6eNGukHFGAiwJHJCR9UmatUrVv0B3LXLyvVIi3MKdWqKvM96iza5NwQ"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-white">Ahmed Ali</p>
+<p class="text-xs text-primary-container">Admin / Owner</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container-low/10 rounded-lg">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female staff member in a neat uniform, neutral background, cinematic lighting, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnkJEGn6Ymvv40afInvElYgQFvfNYiZf54HsHaZKBdWwYWnbZPn19a2pxc1mLsHseagvdEDnCoNReykd5PDpi00DbiDS_5220vOm-KfqJJmH_3jQw9JrAMo5dwwrXdHkeaqzcE8he2HkG4nJm_alqLrcV_rEPItwhMsSO6iF05-D7AteInCDj1pmr4zX3TICzDxKlb31T6fGc7-O0WZFvgRCLUMhgXs-EA5gbqM_CA_QtmYFCPYSX0bQ"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-white">Sana Khan</p>
+<p class="text-xs text-on-surface-variant">Manager</p>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container-highest/20 rounded-lg text-white font-bold text-sm flex items-center justify-center gap-2 mt-2">
+                        Manage All Staff (5)
+                    </button>
+</div>
+</section>
+<!-- Save Changes Button -->
+<button class="mt-4 mb-8 w-full bg-primary-container text-white font-bold py-4 rounded-xl shadow-lg active:scale-[0.98] transition-transform text-headline-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">save</span>
+                Save All Changes
+            </button>
+</main>
+<!-- BottomNavBar (Shared Component Logic) -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl h-16 flex justify-around items-center px-sm pb-safe max-w-[390px]">
+<!-- Home -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer w-full h-full">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<!-- Search/Menu -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer w-full h-full">
+<span class="material-symbols-outlined">restaurant_menu</span>
+<span class="font-label-md text-label-md">Menu</span>
+</div>
+<!-- Orders -->
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer w-full h-full">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-md text-label-md">Orders</span>
+</div>
+<!-- Profile/Settings (Active) -->
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1 transition-all w-full h-full">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</nav>
+</div>
+<script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            // Toggle expanded class
+            content.classList.toggle('expanded');
+            
+            // Rotate icon
+            if (content.classList.contains('expanded')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Visual click feedback for cards and interactive rows
+        document.querySelectorAll('button, .bg-surface-container-low\\/10').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = 'scale(1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

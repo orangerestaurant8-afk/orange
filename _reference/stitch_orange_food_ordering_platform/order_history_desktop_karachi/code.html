@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order History - Orange</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#9d4300",
+                    "tertiary-fixed": "#e9e1d8",
+                    "surface-container-high": "#e2e8f8",
+                    "primary-fixed": "#ffdbca",
+                    "surface-dim": "#d3daea",
+                    "surface-bright": "#f9f9ff",
+                    "outline-variant": "#e0c0b1",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "secondary-container": "#d6e0f3",
+                    "on-surface-variant": "#584237",
+                    "primary-container": "#f97316",
+                    "background": "#f9f9ff",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#582200",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#625e56",
+                    "secondary-fixed": "#d9e3f6",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "outline": "#8c7164",
+                    "on-tertiary-container": "#36322c",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "tertiary-container": "#a09a91",
+                    "secondary": "#555f6f",
+                    "on-secondary-container": "#596373",
+                    "on-surface": "#151c27",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-primary-fixed": "#341100",
+                    "surface-variant": "#dce2f3",
+                    "surface-tint": "#9d4300",
+                    "surface-container-low": "#f0f3ff",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2a313d",
+                    "inverse-primary": "#ffb690",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-background": "#151c27",
+                    "surface-container-highest": "#dce2f3",
+                    "surface-container": "#e7eefe",
+                    "on-secondary-fixed": "#121c2a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "16px",
+                    "container-max": "1280px",
+                    "lg": "40px",
+                    "gutter": "20px",
+                    "xl": "64px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "price-display": ["Montserrat"],
+                    "headline-sm": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab-border {
+            box-shadow: inset 0 -2px 0 0 #9d4300;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-background shadow-[0px_2px_8px_rgba(31,41,55,0.05)] w-full">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tighter">Orange</span>
+<nav class="hidden md:flex gap-sm">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors py-2" href="#">Lahore</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary py-2" href="#">Karachi</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors py-2" href="#">Islamabad</a>
+</nav>
+</div>
+<div class="flex-1 max-w-md mx-xl hidden lg:block">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary/20 text-body-md" placeholder="Search orders or restaurants..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="relative text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly user in their late 20s, smiling warmly. The lighting is soft and natural, against a clean, minimalist urban Karachi balcony background at golden hour. The aesthetic is modern and high-quality, with a shallow depth of field focusing on the person's face." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGWushNL3hgxd8BF0DGiji8kRsexKv6nqDjKw9k3P8ec9A2dvhNri3rKoMXgjYYx2mh4fB_XOOOFxc0euClN7YbvC5C03wzfD36xZk705FyjTxtxNiCD9XYrbcr3OzRjeR5uQjq6dq9KYwqq34QYv1OoG6uGrWQYRg3xiZxu307DKxyPfIEX37P0IvYFzxCAY7uXsTf7zfkNSw3cjlT8YfIBbSnw3otO5CddO9vGrCcKTLxRko2pXq2g"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-md py-lg">
+<!-- Breadcrumbs & Header -->
+<div class="mb-lg">
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant mb-base">
+<span>Account</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Orders</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-base">Order History</h1>
+<p class="text-body-md text-on-surface-variant">Manage and track your recent cravings from Karachi's best kitchens.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Left Column: Filters & Active Tracking -->
+<div class="lg:col-span-3 space-y-md">
+<section class="bg-surface-container-lowest rounded-xl p-md shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border border-surface-variant/30">
+<h2 class="font-label-md text-label-md uppercase tracking-wider text-outline mb-md">Quick Filters</h2>
+<ul class="space-y-base">
+<li>
+<button class="w-full flex items-center justify-between p-sm rounded-lg bg-primary-container text-on-primary-container font-semibold">
+<span class="flex items-center gap-sm"><span class="material-symbols-outlined text-[20px]">all_inbox</span> All Orders</span>
+<span class="bg-on-primary-container/10 px-2 py-0.5 rounded text-xs">12</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="flex items-center gap-sm"><span class="material-symbols-outlined text-[20px]">pending</span> Ongoing</span>
+<span class="bg-surface-variant px-2 py-0.5 rounded text-xs">1</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="flex items-center gap-sm"><span class="material-symbols-outlined text-[20px]">check_circle</span> Completed</span>
+<span class="bg-surface-variant px-2 py-0.5 rounded text-xs">9</span>
+</button>
+</li>
+<li>
+<button class="w-full flex items-center justify-between p-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="flex items-center gap-sm"><span class="material-symbols-outlined text-[20px]">cancel</span> Cancelled</span>
+<span class="bg-surface-variant px-2 py-0.5 rounded text-xs">2</span>
+</button>
+</li>
+</ul>
+</section>
+<section class="bg-inverse-surface rounded-xl p-md shadow-lg text-white">
+<div class="flex items-center gap-sm mb-sm">
+<span class="material-symbols-outlined text-primary-fixed">local_shipping</span>
+<span class="font-label-md text-label-md">Current Order</span>
+</div>
+<div class="space-y-sm">
+<p class="font-headline-sm text-headline-sm">Preparing Your Feast</p>
+<p class="text-body-sm opacity-80">ETA: 25-30 mins • Gourmet Burger Town</p>
+<div class="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[45%] transition-all duration-1000"></div>
+</div>
+<button class="w-full py-sm bg-white text-on-surface font-label-md rounded-lg hover:bg-surface-container-high transition-transform active:scale-95">Track Real-time</button>
+</div>
+</section>
+</div>
+<!-- Right Column: Order List -->
+<div class="lg:col-span-9 space-y-md">
+<!-- Single Order Entry (Preparing) -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden border border-surface-variant/30 shadow-[0px_2px_8px_rgba(31,41,55,0.05)] group hover:shadow-lg transition-all duration-300">
+<div class="p-md flex flex-col md:flex-row md:items-center gap-md">
+<div class="h-20 w-20 md:h-24 md:w-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A juicy double beef burger with melted cheese and crisp lettuce, shot from a low angle with professional food styling. The lighting is warm and appetizing, featuring vibrant orange highlights consistent with the brand. Background shows a blurred, high-end Karachi cafe interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_dX-_EIhiEmiWaXJ9zzc0M0Qa7UQFQ76Wa1Vn3yKfmj0bEBgPvA_R2b7O_7DoI6Gh80QzX8W3ro5BObGn-bFdyzJOUHKCARiJAvRCldGE88wfVCak6y463_ytmiDuRru9e7gdXPJa21ow1YfDVU5fzKmmCaKkD38LyZv5UpsPhy1xPbKqkX4dpssrjvegIn9zKgl15ksb5eRP9J9ldsONjLSauHylg3jhq2bSx2Vgs97t0oqUSjUWsQ"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-start justify-between mb-base">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Gourmet Burger Town</h3>
+<p class="text-body-sm text-on-surface-variant">Order #992831 • Today, 1:45 PM</p>
+</div>
+<span class="px-3 py-1 rounded-full text-label-md bg-secondary-container text-on-secondary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> Preparing
+                                </span>
+</div>
+<p class="text-body-md text-on-surface line-clamp-1">2x Classic Beef Burger, 1x Truffle Fries, 2x Coke Zero</p>
+<p class="font-price-display text-price-display text-primary mt-base">₨ 2,450.00</p>
+</div>
+<div class="flex flex-row md:flex-col gap-sm md:w-40">
+<button class="flex-1 py-2 px-4 rounded-lg bg-primary text-white font-label-md hover:bg-on-primary-fixed-variant transition-colors active:scale-95">Reorder</button>
+<button class="flex-1 py-2 px-4 rounded-lg border border-outline text-on-surface font-label-md hover:bg-surface-container-low transition-colors active:scale-95">View Details</button>
+</div>
+</div>
+</article>
+<!-- Single Order Entry (Delivered) -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden border border-surface-variant/30 shadow-[0px_2px_8px_rgba(31,41,55,0.05)] group hover:shadow-lg transition-all duration-300">
+<div class="p-md flex flex-col md:flex-row md:items-center gap-md">
+<div class="h-20 w-20 md:h-24 md:w-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="An assortment of authentic Pakistani BBQ dishes including seekh kababs and chicken tikka on a traditional platter. Garnish of fresh mint and lemons. Warm, appetizing lighting with a vibrant, modern high-key aesthetic focused on Karachi's rich food culture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqynR9x9eilj93auWpTgsZ8fzTqefja78oo30atS9Jx0mcu-NVJhzNI66v7LibC1LKsvg_y3FPFaTqsyIRwDMgLK3wnnulmvtY1dJBUTdlM3rcClC6Adua8s3iVPCKtBVAG-aBI6cLCoe0f7zcD2k_949dZgnhAeBWQ4A9zsxclaoNDnymt8dClm45-Fuxj62EQSjncz6n5oUxOnaMEWEkLydbP063P0ACMrOALjB6Q--fkgIVkAbgcA"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-start justify-between mb-base">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">The Kolachi Grill</h3>
+<p class="text-body-sm text-on-surface-variant">Order #991045 • 24 Oct 2023, 8:30 PM</p>
+</div>
+<span class="px-3 py-1 rounded-full text-label-md bg-green-100 text-green-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">task_alt</span> Delivered
+                                </span>
+</div>
+<p class="text-body-md text-on-surface line-clamp-1">1x Mutton Karahi, 4x Butter Naan, 2x Fresh Salad</p>
+<p class="font-price-display text-price-display text-on-surface mt-base">₨ 4,890.00</p>
+</div>
+<div class="flex flex-row md:flex-col gap-sm md:w-40">
+<button class="flex-1 py-2 px-4 rounded-lg bg-primary text-white font-label-md hover:bg-on-primary-fixed-variant transition-colors active:scale-95">Reorder</button>
+<button class="flex-1 py-2 px-4 rounded-lg border border-outline text-on-surface font-label-md hover:bg-surface-container-low transition-colors active:scale-95">View Details</button>
+</div>
+</div>
+</article>
+<!-- Single Order Entry (Cancelled) -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden border border-surface-variant/30 shadow-[0px_2px_8px_rgba(31,41,55,0.05)] group hover:shadow-lg transition-all duration-300">
+<div class="p-md flex flex-col md:flex-row md:items-center gap-md">
+<div class="h-20 w-20 md:h-24 md:w-24 rounded-lg overflow-hidden flex-shrink-0 grayscale opacity-60">
+<img class="w-full h-full object-cover" data-alt="Thin crust Italian pizza with pepperoni and extra cheese on a dark stone surface. The style is modern minimalist food photography with sharp focus and clean edges, emphasizing texture and high-quality ingredients, set within a bright Karachi kitchen environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpjSm6CGdYt4NpGEHo5mbnHwHrpyH-1eXgvdEbHPXgmAaKGO_jSvc5zin-VTLP6pSqYDUrgqyTv5q7Ug_t132_QNONgbIxLzDSEOxbP3uIaItAHyJpd0UeA7NS60ZtX-qclOOKyysfeoFo2np50zv1q0jjSSLdPfuVIQVf3BJZnoQVqkUOE6nJIQubKppYHk6TsiqIX-OEK1YHQS1acLJp9k57Q-q_ecD2mNS-AF70hZQO02aMG1Z5XQ"/>
+</div>
+<div class="flex-grow opacity-60">
+<div class="flex items-start justify-between mb-base">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pizzeria 14</h3>
+<p class="text-body-sm text-on-surface-variant">Order #985420 • 20 Oct 2023, 7:15 PM</p>
+</div>
+<span class="px-3 py-1 rounded-full text-label-md bg-error-container text-on-error-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">cancel</span> Cancelled
+                                </span>
+</div>
+<p class="text-body-md text-on-surface line-clamp-1">2x Large Pepperoni Pizza, 1x Garlic Bread</p>
+<p class="font-price-display text-price-display text-on-surface mt-base">₨ 3,100.00</p>
+</div>
+<div class="flex flex-row md:flex-col gap-sm md:w-40">
+<button class="flex-1 py-2 px-4 rounded-lg bg-surface-variant text-on-surface-variant cursor-not-allowed font-label-md">Reorder</button>
+<button class="flex-1 py-2 px-4 rounded-lg border border-outline text-on-surface font-label-md hover:bg-surface-container-low transition-colors active:scale-95">View Details</button>
+</div>
+</div>
+</article>
+<!-- Single Order Entry (Delivered) -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden border border-surface-variant/30 shadow-[0px_2px_8px_rgba(31,41,55,0.05)] group hover:shadow-lg transition-all duration-300">
+<div class="p-md flex flex-col md:flex-row md:items-center gap-md">
+<div class="h-20 w-20 md:h-24 md:w-24 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A colorful bowl of healthy poke with salmon, avocado, edamame, and pickled ginger. The aesthetic is clean, minimalist, and high-energy, with bright daylight and soft shadows. The visual style is premium and appetizing, suitable for a modern corporate food app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG9hUWIhpMpiF76aNUhRyhcumnh_DcR3xOj9tpw-rhqndutjZZmylClVNeJwODih1PYCRgfiD3godCVVuKjWtrDnx_xTdtr1V8XfNQUByeWW5_OolcIzQSu1Z-Wezd3dN0YYmNXZZYgxs4cyFbMJuj8rObtBuNr3AZ6VQFD9Yqc4qH1SEHx5q4miRl1IUAg7T8FCfZ6rtT-te7IMEAET2p3EgGO5aUQSwqp5EuFXvo3-lYTLE2js0sCg"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-start justify-between mb-base">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Health Hub Karachi</h3>
+<p class="text-body-sm text-on-surface-variant">Order #982210 • 18 Oct 2023, 12:45 PM</p>
+</div>
+<span class="px-3 py-1 rounded-full text-label-md bg-green-100 text-green-800 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">task_alt</span> Delivered
+                                </span>
+</div>
+<p class="text-body-md text-on-surface line-clamp-1">1x Salmon Poke Bowl, 1x Kale Green Smoothie</p>
+<p class="font-price-display text-price-display text-on-surface mt-base">₨ 1,850.00</p>
+</div>
+<div class="flex flex-row md:flex-col gap-sm md:w-40">
+<button class="flex-1 py-2 px-4 rounded-lg bg-primary text-white font-label-md hover:bg-on-primary-fixed-variant transition-colors active:scale-95">Reorder</button>
+<button class="flex-1 py-2 px-4 rounded-lg border border-outline text-on-surface font-label-md hover:bg-surface-container-low transition-colors active:scale-95">View Details</button>
+</div>
+</div>
+</article>
+<div class="flex justify-center pt-md">
+<button class="flex items-center gap-sm px-xl py-md border-2 border-primary-fixed text-primary font-bold rounded-xl hover:bg-primary-fixed/20 transition-all active:scale-95">
+                        Load More Orders
+                        <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-lg px-md flex flex-col items-center gap-md bg-surface-container-low dark:bg-surface-dim mt-xl">
+<div class="flex flex-wrap justify-center gap-xl mb-md">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">About Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary underline transition-all" href="#">Contact Support</a>
+</div>
+<div class="font-headline-sm text-headline-sm text-primary font-bold">Orange</div>
+<p class="font-body-sm text-body-sm text-on-surface dark:text-on-secondary-container">© 2024 Orange Food Pakistan. All rights reserved.</p>
+<div class="flex gap-md mt-sm">
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary">qr_code_2</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary">camera_alt</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary">alternate_email</span>
+</div>
+</footer>
+<!-- BottomNavBar (Mobile Only Shared Component) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-16 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-[10px]">Search</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-xs py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="font-label-md text-[10px]">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-xs py-1">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[10px]">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+            btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        if(searchInput) {
+            searchInput.addEventListener('focus', () => {
+                searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+            });
+            searchInput.addEventListener('blur', () => {
+                searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+            });
+        }
+    </script>
+</body></html>

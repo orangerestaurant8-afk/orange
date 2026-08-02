@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Monster Zinger | Orange Food</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-chip {
+            border-color: #9d4300;
+            background-color: #ffdbca;
+            color: #582200;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e0c0b1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "outline": "#8c7164",
+                      "on-surface-variant": "#584237",
+                      "on-primary-fixed": "#341100",
+                      "surface-tint": "#9d4300",
+                      "on-tertiary-container": "#36322c",
+                      "surface": "#f9f9ff",
+                      "outline-variant": "#e0c0b1",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#bdc7d9",
+                      "surface-container": "#e7eefe",
+                      "secondary": "#555f6f",
+                      "secondary-container": "#d6e0f3",
+                      "tertiary-fixed": "#e9e1d8",
+                      "primary": "#9d4300",
+                      "inverse-surface": "#2a313d",
+                      "surface-variant": "#dce2f3",
+                      "primary-container": "#f97316",
+                      "primary-fixed-dim": "#ffb690",
+                      "on-secondary-fixed": "#121c2a",
+                      "on-primary-fixed-variant": "#783200",
+                      "on-primary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f0f3ff",
+                      "on-background": "#151c27",
+                      "tertiary-fixed-dim": "#ccc5bc",
+                      "on-tertiary-fixed-variant": "#4a463f",
+                      "primary-fixed": "#ffdbca",
+                      "tertiary": "#625e56",
+                      "surface-container-high": "#e2e8f8",
+                      "on-surface": "#151c27",
+                      "on-secondary-container": "#596373",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#a09a91",
+                      "secondary-fixed": "#d9e3f6",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#f9f9ff",
+                      "inverse-on-surface": "#ebf1ff",
+                      "surface-container-highest": "#dce2f3",
+                      "on-tertiary-fixed": "#1e1b15",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d3daea",
+                      "on-secondary-fixed-variant": "#3d4756",
+                      "on-primary-container": "#582200",
+                      "inverse-primary": "#ffb690",
+                      "background": "#f9f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "sm": "16px",
+                      "lg": "40px",
+                      "xs": "8px",
+                      "base": "4px",
+                      "md": "24px",
+                      "gutter": "20px",
+                      "xl": "64px"
+              },
+              "fontFamily": {
+                      "price-display": ["Montserrat"],
+                      "headline-md": ["Montserrat"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-sm": ["Montserrat"],
+                      "display-lg-mobile": ["Montserrat"],
+                      "label-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "display-lg": ["Montserrat"]
+              },
+              "fontSize": {
+                      "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<nav class="bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] sticky top-0 z-50">
+<div class="flex justify-between items-center px-md py-xs w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<button class="md:hidden p-xs">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">Orange</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Lahore</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Karachi</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Islamabad</a>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs relative hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+</button>
+<button class="p-xs hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up studio portrait of a young professional Pakistani man with a friendly smile, clean-shaven face, and stylish hair. The background is a soft, out-of-focus modern office setting in Karachi, maintaining a bright and light-mode aesthetic with warm orange highlights to match the Orange brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBovdC5jQxO08h8gzIvhFgq7kvzU9pNbYAFWdaAD8Yry7b2lRihU2CEwz-RTwqFci89XuLNin5cUwuaOPltaoeuno5WgcmYenSq5sPr1aO4NKulbbl6L7Q1-CQy2WX9s0VAV6nSyAauD3d0yibTPfqAkWvHkv7oskSsxPvoXG6oNnQLxJgNxfPNJIxv3l6aHmuPCujKA3LxuW5mxsa3YJeO2Au55DREG7QQevjLWbOuZZ3QluiQhWXwJw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-sm md:px-lg py-md md:py-xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+<!-- Hero Image Section -->
+<div class="md:col-span-7 lg:col-span-8 sticky top-32">
+<div class="relative group rounded-xl overflow-hidden aspect-[16/9] md:aspect-[4/3] shadow-[0px_8px_20px_rgba(31,41,55,0.1)]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An incredibly appetizing and oversized Monster Zinger burger. It features two thick, ultra-crispy golden-brown fried chicken patties stacked with layers of melted vibrant orange cheddar cheese, fresh crisp lettuce, and a signature creamy street-style sauce dripping down the sides. The burger is presented on a rustic dark slate platter in a brightly lit, modern minimalist restaurant setting with soft warm accent lights that emphasize the textures of the food. Professional food photography style with high-end Pakistani culinary aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAjVhO62qcA13Onvp9WVPW0JxFm0mXniLthDmZvvalUGDgZEhX2zKUrVqVIQNgWNsY5OWnrtuG375kzniTlUYQ7E5jdTscZvAeQE7kmMP56jFLCwOPPIpTr08ZEMYXVJ0xUAnQzZr3A0mlyaLLXAOw6qWFQ-Y4O7265NuKkGpm-pGFdAUmFSbGgVJABE3UNmkmNa6QXzvptUrQ4i9oh85l0jwQtV_v3MCyjBzXJbamEGocTNE674Nn7A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<!-- Floating Badge -->
+<div class="absolute top-sm left-sm bg-primary text-white px-md py-xs rounded-full font-label-md flex items-center gap-xs shadow-lg">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                        Bestseller
+                    </div>
+</div>
+<!-- Thumbnails/Extra Info -->
+<div class="mt-md grid grid-cols-4 gap-sm">
+<div class="aspect-square rounded-lg border-2 border-primary overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="Close up detail shot of the crispy texture of the fried chicken patty of the Monster Zinger burger. The image highlights the golden flakes and seasoned crust with high-key professional studio lighting to evoke hunger and quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0nthz4ALQrW0G9rn5dLxkdIfIxZTmTHJzre5nyv0ZWPrKWt5Y3vUPvk17Hs8taciQpPt10m-JUIABJTWpGvcTxpf7cn4h9Ph4Rozj17f1u2k0wODVWFBpIL1oLUQkKFxZGPeXPecY9sJmbaaXbTV3zitmeQn-ErjrY1DNu2WVMn-buXw0XR2F7dAKOxdD0niBVtYpYUvtnmY-s1MjdbbPfTJC6jLXui7JS52pFgwc-CTAfTwF37j-mQ"/>
+</div>
+<div class="aspect-square rounded-lg border border-outline-variant overflow-hidden cursor-pointer hover:border-primary transition-colors">
+<img class="w-full h-full object-cover" data-alt="Top view of the Monster Zinger burger on a clean white plate, showing the sesame seed bun and the fresh lettuce peeking out from the sides. The aesthetic is clean, minimalist, and focuses on ingredient freshness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBqE9TMtqpcOgv84Ry40aX1pGZDQBGsbB64hQCBrcSU82iHaJ5Dfux42d7ZlDlVXUxW1p4tSSWlkmkRmIqVkxLx4E3Bq0iyDn3t1MfND_fMc5SYIHjyoIR1u2oMFq2cuxWpWb2aUyw1vvy45-getmb2nYprtgnl5AqsU6Fdh5QwYHmoKPCAXF6lqhrG0OLwMkWf7YeELd0vBgErfXMzUDpjLun6kAzE2T8I7U7QqWN7DaTLCzk-HhgXQ"/>
+</div>
+<div class="aspect-square rounded-lg border border-outline-variant flex flex-col items-center justify-center bg-surface-container-low text-on-surface-variant cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+<span class="text-[10px] font-label-md">Video</span>
+</div>
+</div>
+</div>
+<!-- Details Panel -->
+<div class="md:col-span-5 lg:col-span-4 flex flex-col gap-lg">
+<!-- Header Info -->
+<header>
+<div class="flex justify-between items-start">
+<div>
+<h1 class="font-headline-md text-headline-md md:text-display-lg-mobile text-on-surface font-bold">Monster Zinger</h1>
+<p class="text-on-surface-variant font-body-sm mt-xs">From Orange Classic Kitchens</p>
+</div>
+<div class="text-right">
+<span class="font-price-display text-price-display text-primary block">PKR 650</span>
+<div class="flex items-center justify-end gap-1 mt-xs">
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-on-surface">4.8</span>
+<span class="font-body-sm text-outline">(250+)</span>
+</div>
+</div>
+</div>
+<p class="mt-md text-on-surface-variant font-body-md leading-relaxed">
+                        Crispy double patty zinger burger with our secret Karachi street sauce, fresh lettuce, and melted cheese.
+                    </p>
+</header>
+<div class="h-px bg-outline-variant/30"></div>
+<!-- Customization Form -->
+<section class="flex flex-col gap-lg pb-32 md:pb-0">
+<!-- Size Selector -->
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-sm">Select Size</label>
+<div class="flex gap-sm">
+<button class="flex-1 py-sm px-md rounded-xl border border-outline-variant hover:border-primary transition-all text-center font-label-md active-chip" data-value="standard" onclick="selectOption(this, 'size')">
+                                Standard
+                            </button>
+<button class="flex-1 py-sm px-md rounded-xl border border-outline-variant hover:border-primary transition-all text-center font-label-md" data-value="large" onclick="selectOption(this, 'size')">
+                                Large <span class="text-primary-container block text-[12px]">+PKR 150</span>
+</button>
+</div>
+</div>
+<!-- Spice Level -->
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-sm">Spice Level</label>
+<div class="grid grid-cols-3 gap-sm">
+<button class="py-sm rounded-xl border border-outline-variant hover:border-primary transition-all text-center font-label-md" data-value="mild" onclick="selectOption(this, 'spice')">Mild</button>
+<button class="py-sm rounded-xl border border-outline-variant hover:border-primary transition-all text-center font-label-md active-chip" data-value="medium" onclick="selectOption(this, 'spice')">Medium</button>
+<button class="py-sm rounded-xl border border-outline-variant hover:border-primary transition-all text-center font-label-md" data-value="hot" onclick="selectOption(this, 'spice')">Hot</button>
+</div>
+</div>
+<!-- Add-ons -->
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-sm">Add-ons</label>
+<div class="flex flex-col gap-xs">
+<label class="flex items-center justify-between p-md border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" onchange="updateTotal()" type="checkbox"/>
+<span class="font-body-md">Extra Cheese</span>
+</div>
+<span class="font-label-md text-primary">+PKR 80</span>
+</label>
+<label class="flex items-center justify-between p-md border border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary" onchange="updateTotal()" type="checkbox"/>
+<span class="font-body-md">Turkey Bacon</span>
+</div>
+<span class="font-label-md text-primary">+PKR 120</span>
+</label>
+</div>
+</div>
+<!-- Special Instructions -->
+<div>
+<label class="font-label-md text-label-md text-on-surface block mb-sm">Special Instructions</label>
+<textarea class="w-full min-h-[100px] bg-white border border-outline-variant rounded-xl p-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md placeholder:text-outline" placeholder="E.g. No onions, extra napkins please..."></textarea>
+</div>
+<!-- Quantity Stepper -->
+<div class="flex items-center gap-md">
+<label class="font-label-md text-label-md text-on-surface">Quantity</label>
+<div class="flex items-center bg-surface-container-high rounded-full px-xs py-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white transition-colors" onclick="changeQty(-1)">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<span class="w-12 text-center font-price-display" id="qty-count">1</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white transition-colors" onclick="changeQty(1)">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer Space -->
+<footer class="w-full py-lg px-md flex flex-col items-center gap-md bg-surface-container-low mb-20 md:mb-0">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">Orange</span>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="text-on-surface-variant hover:text-primary underline transition-all font-body-sm" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all font-body-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all font-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary underline transition-all font-body-sm" href="#">Contact Support</a>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Orange Food Pakistan. All rights reserved.</p>
+</footer>
+<!-- Sticky Bottom Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest shadow-[0px_-4px_12px_rgba(31,41,55,0.08)] z-[60] px-md py-sm border-t border-outline-variant/10">
+<div class="max-w-container-max mx-auto flex items-center justify-between gap-md">
+<div class="hidden sm:block">
+<span class="text-on-surface-variant text-[12px] block font-label-md uppercase tracking-wider">Total Amount</span>
+<span class="font-price-display text-price-display text-primary" id="live-total">PKR 650</span>
+</div>
+<button class="flex-1 md:flex-none md:min-w-[300px] bg-primary text-white font-headline-sm py-4 rounded-xl flex items-center justify-center gap-md hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                Add to Cart <span class="sm:hidden">— PKR 650</span>
+</button>
+</div>
+</div>
+<!-- Script for simple UI logic -->
+<script>
+        function selectOption(el, group) {
+            const buttons = el.parentNode.querySelectorAll('button');
+            buttons.forEach(btn => btn.classList.remove('active-chip'));
+            el.classList.add('active-chip');
+            updateTotal();
+        }
+
+        let currentQty = 1;
+        function changeQty(delta) {
+            currentQty = Math.max(1, currentQty + delta);
+            document.getElementById('qty-count').textContent = currentQty;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const basePrice = 650;
+            let addonsPrice = 0;
+            
+            // Check Size
+            const sizeBtn = document.querySelector('[data-value="large"].active-chip');
+            if (sizeBtn) addonsPrice += 150;
+
+            // Check Addons
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            if (checkboxes[0].checked) addonsPrice += 80;
+            if (checkboxes[1].checked) addonsPrice += 120;
+
+            const finalTotal = (basePrice + addonsPrice) * currentQty;
+            const formattedTotal = `PKR ${finalTotal.toLocaleString()}`;
+            
+            document.getElementById('live-total').textContent = formattedTotal;
+            // Update the mobile button text too
+            const btn = document.querySelector('button.bg-primary');
+            btn.innerHTML = `<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span> Add to Cart <span class="sm:hidden">— ${formattedTotal}</span>`;
+        }
+    </script>
+</body></html>

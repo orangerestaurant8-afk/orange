@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Orange - Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind Config Verbatim -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#9d4300",
+                    "surface-container": "#e7eefe",
+                    "on-surface": "#151c27",
+                    "surface-variant": "#dce2f3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "tertiary": "#625e56",
+                    "primary": "#9d4300",
+                    "outline-variant": "#e0c0b1",
+                    "on-tertiary-container": "#36322c",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ccc5bc",
+                    "secondary-container": "#d6e0f3",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#f97316",
+                    "surface-dim": "#d3daea",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#584237",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary-container": "#582200",
+                    "inverse-primary": "#ffb690",
+                    "on-secondary-container": "#596373",
+                    "on-primary-fixed": "#341100",
+                    "surface-bright": "#f9f9ff",
+                    "secondary": "#555f6f",
+                    "primary-fixed-dim": "#ffb690",
+                    "on-secondary-fixed": "#121c2a",
+                    "tertiary-container": "#a09a91",
+                    "inverse-surface": "#2a313d",
+                    "secondary-fixed": "#d9e3f6",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e2e8f8",
+                    "tertiary-fixed": "#e9e1d8",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#783200",
+                    "surface-container-highest": "#dce2f3",
+                    "on-tertiary-fixed": "#1e1b15",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-background": "#151c27",
+                    "background": "#f9f9ff",
+                    "surface": "#f9f9ff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "outline": "#8c7164",
+                    "on-tertiary-fixed-variant": "#4a463f",
+                    "primary-fixed": "#ffdbca"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "sm": "16px",
+                    "md": "24px",
+                    "gutter": "20px",
+                    "base": "4px",
+                    "xl": "64px",
+                    "xs": "8px",
+                    "lg": "40px"
+            },
+            "fontFamily": {
+                    "price-display": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Montserrat"],
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Montserrat"],
+                    "display-lg-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "price-display": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .step-active { color: #9d4300; font-weight: 700; }
+        .step-line { height: 2px; flex-grow: 1; background-color: #dce2f3; margin: 0 8px; }
+        .step-line.active { background-color: #9d4300; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopNavBar Strategy: Transactional Mode (No Global Nav) -->
+<header class="sticky top-0 z-50 bg-surface shadow-[0px_2px_8px_rgba(31,41,55,0.05)] w-full">
+<div class="flex justify-between items-center px-md py-xs max-w-container-max mx-auto">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Orange</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young Pakistani male user with a friendly expression, set against a clean, minimal white background. The lighting is soft and even, highlighting modern corporate vibes consistent with a high-end food-ordering app interface. The image uses a warm color palette with subtle orange accents to match the brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGJW3l1srxqSs06wFMCJL3Ots08udV2bIerPCihuw5eyVuVX8WCNhdoyM55jSSLa4F7rz_VKqrweHZOYcFw2G7VQ0eFgdLK9OykTa8Li-BSIBrE7LU85EiREW8P6wtVIF1MiUuXz0VH706TaQdBKCyppS5vtcxJXdS1PrMFcXq7TqrTfc4WDIDxkdwsvj9oNGPMi07Ux2SiezBwi4EO12UNvhDvElQ9tYkbxtsHTSqh7PgTtQBF9oLYA"/>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-md py-sm space-y-lg">
+<!-- Progress Indicator -->
+<section class="flex items-center justify-between px-xs">
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">1</div>
+<span class="font-label-md text-label-md text-primary">Address</span>
+</div>
+<div class="step-line active"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">2</div>
+<span class="font-label-md text-label-md text-primary">Payment</span>
+</div>
+<div class="step-line"></div>
+<div class="flex flex-col items-center gap-1">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center font-bold text-sm">3</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Review</span>
+</div>
+</section>
+<!-- Delivery Address Section -->
+<section class="space-y-sm">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Delivery Address</h2>
+<button class="text-primary font-label-md text-label-md hover:underline">Change</button>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl flex gap-md shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border border-outline-variant/30">
+<div class="bg-primary/10 p-2 rounded-lg h-fit">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div class="space-y-1">
+<p class="font-label-md text-label-md text-on-surface">Home</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                        House 42, Block 7, DHA Phase 2,<br/>Karachi, Pakistan
+                    </p>
+</div>
+</div>
+</section>
+<!-- Payment Method Selection -->
+<section class="space-y-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Payment Method</h2>
+<div class="grid grid-cols-1 gap-sm">
+<!-- COD -->
+<label class="relative flex items-center p-md bg-surface border-2 border-primary rounded-xl cursor-pointer transition-all active:scale-[0.98]">
+<input checked="" class="hidden" name="payment" type="radio"/>
+<div class="flex items-center gap-md w-full">
+<div class="bg-surface-container-highest p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">Cash on Delivery</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pay when you receive</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+</div>
+</div>
+</label>
+<!-- JazzCash -->
+<label class="relative flex items-center p-md bg-surface border border-outline-variant/50 rounded-xl cursor-pointer hover:bg-surface-container-low transition-all active:scale-[0.98]">
+<input class="hidden" name="payment" type="radio"/>
+<div class="flex items-center gap-md w-full">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-black">
+<img class="w-8 h-auto" data-alt="A stylized, high-contrast logo for JazzCash mobile payment service, featuring its signature red and yellow brand colors. The composition is clean and professional, designed for a modern fintech UI integration within a Pakistani food delivery app. The lighting is digital and flat, emphasizing accessibility and trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMzZi6zBPKQVLiyF0KqAZAY4Pg0w9QpY9-aXUaWZl5ttz-oywsryso1MQ46PF3nsBsipPOpJWc0wEfHKn5fwT5C2V052R5t_VGycsBkZzn4T1-KFe5t6avchcW5mlFzpS-7gdmYCJn7EogIJ_ehvGI3WM3PaZ1zr5o__sKsCWrwlkREHZvh_DicxypoTDaxDlpspjUDWqp_ujSQLdfKp7vi7MMIMCkP4qZAmlB4bLXtUSh5MTUwj2sJg"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">JazzCash</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Fast mobile wallet</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant"></div>
+</div>
+</label>
+<!-- Easypaisa -->
+<label class="relative flex items-center p-md bg-surface border border-outline-variant/50 rounded-xl cursor-pointer hover:bg-surface-container-low transition-all active:scale-[0.98]">
+<input class="hidden" name="payment" type="radio"/>
+<div class="flex items-center gap-md w-full">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-[#1eb45c]">
+<img class="w-8 h-auto" data-alt="A vibrant, minimalist digital icon of the Easypaisa logo, highlighting its recognizable green and white brand colors. The image is crisp and optimized for a mobile checkout interface, reflecting a reliable and modern financial service in Pakistan. Soft studio lighting effects give it a premium, tactile feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCra1NOkqcAv_5kJjS5h7xphmR-AP8HDZGfoZnKZbO_aNpPKMtAAWCp6PwYYfHAtjfLhW3NT_x2iJMxigbKt4UiM8EapG-e4dXPOeKwV1CNirPtnAi9YBsBIRZm1kQ8D7VhkHwONLc7HS78W_59-fBXurazchYjqkxmjYOe4C4tABDnOwZcauVWpOCa0LRQkPLnVpOkN0frsy6yTTdamcRffNjoX4SiYRys6NGN1QETvoOT5pfa0AhQ8w"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">Easypaisa</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Digital payments made easy</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant"></div>
+</div>
+</label>
+<!-- Card -->
+<label class="relative flex items-center p-md bg-surface border border-outline-variant/50 rounded-xl cursor-pointer hover:bg-surface-container-low transition-all active:scale-[0.98]">
+<input class="hidden" name="payment" type="radio"/>
+<div class="flex items-center gap-md w-full">
+<div class="bg-surface-container-highest p-2 rounded-lg">
+<span class="material-symbols-outlined text-on-secondary-container">credit_card</span>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">Credit / Debit Card</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Visa, Mastercard, PayPak</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant"></div>
+</div>
+</label>
+</div>
+</section>
+<!-- Order Summary Section -->
+<section class="space-y-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Order Summary</h2>
+<div class="bg-surface rounded-xl overflow-hidden shadow-[0px_2px_8px_rgba(31,41,55,0.05)] border border-outline-variant/30">
+<div class="p-md space-y-md">
+<!-- Item 1 -->
+<div class="flex justify-between items-start">
+<div class="flex gap-sm">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up of a gourmet Chicken Biryani served in a traditional Pakistani clay pot. The rice is perfectly long-grained with vibrant saffron hues, garnished with fresh cilantro and golden fried onions. The lighting is warm and appetizing, creating a high-end culinary atmosphere for a food delivery platform. Shallow depth of field focuses on the texture of the rice and succulent chicken pieces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL-ZRbFGtwTqRvTWnxee5HlltNFrk3Jlqdg-DDApgQOgJQAIFU1dSxK5W1B7WT5o8R7JGqRN9hIVcdJCgh18QZem397eaZrRU2PXWlYeXUkJ62G0w1BV9ZwGJPpeXkz2Jfb7qqq03ntpTCwJQ4OZWoOwGpF8j14OMY7Z78W2ZxI0BN7A5pQ0bIKSf1FEuhzfXgincEADxy_o3wC8l6bH4mAb2UTuIsDiGWvQyHoTLir4d-hUINMwR-fA"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Special Chicken Biryani</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qty: 2 • Half Plate</p>
+</div>
+</div>
+<p class="font-price-display text-price-display text-on-surface">Rs. 840</p>
+</div>
+<!-- Item 2 -->
+<div class="flex justify-between items-start">
+<div class="flex gap-sm">
+<div class="w-16 h-16 rounded-lg bg-surface-container overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A refreshing, ice-cold glass of traditional Pakistani Mint Margarita. The glass is frosted with condensation, filled with vibrant green mint leaves and citrus slices. The background is a soft-focus summer day, with bright, high-key lighting that evokes a sense of coolness and thirst-quenching satisfaction. Pure white highlights and deep green tones create a clean, energetic look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3cVADpXeYXwAWAu7UUBFhPw4tjQ_vqKllzDYy9CEw1eQw562edQq_CLIuHw6W9mWqhgNUC7qcTUVloZp50VPnJo8W2tMUdScQwcs1KwEX2nCh5fHcdynDGZSFwOowIKBO7NgLOb8typeZSpJFDOJtgm3NU2i2oBqKiaTUAE00BPEWZUVNX7L0i7b6MXb_SxMA_aiFwVzq_NcrzALKqM05Us6mgWeYej51BUNQ2Wsl2jTjQoDCKZoYSQ"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Mint Margarita</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qty: 1 • Large</p>
+</div>
+</div>
+<p class="font-price-display text-price-display text-on-surface">Rs. 250</p>
+</div>
+</div>
+<!-- Calculation Area -->
+<div class="bg-surface-container-low p-md space-y-xs">
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Subtotal</span>
+<span>Rs. 1,090</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Delivery Fee</span>
+<span>Rs. 99</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>Service Fee</span>
+<span>Rs. 15</span>
+</div>
+<div class="pt-2 mt-2 border-t border-outline-variant/50 flex justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Total</span>
+<span class="font-price-display text-price-display text-primary">Rs. 1,204</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Promo Code -->
+<section class="pb-8">
+<div class="flex items-center gap-sm bg-white border border-outline-variant p-2 pl-md rounded-xl">
+<span class="material-symbols-outlined text-on-surface-variant">sell</span>
+<input class="bg-transparent border-none focus:ring-0 flex-grow font-body-md text-body-md placeholder:text-on-surface-variant/50" placeholder="Promo Code" type="text"/>
+<button class="bg-on-surface text-white px-md py-2 rounded-lg font-label-md text-label-md active:scale-95 transition-transform">Apply</button>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Bar -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 bg-surface shadow-[0px_-4px_12px_rgba(31,41,55,0.08)]">
+<div class="max-w-md mx-auto p-md flex items-center justify-between gap-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">Total Amount</span>
+<span class="font-price-display text-price-display text-primary">Rs. 1,204</span>
+</div>
+<button class="flex-grow bg-primary-container text-white py-4 rounded-xl font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-lg shadow-primary-container/20 active:scale-95 transition-all" id="place-order-btn">
+<span>Place Order</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</footer>
+<!-- Overlay Animation Element (Hidden by default) -->
+<div class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500" id="success-overlay">
+<div class="relative w-48 h-48 mb-lg">
+<div class="absolute inset-0 bg-primary/10 rounded-full animate-ping"></div>
+<div class="relative flex items-center justify-center w-full h-full bg-primary text-white rounded-full">
+<span class="material-symbols-outlined text-6xl">check_circle</span>
+</div>
+</div>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface text-center px-lg">Order Confirmed!</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant text-center mt-md px-xl">Your meal from Orange is being prepared in Karachi.</p>
+<button class="mt-xl text-primary font-label-md text-label-md border-2 border-primary px-xl py-md rounded-full" onclick="window.location.reload()">Track My Order</button>
+</div>
+<script>
+        document.getElementById('place-order-btn').addEventListener('click', function() {
+            const overlay = document.getElementById('success-overlay');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            overlay.classList.add('opacity-100');
+            
+            // Trigger haptic-like scale effect
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Simple radio button styling logic
+        const labels = document.querySelectorAll('label[class*="cursor-pointer"]');
+        labels.forEach(label => {
+            label.addEventListener('click', () => {
+                labels.forEach(l => {
+                    l.classList.remove('border-primary', 'bg-surface-container-low');
+                    l.classList.add('border-outline-variant/50');
+                    l.querySelector('.w-6.h-6').innerHTML = '';
+                    l.querySelector('.w-6.h-6').classList.remove('border-primary');
+                });
+                label.classList.add('border-primary');
+                label.classList.remove('border-outline-variant/50');
+                const dot = label.querySelector('.w-6.h-6');
+                dot.classList.add('border-primary');
+                dot.innerHTML = '<div class="w-3 h-3 rounded-full bg-primary"></div>';
+            });
+        });
+    </script>
+</body></html>
