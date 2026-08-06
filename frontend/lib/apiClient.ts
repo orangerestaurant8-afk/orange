@@ -26,6 +26,7 @@ apiClient.interceptors.response.use(
 );
 
 export type ApiCategory = { _id: string; name: string; displayOrder: number };
+export type ApiHeroSlide = { _id: string; title: string; highlightedText: string; subtitle: string; imageUrl: string; ctaLabel: string; isActive: boolean; displayOrder: number };
 export type ApiMenuItem = { _id: string; name: string; description: string; price: number; imageUrl: string; isAvailable: boolean; spiceLevel: string; category: ApiCategory | string; addOns: { name: string; price: number }[] };
 export type ApiUser = { id?: string; _id?: string; name: string; phone: string; email?: string; role: 'customer' | 'admin' };
 export type ApiOrder = { _id: string; status: 'New' | 'Preparing' | 'Out for Delivery' | 'Delivered' | 'Cancelled'; subtotal: number; deliveryFee: number; total: number; deliveryAddress: string; paymentMethod: string; createdAt: string; user: ApiUser | string; items: { item: ApiMenuItem | string; quantity: number; unitPrice: number; customizations: string[] }[]; statusHistory: { status: string; at: string; note?: string }[] };

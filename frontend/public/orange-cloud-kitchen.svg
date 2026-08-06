@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 225" role="img" aria-labelledby="title desc">
+  <title id="title">Orange Cloud Kitchen</title><desc id="desc">Orange Cloud Kitchen logo with an orange, green leaf and chef's hat.</desc>
+  <g fill="none" stroke="#91AD27" stroke-linecap="round">
+    <path d="M114 79C130 83 145 94 154 116" stroke-width="7"/>
+    <path d="M155 115C166 70 196 54 235 43 230 85 203 110 155 115Z" fill="#91AD27" stroke="none"/>
+  </g>
+  <path d="M46 145C46 92 83 75 132 75c47 0 78 28 78 76" fill="none" stroke="#F5821F" stroke-width="11" stroke-linecap="round"/>
+  <path d="M53 134c15-43 73-62 125-35M47 155c5-43 55-71 111-53M58 169c17-30 69-42 112-20" fill="none" stroke="#F5821F" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+  <text x="113" y="188" fill="#F5821F" font-family="Georgia,serif" font-size="119" letter-spacing="-7">Orange</text>
+  <g fill="#F5821F" transform="translate(454 77)"><path d="M18 36c-9-4-13-14-8-23 4-8 14-11 21-6 5-10 19-10 24 0 8-5 18-2 21 6 5 9 1 19-8 23v15H18Z" fill="none" stroke="#F5821F" stroke-width="3"/><path d="M20 53h46" stroke="#F5821F" stroke-width="3"/></g>
+  <path d="M92 203h50m304 0h50" stroke="#F5821F" stroke-width="2"/>
+  <text x="164" y="210" fill="#F7F1E7" font-family="Montserrat,Arial,sans-serif" font-size="20" letter-spacing="7">CLOUD KITCHEN</text>
+</svg>

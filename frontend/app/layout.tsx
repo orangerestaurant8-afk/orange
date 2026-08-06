@@ -3,9 +3,9 @@ import '../styles/globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
-  title: { default: 'Orange | Food delivery in Karachi', template: '%s | Orange' },
-  description: 'Order favourites from Karachi restaurants with Orange.',
-  openGraph: { type: 'website', siteName: 'Orange', title: 'Orange | Food delivery in Karachi', description: 'Order favourites from Karachi restaurants with Orange.' },
+  title: { default: 'Orange Cloud Kitchen | Karachi', template: '%s | Orange Cloud Kitchen' },
+  description: 'Where taste makes memories. Freshly prepared food, delivered across Karachi.',
+  openGraph: { type: 'website', siteName: 'Orange Cloud Kitchen', title: 'Orange Cloud Kitchen | Karachi', description: 'Where taste makes memories.' },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

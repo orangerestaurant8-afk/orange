@@ -5,6 +5,7 @@ import { CategoryModel } from '../models/category.model';
 import { MenuItemModel } from '../models/menu-item.model';
 import { OrderModel } from '../models/order.model';
 import { UserModel } from '../models/user.model';
+import { HeroSlideModel } from '../models/hero-slide.model';
 
 const images = [
   'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=85',
@@ -32,6 +33,14 @@ async function seed(): Promise<void> {
     ['Chicken Malai Boti', 'Creamy charcoal-grilled boneless chicken skewers.', 980, 'BBQ', images[2]],
   ] as const;
   const menuItems = await Promise.all(items.map(([name, description, price, category, imageUrl], index) => MenuItemModel.findOneAndUpdate({ name }, { name, description, price, category: byName[category], imageUrl, addOns: index === 0 ? [{ name: 'Extra cheese', price: 120 }, { name: 'Loaded fries', price: 180 }] : [], isAvailable: true, spiceLevel: category === 'BBQ' ? 'medium' : 'hot' }, { upsert: true, new: true, setDefaultsOnInsert: true })));
+  const heroSlides = [
+    ["Karachi's finest", 'at your door.', 'From steaming biryanis to sizzling BBQ, every dish is freshly prepared and sent straight to you.', 'Explore the menu', 'https://images.unsplash.com/photo-1701579231305-d84d8af9a3fd?auto=format&fit=crop&w=2200&q=90'],
+    ['Fresh from our', 'cloud kitchen.', 'Generous portions, bold flavours, and the warmth of a proper Karachi meal.', 'Order now', 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=2200&q=90'],
+    ['Big flavour,', 'made fresh.', 'Crispy, juicy, and packed with our signature sauces—made when you order.', 'See favourites', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=2200&q=90'],
+    ['Wok-tossed', 'to perfection.', 'Comforting noodles, bold spices, and the right amount of heat in every bite.', 'Explore dishes', 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=2200&q=90'],
+    ['The charcoal', 'grill is calling.', 'Smoky kababs and tender boti, straight from our grill to your table.', 'Order BBQ', 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=2200&q=90'],
+  ] as const;
+  await Promise.all(heroSlides.map(([title, highlightedText, subtitle, ctaLabel, imageUrl], displayOrder) => HeroSlideModel.findOneAndUpdate({ title }, { title, highlightedText, subtitle, ctaLabel, imageUrl, displayOrder, isActive: true }, { upsert: true, new: true, setDefaultsOnInsert: true })));
   const admin = await UserModel.findOneAndUpdate({ phone: '+923001234567' }, { name: 'Orange Admin', phone: '+923001234567', email: 'admin@orange.pk', role: 'admin', addresses: [] }, { upsert: true, new: true, setDefaultsOnInsert: true });
   const customer = await UserModel.findOneAndUpdate({ phone: '+923111234567' }, { name: 'Ahmed Khan', phone: '+923111234567', email: 'ahmed@example.com', role: 'customer', addresses: [{ label: 'Home', line1: '12C Sunset Boulevard', area: 'DHA Phase 2', city: 'Karachi', instructions: 'Ring the bell' }] }, { upsert: true, new: true, setDefaultsOnInsert: true });
   const existingOrder = await OrderModel.exists({ user: customer._id });

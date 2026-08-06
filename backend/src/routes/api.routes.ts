@@ -4,6 +4,7 @@ import { CategoryModel } from '../models/category.model';
 import { MenuItemModel } from '../models/menu-item.model';
 import { OrderModel } from '../models/order.model';
 import { UserModel } from '../models/user.model';
+import { HeroSlideModel } from '../models/hero-slide.model';
 import { requireAdmin, requireAuth, validate } from '../middleware/api';
 
 export const apiRouter = Router();
@@ -12,11 +13,17 @@ const menu = z.object({ name: z.string().min(1), description: z.string().min(1),
 const category = z.object({ name: z.enum(['Fast Food', 'Chinese Food', 'BBQ']), displayOrder: z.number().int().nonnegative() });
 const order = z.object({ items: z.array(z.object({ item: z.string(), quantity: z.number().int().positive(), customizations: z.array(z.string()).default([]), unitPrice: z.number().nonnegative() })).min(1), subtotal: z.number().nonnegative(), deliveryFee: z.number().nonnegative(), total: z.number().nonnegative(), deliveryAddress: z.string().min(1), paymentMethod: z.enum(['Cash on Delivery', 'JazzCash', 'Easypaisa']) });
 const status = z.object({ status: z.enum(['New', 'Preparing', 'Out for Delivery', 'Delivered', 'Cancelled']), note: z.string().optional() });
+const heroSlide = z.object({ title: z.string().min(1).max(90), highlightedText: z.string().max(90).default(''), subtitle: z.string().min(1).max(220), imageUrl: z.string().url(), ctaLabel: z.string().min(1).max(40).default('Explore the menu'), isActive: z.boolean().default(true), displayOrder: z.number().int().nonnegative().default(0) });
 
 apiRouter.get('/categories', async (_req, res, next) => { try { res.json({ data: await CategoryModel.find().sort('displayOrder') }); } catch (error) { next(error); } });
 apiRouter.post('/categories', ...requireAdmin, validate(category), async (req, res, next) => { try { res.status(201).json({ data: await CategoryModel.create(req.body) }); } catch (error) { next(error); } });
 apiRouter.put('/categories/:id', ...requireAdmin, validate(category.partial()), async (req, res, next) => { try { const item = await CategoryModel.findByIdAndUpdate(req.params.id, req.body, { new: true }); if (!item) return res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Category not found' } }); res.json({ data: item }); } catch (error) { next(error); } });
 apiRouter.delete('/categories/:id', ...requireAdmin, async (req, res, next) => { try { const item = await CategoryModel.findByIdAndDelete(req.params.id); if (!item) return res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Category not found' } }); res.status(204).end(); } catch (error) { next(error); } });
+
+apiRouter.get('/hero-slides', async (_req, res, next) => { try { res.json({ data: await HeroSlideModel.find().sort('displayOrder createdAt') }); } catch (error) { next(error); } });
+apiRouter.post('/hero-slides', ...requireAdmin, validate(heroSlide), async (req, res, next) => { try { res.status(201).json({ data: await HeroSlideModel.create(req.body) }); } catch (error) { next(error); } });
+apiRouter.put('/hero-slides/:id', ...requireAdmin, validate(heroSlide.partial()), async (req, res, next) => { try { const item = await HeroSlideModel.findByIdAndUpdate(req.params.id, req.body, { new: true }); if (!item) return res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Hero slide not found' } }); res.json({ data: item }); } catch (error) { next(error); } });
+apiRouter.delete('/hero-slides/:id', ...requireAdmin, async (req, res, next) => { try { const item = await HeroSlideModel.findByIdAndDelete(req.params.id); if (!item) return res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Hero slide not found' } }); res.status(204).end(); } catch (error) { next(error); } });
 
 apiRouter.get('/menu', async (req, res, next) => { try { const filter = req.query.category ? { category: req.query.category } : {}; res.json({ data: await MenuItemModel.find(filter).populate('category') }); } catch (error) { next(error); } });
 apiRouter.get('/menu/:id', async (req, res, next) => { try { const item = await MenuItemModel.findById(req.params.id).populate('category'); if (!item) return res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Menu item not found' } }); res.json({ data: item }); } catch (error) { next(error); } });
