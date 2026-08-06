@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { type MouseEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import type { ApiMenuItem } from '@/lib/apiClient';
@@ -17,7 +16,7 @@ export function PageLoader({ ready }: { ready: boolean }) {
 export function BlurImage({ src, alt, priority = false, className = '', sizes = '(max-width: 767px) 50vw, 25vw' }: { src?: string; alt: string; priority?: boolean; className?: string; sizes?: string }) {
   const [loaded, setLoaded] = useState(false); const [failed, setFailed] = useState(false);
   return <div className={`blur-image ${loaded ? 'is-loaded' : ''} ${failed ? 'is-failed' : ''} ${className}`}>
-    {src && !failed ? <Image src={src} alt={alt} fill sizes={sizes} priority={priority} onLoad={() => setLoaded(true)} onError={() => setFailed(true)} /> : <span className="blur-image__fallback"><span className="material-symbols-outlined">restaurant</span><span>Orange</span></span>}
+    {src && !failed ? <img src={src} alt={alt} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} onLoad={() => setLoaded(true)} onError={() => setFailed(true)} /> : <span className="blur-image__fallback"><span className="material-symbols-outlined">restaurant</span><span>Orange</span></span>}
   </div>;
 }
 
