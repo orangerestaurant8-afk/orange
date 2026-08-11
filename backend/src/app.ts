@@ -7,6 +7,7 @@ import { healthRouter } from './routes/health.routes';
 import { apiRouter } from './routes/api.routes';
 import { authRouter } from './routes/auth.routes';
 import { uploadRouter } from './routes/upload.routes';
+import { posIntegrationRouter } from './routes/integration.routes';
 import { errors, notFound } from './middleware/api';
 
 export const app = express();
@@ -32,6 +33,8 @@ app.use(cors({
   },
   credentials: true,
 }));
+// This router must run before JSON parsing: its HMAC covers the original bytes.
+app.use('/api/integration', express.raw({ type: 'application/json', limit: '1mb' }), posIntegrationRouter);
 app.use(express.json());
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, limit: 300, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: { code: 'RATE_LIMITED', message: 'Too many requests. Please try again later.' } } }));
 const authRateLimit = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: { code: 'RATE_LIMITED', message: 'Too many authentication attempts. Please try again later.' } } });

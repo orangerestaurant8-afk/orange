@@ -25,4 +25,13 @@ export const env = {
   cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
   cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
+  integrationEnabled: process.env.INTEGRATION_ENABLED === 'true',
+  posApiUrl: process.env.POS_API_URL?.replace(/\/$/, ''),
+  posSyncSecret: process.env.POS_SYNC_SECRET,
+  posWebhookPath: process.env.POS_ORDER_WEBHOOK_PATH ?? '/api/integration/website/orders',
+  integrationMaxAgeSeconds: Number(process.env.INTEGRATION_MAX_AGE_SECONDS ?? 300),
+  integrationWorkerIntervalMs: Number(process.env.INTEGRATION_WORKER_INTERVAL_MS ?? 15000),
+  integrationMaxAttempts: Number(process.env.INTEGRATION_MAX_ATTEMPTS ?? 8),
+  deliveryFee: Number(process.env.DELIVERY_FEE ?? 99),
+  taxRate: Number(process.env.TAX_RATE ?? 0.16),
 };
