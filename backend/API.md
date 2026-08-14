@@ -10,7 +10,7 @@ All success responses are `{ "data": ... }`; errors are `{ "error": { "code", "m
 - `GET /api/categories` — array of categories.
 - `GET /api/menu?category=<categoryId>` — menu items; optional category ObjectId filter.
 - `GET /api/menu/:id` — one menu item.
-- `POST /api/orders` — body: `{user, items:[{item,quantity,customizations,unitPrice}], subtotal, deliveryFee, total, deliveryAddress, paymentMethod}`. Payment method is `Cash on Delivery`, `JazzCash`, or `Easypaisa`.
+- `POST /api/orders` — body: `{items:[{item,quantity,customizations}], deliveryAddress, deliveryArea, paymentMethod}`. `deliveryArea` must be one of the supported Karachi areas. Payment method is `Cash on Delivery` or `Credit/Debit Card`.
 - `GET /api/orders/:id` — one order with populated user/items.
 
 ## Authenticated

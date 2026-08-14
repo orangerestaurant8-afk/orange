@@ -19,6 +19,7 @@ const images = [
 async function seed(): Promise<void> {
   if (!env.mongoUri) throw new Error('MONGODB_URI is required to seed Orange data.');
   await connectDatabase();
+  await UserModel.updateMany({ addresses: { $exists: true } }, { $unset: { addresses: 1 } });
   const categories = await Promise.all(['Fast Food', 'Chinese Food', 'BBQ'].map((name, displayOrder) => CategoryModel.findOneAndUpdate({ name }, { name, displayOrder }, { upsert: true, new: true, setDefaultsOnInsert: true })));
   const byName = Object.fromEntries(categories.map((category) => [category.name, category._id]));
   const items = [
@@ -41,10 +42,10 @@ async function seed(): Promise<void> {
     ['The charcoal', 'grill is calling.', 'Smoky kababs and tender boti, straight from our grill to your table.', 'Order BBQ', 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=2200&q=90'],
   ] as const;
   await Promise.all(heroSlides.map(([title, highlightedText, subtitle, ctaLabel, imageUrl], displayOrder) => HeroSlideModel.findOneAndUpdate({ title }, { title, highlightedText, subtitle, ctaLabel, imageUrl, displayOrder, isActive: true }, { upsert: true, new: true, setDefaultsOnInsert: true })));
-  const admin = await UserModel.findOneAndUpdate({ phone: '+923001234567' }, { name: 'Orange Admin', phone: '+923001234567', email: 'admin@orange.pk', role: 'admin', addresses: [] }, { upsert: true, new: true, setDefaultsOnInsert: true });
-  const customer = await UserModel.findOneAndUpdate({ phone: '+923111234567' }, { name: 'Ahmed Khan', phone: '+923111234567', email: 'ahmed@example.com', role: 'customer', addresses: [{ label: 'Home', line1: '12C Sunset Boulevard', area: 'DHA Phase 2', city: 'Karachi', instructions: 'Ring the bell' }] }, { upsert: true, new: true, setDefaultsOnInsert: true });
+  const admin = await UserModel.findOneAndUpdate({ phone: '+923001234567' }, { name: 'Orange Admin', phone: '+923001234567', email: 'admin@orange.pk', role: 'admin' }, { upsert: true, new: true, setDefaultsOnInsert: true });
+  const customer = await UserModel.findOneAndUpdate({ phone: '+923111234567' }, { name: 'Ahmed Khan', phone: '+923111234567', email: 'ahmed@example.com', role: 'customer' }, { upsert: true, new: true, setDefaultsOnInsert: true });
   const existingOrder = await OrderModel.exists({ user: customer._id });
-  if (!existingOrder) await OrderModel.create({ user: customer._id, items: [{ item: menuItems[0]._id, quantity: 2, unitPrice: menuItems[0].price, customizations: ['Extra cheese'] }, { item: menuItems[6]._id, quantity: 1, unitPrice: menuItems[6].price, customizations: [] }], subtotal: 3750, deliveryFee: 99, total: 3849, deliveryAddress: '12C Sunset Boulevard, DHA Phase 2, Karachi', paymentMethod: 'Cash on Delivery', status: 'Preparing', statusHistory: [{ status: 'New', at: new Date(Date.now() - 20 * 60 * 1000) }, { status: 'Preparing', at: new Date(Date.now() - 8 * 60 * 1000) }] });
+  if (!existingOrder) await OrderModel.create({ user: customer._id, items: [{ item: menuItems[0]._id, quantity: 2, unitPrice: menuItems[0].price, customizations: ['Extra cheese'] }, { item: menuItems[6]._id, quantity: 1, unitPrice: menuItems[6].price, customizations: [] }], subtotal: 3750, deliveryFee: 99, total: 3849, deliveryAddress: 'House 42, Street 5, Malir Saudabad, Karachi', deliveryArea: 'Malir Saudabad', paymentMethod: 'Cash on Delivery', status: 'Preparing', statusHistory: [{ status: 'New', at: new Date(Date.now() - 20 * 60 * 1000) }, { status: 'Preparing', at: new Date(Date.now() - 8 * 60 * 1000) }] });
   console.info(`Seed complete: ${categories.length} categories, ${menuItems.length} menu items, admin ${admin.phone}, customer ${customer.phone}.`);
 }
 

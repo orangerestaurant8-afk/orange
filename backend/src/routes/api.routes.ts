@@ -13,12 +13,13 @@ import { randomUUID } from 'node:crypto';
 
 export const apiRouter = Router();
 type CheckoutLine = { item: string; quantity: number; customizations: string[] };
-type CheckoutBody = { items: CheckoutLine[]; deliveryAddress: string; paymentMethod: 'Cash on Delivery' | 'JazzCash' | 'Easypaisa' };
+type CheckoutBody = { items: CheckoutLine[]; deliveryAddress: string; deliveryArea: string; paymentMethod: 'Cash on Delivery' | 'Credit/Debit Card' };
 const cloudinaryUrl = z.string().url().refine((value) => new URL(value).hostname.endsWith('cloudinary.com'), 'imageUrl must be a Cloudinary URL');
 const menu = z.object({ name: z.string().min(1), description: z.string().min(1), price: z.number().nonnegative(), category: z.string(), imageUrl: cloudinaryUrl, addOns: z.array(z.object({ name: z.string(), price: z.number().nonnegative() })).default([]), isAvailable: z.boolean().default(true), spiceLevel: z.enum(['none', 'mild', 'medium', 'hot', 'extra-hot']).default('medium') });
 const category = z.object({ name: z.string().min(1).max(120), displayOrder: z.number().int().nonnegative() });
 // Prices and totals are deliberately absent: the server recalculates them from synced menu data.
-const order = z.object({ items: z.array(z.object({ item: z.string(), quantity: z.number().int().positive().max(100), customizations: z.array(z.string().max(120)).max(30).default([]) })).min(1).max(100), deliveryAddress: z.string().min(1).max(1000), paymentMethod: z.enum(['Cash on Delivery', 'JazzCash', 'Easypaisa']) });
+const deliveryAreas = ['Malir Saudabad', 'Malir Khokrapar', 'Malir Memon Goth', 'Malir Model Colony', 'Malir Cantt', 'Shah Faisal Colony', 'Jinnah Square', 'Airport Side', 'Kala Board', 'Quaidabad', 'Jaffar Tayyar', 'Gulshan-e-Iqbal', 'Gulistan-e-Johar', 'Safoora Goth & Chowrangi', 'Scheme 33', 'University Road', 'Askari IV', 'Malir Halt', 'Rafa-e-Aam Society', 'Wireless Gate', 'Shamsi Society'] as const;
+const order = z.object({ items: z.array(z.object({ item: z.string(), quantity: z.number().int().positive().max(100), customizations: z.array(z.string().max(120)).max(30).default([]) })).min(1).max(100), deliveryAddress: z.string().min(1).max(1000), deliveryArea: z.enum(deliveryAreas), paymentMethod: z.enum(['Cash on Delivery', 'Credit/Debit Card']) });
 const status = z.object({ status: z.enum(['New', 'Preparing', 'Out for Delivery', 'Delivered', 'Cancelled']), note: z.string().optional() });
 const heroSlide = z.object({ title: z.string().min(1).max(90), highlightedText: z.string().max(90).default(''), subtitle: z.string().min(1).max(220), imageUrl: z.string().url(), ctaLabel: z.string().min(1).max(40).default('Explore the menu'), isActive: z.boolean().default(true), displayOrder: z.number().int().nonnegative().default(0) });
 
@@ -49,7 +50,7 @@ apiRouter.post('/orders', requireAuth, validate(order), async (req, res, next) =
   const byId = new Map(menuItems.map((item) => [item._id.toString(), item]));
   const lines = checkout.items.map((line: CheckoutLine) => ({ item: byId.get(line.item)!._id, quantity: line.quantity, customizations: line.customizations, unitPrice: byId.get(line.item)!.price }));
   const subtotal = lines.reduce((sum: number, line) => sum + line.unitPrice * line.quantity, 0); const deliveryFee = env.deliveryFee; const total = subtotal + deliveryFee + Math.round(subtotal * env.taxRate);
-  const created = await OrderModel.create({ user: req.user!.id, items: lines, subtotal, deliveryFee, total, deliveryAddress: checkout.deliveryAddress, paymentMethod: checkout.paymentMethod, externalOrderId: randomUUID(), ...(checkoutId ? { checkoutId } : {}), integrationOrigin: 'website', statusHistory: [{ status: 'New' }] });
+  const created = await OrderModel.create({ user: req.user!.id, items: lines, subtotal, deliveryFee, total, deliveryAddress: checkout.deliveryAddress, deliveryArea: checkout.deliveryArea, paymentMethod: checkout.paymentMethod, externalOrderId: randomUUID(), ...(checkoutId ? { checkoutId } : {}), integrationOrigin: 'website', statusHistory: [{ status: 'New' }] });
   // This application has no online-payment confirmation integration. Only COD is fulfilment-confirmed and therefore delivered to POS.
   if (env.integrationEnabled && checkout.paymentMethod === 'Cash on Delivery') await createOrderOutboxEvent(created._id.toString());
   return res.status(201).json({ data: created });
