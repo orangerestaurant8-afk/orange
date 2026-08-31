@@ -143,3 +143,9 @@ html { scroll-behavior:smooth; }
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+/* Purposeful movement: feedback and navigation only. */
+.order-hero__copy > span,.order-hero__copy h1,.order-hero__copy p,.order-hero__copy > div { animation:order-copy-in .65s cubic-bezier(.22,1,.36,1) both; }.order-hero__copy h1 { animation-delay:.08s; }.order-hero__copy p { animation-delay:.16s; }.order-hero__copy > div { animation-delay:.24s; }.order-category-rail button { transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s ease; }.order-category-rail button:hover { box-shadow:0 14px 24px #21150f33; transform:translateY(-3px); }.order-header { transition:height .25s ease,box-shadow .25s ease,background .25s ease; }.order-cart { transition:transform .18s ease,background .18s ease; }.order-cart:hover { background:#c65712; transform:translateY(-1px); }
+@keyframes order-copy-in { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+@supports (animation-timeline: scroll()) { .order-header { animation:order-header-compact linear both; animation-timeline:scroll(root); animation-range:0 150px; } @keyframes order-header-compact { to { height:64px; box-shadow:0 8px 22px #21150f12; background:#fff9f1fa; } } }
+@supports (animation-timeline: view()) { .order-categories,.order-featured,.order-signature,.order-menu,.order-about,.order-steps { animation:order-section-in linear both; animation-timeline:view(); animation-range:entry 5% cover 28%; } @keyframes order-section-in { from { opacity:.18; transform:translateY(28px); } to { opacity:1; transform:none; } } }
