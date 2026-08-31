@@ -22,7 +22,10 @@ const fallbackSeed: Array<[string, string, number, string, string]> = [
 ];
 const fallbackItems: ApiMenuItem[] = fallbackSeed.map(([name, description, price, category, imageUrl], index) => ({ _id: `fallback-${index}`, name, description, price, category, imageUrl, isAvailable: true, spiceLevel: 'medium', addOns: [] }));
 const money = (value: number) => `Rs. ${value.toLocaleString('en-PK')}`;
-const categoryName = (item: ApiMenuItem) => typeof item.category === 'string' ? item.category : item.category.name;
+const categoryName = (item: ApiMenuItem) => {
+  const category = item.category;
+  return typeof category === 'string' ? category : category?.name ?? 'Uncategorized';
+};
 
 function ProductImage({ item, priority = false }: { item: ApiMenuItem; priority?: boolean }) { const [failed, setFailed] = useState(false); return <div className="order-product__image">{failed ? <Image src="/images/hero/hero-signature.svg" alt="Orange food" fill sizes="(max-width: 680px) 50vw, 25vw" className="object-cover" /> : <Image src={item.imageUrl} alt={item.name} fill sizes="(max-width: 680px) 50vw, (max-width: 1024px) 33vw, 25vw" className="object-cover transition duration-500 group-hover:scale-105" priority={priority} onError={() => setFailed(true)} />}</div>; }
 function ProductCard({ item, onAdd, featured = false }: { item: ApiMenuItem; onAdd: (item: ApiMenuItem) => void; featured?: boolean }) { return <article className={`order-product group ${featured ? 'order-product--featured' : ''}`}><Link href={`/menu/${item._id}`} aria-label={`View ${item.name}`}><ProductImage item={item} priority={featured} /></Link><div className="order-product__body"><div><h3>{item.name}</h3><p>{item.description}</p></div><div className="order-product__footer"><strong>{money(item.price)}</strong><div className="flex gap-2"><Link className="order-product__options" href={`/menu/${item._id}`}>Options</Link><button type="button" onClick={() => onAdd(item)} aria-label={`Add ${item.name} to cart`}><span className="material-symbols-outlined">add</span></button></div></div></div></article>; }
