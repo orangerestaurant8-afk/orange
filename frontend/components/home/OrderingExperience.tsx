@@ -471,17 +471,6 @@ export function OrderingExperience() {
           </button>
         </div>
       </div>
-      <header className="order-header">
-        <nav aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#menu" onClick={() => setActive('')}>
-            Menu
-          </a>
-          <a href="#categories">Categories</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
       <div className={`order-mobile-nav ${menuOpen ? 'is-open' : ''}`}>
         <button onClick={() => setMenuOpen(false)} aria-label="Close navigation">
           <span className="material-symbols-outlined">close</span>
