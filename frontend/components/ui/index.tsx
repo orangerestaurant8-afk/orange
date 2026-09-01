@@ -1,70 +1,729 @@
 'use client';
 
-import { type ButtonHTMLAttributes, type HTMLAttributes, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes, useEffect, useState } from 'react';
+import {
+  type ButtonHTMLAttributes,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+  type ReactNode,
+  type SelectHTMLAttributes,
+  type TextareaHTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCartStore } from '@/lib/store/cartStore';
 
-const join = (...values: Array<string | false | null | undefined>) => values.filter(Boolean).join(' ');
+const join = (...values: Array<string | false | null | undefined>) =>
+  values.filter(Boolean).join(' ');
 
-export function OrangeLogo({ className = '', compact = false }: { className?: string; compact?: boolean }) {
-  return <span className={join('inline-flex items-center', className)}>
-    <img src="/orange-cloud-kitchen.svg" alt="Orange Cloud Kitchen" className={join('h-auto w-full object-contain', compact ? 'max-w-[132px]' : 'max-w-[220px]')} />
-  </span>;
+export function OrangeLogo({
+  className = '',
+  compact = false,
+}: {
+  className?: string;
+  compact?: boolean;
+}) {
+  return (
+    <span className={join('inline-flex items-center', className)}>
+      <img
+        src="/orange-cloud-kitchen.svg"
+        alt="Orange Cloud Kitchen"
+        className={join(
+          'h-auto w-full object-contain',
+          compact ? 'max-w-[132px]' : 'max-w-[220px]',
+        )}
+      />
+    </span>
+  );
 }
 
-export function Button({ variant = 'primary', size = 'md', loading, className, children, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'secondary' | 'ghost' | 'icon'; size?: 'sm' | 'md' | 'lg'; loading?: boolean }) {
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  loading,
+  className,
+  children,
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'icon';
+  size?: 'sm' | 'md' | 'lg';
+  loading?: boolean;
+}) {
   const variants = {
-    primary: 'bg-orange-500 text-white shadow-subtle hover:bg-orange-800 active:bg-orange-900 disabled:bg-orange-500/60',
-    secondary: 'border border-orange-800/20 bg-neutral-white text-orange-800 shadow-subtle hover:bg-orange-200 active:bg-orange-100 disabled:opacity-60',
+    primary:
+      'bg-orange-500 text-white shadow-subtle hover:bg-orange-800 active:bg-orange-900 disabled:bg-orange-500/60',
+    secondary:
+      'border border-orange-800/20 bg-neutral-white text-orange-800 shadow-subtle hover:bg-orange-200 active:bg-orange-100 disabled:opacity-60',
     ghost: 'text-neutral-copy hover:bg-orange-200/20 active:bg-orange-200/40 disabled:opacity-60',
     icon: 'rounded-full text-neutral-copy hover:bg-orange-200/20 active:bg-orange-200/40 disabled:opacity-60',
   };
-  const sizes = { sm: 'min-h-8 px-3 text-caption', md: 'min-h-10 px-4 text-body-sm', lg: 'min-h-12 px-6 text-body' };
-  return <button className={join('inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-admin-border disabled:pointer-events-none', variants[variant], variant === 'icon' ? 'size-10 p-2' : sizes[size], className)} disabled={loading || props.disabled} {...props}>{loading && <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden />} {children}</button>;
+  const sizes = {
+    sm: 'min-h-8 px-3 text-caption',
+    md: 'min-h-10 px-4 text-body-sm',
+    lg: 'min-h-12 px-6 text-body',
+  };
+  return (
+    <button
+      className={join(
+        'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-admin-border disabled:pointer-events-none',
+        variants[variant],
+        variant === 'icon' ? 'size-10 p-2' : sizes[size],
+        className,
+      )}
+      disabled={loading || props.disabled}
+      {...props}
+    >
+      {loading && (
+        <span
+          className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+          aria-hidden
+        />
+      )}{' '}
+      {children}
+    </button>
+  );
 }
 
-export function Badge({ status, className }: { status: 'New' | 'Preparing' | 'Out for Delivery' | 'Delivered' | 'Cancelled'; className?: string }) {
-  const map = { New: 'bg-info/20 text-info', Preparing: 'bg-warning/20 text-orange-900', 'Out for Delivery': 'bg-orange-500/20 text-orange-800', Delivered: 'bg-success/20 text-success', Cancelled: 'bg-danger/20 text-danger' };
-  return <span className={join('inline-flex rounded-sm px-2 py-1 text-overline font-bold uppercase', map[status], className)}>{status}</span>;
+export function Badge({
+  status,
+  className,
+}: {
+  status: 'New' | 'Preparing' | 'Out for Delivery' | 'Delivered' | 'Cancelled';
+  className?: string;
+}) {
+  const map = {
+    New: 'bg-info/20 text-info',
+    Preparing: 'bg-warning/20 text-orange-900',
+    'Out for Delivery': 'bg-orange-500/20 text-orange-800',
+    Delivered: 'bg-success/20 text-success',
+    Cancelled: 'bg-danger/20 text-danger',
+  };
+  return (
+    <span
+      className={join(
+        'inline-flex rounded-sm px-2 py-1 text-overline font-bold uppercase',
+        map[status],
+        className,
+      )}
+    >
+      {status}
+    </span>
+  );
 }
 
-export function DishCard({ title = 'Smoky BBQ Platter', description = 'Tender grilled favourites with our house sauce.', price = '₨ 1,250', image, onAdd }: { title?: string; description?: string; price?: string; image?: ReactNode; onAdd?: () => void }) {
-  return <article className="overflow-hidden rounded-xl bg-neutral-white shadow-card"><div className="flex h-40 items-center justify-center bg-neutral-blue">{image ?? <span className="font-display text-heading-md text-orange-800">Orange</span>}</div><div className="space-y-3 p-4"><div><h3 className="font-display text-heading-sm text-neutral-ink">{title}</h3><p className="mt-1 text-body-sm text-neutral-muted">{description}</p></div><div className="flex items-center justify-between"><strong className="text-body text-orange-800">{price}</strong><Button size="sm" onClick={onAdd}>Add</Button></div></div></article>;
+export function DishCard({
+  title = 'Smoky BBQ Platter',
+  description = 'Tender grilled favourites with our house sauce.',
+  price = '₨ 1,250',
+  image,
+  onAdd,
+}: {
+  title?: string;
+  description?: string;
+  price?: string;
+  image?: ReactNode;
+  onAdd?: () => void;
+}) {
+  return (
+    <article className="overflow-hidden rounded-xl bg-neutral-white shadow-card">
+      <div className="flex h-40 items-center justify-center bg-neutral-blue">
+        {image ?? <span className="font-display text-heading-md text-orange-800">Orange</span>}
+      </div>
+      <div className="space-y-3 p-4">
+        <div>
+          <h3 className="font-display text-heading-sm text-neutral-ink">{title}</h3>
+          <p className="mt-1 text-body-sm text-neutral-muted">{description}</p>
+        </div>
+        <div className="flex items-center justify-between">
+          <strong className="text-body text-orange-800">{price}</strong>
+          <Button size="sm" onClick={onAdd}>
+            Add
+          </Button>
+        </div>
+      </div>
+    </article>
+  );
 }
 
-export function OrderCard({ order = '#OR-1042', status = 'Preparing', total = '₨ 2,450' }: { order?: string; status?: Parameters<typeof Badge>[0]['status']; total?: string }) {
-  return <article className="rounded-xl bg-neutral-white p-4 shadow-subtle"><div className="flex items-start justify-between"><div><p className="font-semibold text-neutral-ink">{order}</p><p className="mt-1 text-caption text-neutral-muted">2 items · Delivery</p></div><Badge status={status} /></div><div className="mt-4 flex items-center justify-between border-t border-neutral-border pt-3 text-body-sm"><span className="text-neutral-muted">Total</span><strong className="text-orange-800">{total}</strong></div></article>;
+export function OrderCard({
+  order = '#OR-1042',
+  status = 'Preparing',
+  total = '₨ 2,450',
+}: {
+  order?: string;
+  status?: Parameters<typeof Badge>[0]['status'];
+  total?: string;
+}) {
+  return (
+    <article className="rounded-xl bg-neutral-white p-4 shadow-subtle">
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="font-semibold text-neutral-ink">{order}</p>
+          <p className="mt-1 text-caption text-neutral-muted">2 items · Delivery</p>
+        </div>
+        <Badge status={status} />
+      </div>
+      <div className="mt-4 flex items-center justify-between border-t border-neutral-border pt-3 text-body-sm">
+        <span className="text-neutral-muted">Total</span>
+        <strong className="text-orange-800">{total}</strong>
+      </div>
+    </article>
+  );
 }
 
-export function AdminStatCard({ label, value, trend = '+12%', negative = false }: { label: string; value: string; trend?: string; negative?: boolean }) {
-  return <article className="rounded-xl border border-neutral-warm/5 bg-admin-raised p-6 shadow-subtle"><div className="flex items-center justify-between"><span className="text-body-sm font-semibold text-neutral-copy">{label}</span><span className={join('text-body-sm font-semibold', negative ? 'text-danger-light' : 'text-success')}>{trend}</span></div><strong className="mt-3 block font-display text-heading-xl text-admin-text">{value}</strong></article>;
+export function AdminStatCard({
+  label,
+  value,
+  trend = '+12%',
+  negative = false,
+}: {
+  label: string;
+  value: string;
+  trend?: string;
+  negative?: boolean;
+}) {
+  return (
+    <article className="rounded-xl border border-neutral-warm/5 bg-admin-raised p-6 shadow-subtle">
+      <div className="flex items-center justify-between">
+        <span className="text-body-sm font-semibold text-neutral-copy">{label}</span>
+        <span
+          className={join(
+            'text-body-sm font-semibold',
+            negative ? 'text-danger-light' : 'text-success',
+          )}
+        >
+          {trend}
+        </span>
+      </div>
+      <strong className="mt-3 block font-display text-heading-xl text-admin-text">{value}</strong>
+    </article>
+  );
 }
 
-export function Input({ label, error, className, ...props }: InputHTMLAttributes<HTMLInputElement> & { label?: string; error?: string }) { return <label className="block space-y-2"><span className="text-body-sm font-semibold text-neutral-copy">{label}</span><input className={join('h-12 w-full rounded-lg border border-neutral-border bg-neutral-white px-4 text-body-sm text-neutral-ink outline-none placeholder:text-neutral-gray focus:border-orange-800 focus:ring-2 focus:ring-orange-500/20 disabled:bg-neutral-soft disabled:opacity-60', className)} {...props}/>{error && <span className="text-caption text-danger">{error}</span>}</label>; }
-export function Select({ label, children, className, ...props }: SelectHTMLAttributes<HTMLSelectElement> & { label?: string }) { return <label className="block space-y-2"><span className="text-body-sm font-semibold text-neutral-copy">{label}</span><select className={join('h-12 w-full rounded-lg border border-neutral-border bg-neutral-white px-4 text-body-sm text-neutral-ink outline-none focus:border-orange-800 focus:ring-2 focus:ring-orange-500/20 disabled:bg-neutral-soft disabled:opacity-60', className)} {...props}>{children}</select></label>; }
-export function Textarea({ label, className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string }) { return <label className="block space-y-2"><span className="text-body-sm font-semibold text-neutral-copy">{label}</span><textarea className={join('min-h-24 w-full rounded-lg border border-neutral-border bg-neutral-white p-4 text-body-sm text-neutral-ink outline-none placeholder:text-neutral-gray focus:border-orange-800 focus:ring-2 focus:ring-orange-500/20 disabled:bg-neutral-soft disabled:opacity-60', className)} {...props}/></label>; }
+export function Input({
+  label,
+  error,
+  className,
+  ...props
+}: InputHTMLAttributes<HTMLInputElement> & { label?: string; error?: string }) {
+  return (
+    <label className="block space-y-2">
+      <span className="text-body-sm font-semibold text-neutral-copy">{label}</span>
+      <input
+        className={join(
+          'h-12 w-full rounded-lg border border-neutral-border bg-neutral-white px-4 text-body-sm text-neutral-ink outline-none placeholder:text-neutral-gray focus:border-orange-800 focus:ring-2 focus:ring-orange-500/20 disabled:bg-neutral-soft disabled:opacity-60',
+          className,
+        )}
+        {...props}
+      />
+      {error && <span className="text-caption text-danger">{error}</span>}
+    </label>
+  );
+}
+export function Select({
+  label,
+  children,
+  className,
+  ...props
+}: SelectHTMLAttributes<HTMLSelectElement> & { label?: string }) {
+  return (
+    <label className="block space-y-2">
+      <span className="text-body-sm font-semibold text-neutral-copy">{label}</span>
+      <select
+        className={join(
+          'h-12 w-full rounded-lg border border-neutral-border bg-neutral-white px-4 text-body-sm text-neutral-ink outline-none focus:border-orange-800 focus:ring-2 focus:ring-orange-500/20 disabled:bg-neutral-soft disabled:opacity-60',
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </select>
+    </label>
+  );
+}
+export function Textarea({
+  label,
+  className,
+  ...props
+}: TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string }) {
+  return (
+    <label className="block space-y-2">
+      <span className="text-body-sm font-semibold text-neutral-copy">{label}</span>
+      <textarea
+        className={join(
+          'min-h-24 w-full rounded-lg border border-neutral-border bg-neutral-white p-4 text-body-sm text-neutral-ink outline-none placeholder:text-neutral-gray focus:border-orange-800 focus:ring-2 focus:ring-orange-500/20 disabled:bg-neutral-soft disabled:opacity-60',
+          className,
+        )}
+        {...props}
+      />
+    </label>
+  );
+}
 
-export function QuantityStepper({ value = 1, min = 0, onChange }: { value?: number; min?: number; onChange?: (value: number) => void }) { const [internal, setInternal] = useState(value); const current = onChange ? value : internal; const update = (next: number) => { if (next < min) return; setInternal(next); onChange?.(next); }; return <div className="inline-flex items-center rounded-full bg-orange-200/20 p-1"><Button variant="icon" className="size-8" aria-label="Decrease quantity" onClick={() => update(current - 1)}>−</Button><span className="w-8 text-center text-body-sm font-semibold text-orange-800">{current}</span><Button variant="icon" className="size-8" aria-label="Increase quantity" onClick={() => update(current + 1)}>+</Button></div>; }
+export function QuantityStepper({
+  value = 1,
+  min = 0,
+  onChange,
+}: {
+  value?: number;
+  min?: number;
+  onChange?: (value: number) => void;
+}) {
+  const [internal, setInternal] = useState(value);
+  const current = onChange ? value : internal;
+  const update = (next: number) => {
+    if (next < min) return;
+    setInternal(next);
+    onChange?.(next);
+  };
+  return (
+    <div className="inline-flex items-center rounded-full bg-orange-200/20 p-1">
+      <Button
+        variant="icon"
+        className="size-8"
+        aria-label="Decrease quantity"
+        onClick={() => update(current - 1)}
+      >
+        −
+      </Button>
+      <span className="w-8 text-center text-body-sm font-semibold text-orange-800">{current}</span>
+      <Button
+        variant="icon"
+        className="size-8"
+        aria-label="Increase quantity"
+        onClick={() => update(current + 1)}
+      >
+        +
+      </Button>
+    </div>
+  );
+}
 
-export function Modal({ open, title, children, onClose }: { open: boolean; title: string; children: ReactNode; onClose: () => void }) { if (!open) return null; return <div className="fixed inset-0 z-50 grid place-items-center bg-admin-base/50 p-4" role="dialog" aria-modal="true"><section className="w-full max-w-lg rounded-xl bg-neutral-white p-6 shadow-menu"><div className="flex items-center justify-between"><h2 className="font-display text-heading-md text-neutral-ink">{title}</h2><Button variant="icon" onClick={onClose} aria-label="Close">×</Button></div><div className="mt-4">{children}</div></section></div>; }
-export function BottomSheet({ open, title, children, onClose }: { open: boolean; title: string; children: ReactNode; onClose: () => void }) { if (!open) return null; return <div className="fixed inset-0 z-50 bg-admin-base/50" role="dialog" aria-modal="true"><section className="absolute inset-x-0 bottom-0 rounded-t-2xl bg-neutral-white p-6 shadow-header"><div className="mx-auto mb-4 h-1 w-10 rounded-full bg-neutral-borderStrong"/><div className="flex items-center justify-between"><h2 className="font-display text-heading-md text-neutral-ink">{title}</h2><Button variant="icon" onClick={onClose} aria-label="Close">×</Button></div><div className="mt-4">{children}</div></section></div>; }
+export function Modal({
+  open,
+  title,
+  children,
+  onClose,
+}: {
+  open: boolean;
+  title: string;
+  children: ReactNode;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+  return (
+    <div
+      className="fixed inset-0 z-50 grid place-items-center bg-admin-base/50 p-4"
+      role="dialog"
+      aria-modal="true"
+    >
+      <section className="w-full max-w-lg rounded-xl bg-neutral-white p-6 shadow-menu">
+        <div className="flex items-center justify-between">
+          <h2 className="font-display text-heading-md text-neutral-ink">{title}</h2>
+          <Button variant="icon" onClick={onClose} aria-label="Close">
+            ×
+          </Button>
+        </div>
+        <div className="mt-4">{children}</div>
+      </section>
+    </div>
+  );
+}
+export function BottomSheet({
+  open,
+  title,
+  children,
+  onClose,
+}: {
+  open: boolean;
+  title: string;
+  children: ReactNode;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 bg-admin-base/50" role="dialog" aria-modal="true">
+      <section className="absolute inset-x-0 bottom-0 rounded-t-2xl bg-neutral-white p-6 shadow-header">
+        <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-neutral-borderStrong" />
+        <div className="flex items-center justify-between">
+          <h2 className="font-display text-heading-md text-neutral-ink">{title}</h2>
+          <Button variant="icon" onClick={onClose} aria-label="Close">
+            ×
+          </Button>
+        </div>
+        <div className="mt-4">{children}</div>
+      </section>
+    </div>
+  );
+}
 
-export function CustomerNavBar({ fixed = false, cartCount: cartCountOverride, onSearch, onLocationClick, locationName = 'Karachi' }: { fixed?: boolean; cartCount?: number; onSearch?: (query: string) => void; onLocationClick?: () => void; locationName?: string }) {
-  const storedCartCount = useCartStore((state) => state.items.reduce((total, item) => total + item.quantity, 0));
+export function CustomerNavBar({
+  fixed = false,
+  cartCount: cartCountOverride,
+  onSearch,
+  onLocationClick,
+  locationName = 'Karachi',
+}: {
+  fixed?: boolean;
+  cartCount?: number;
+  onSearch?: (query: string) => void;
+  onLocationClick?: () => void;
+  locationName?: string;
+}) {
+  const storedCartCount = useCartStore((state) =>
+    state.items.reduce((total, item) => total + item.quantity, 0),
+  );
   const cartCount = cartCountOverride ?? storedCartCount;
   const [open, setOpen] = useState(false);
-  useEffect(() => { const close = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false); window.addEventListener('keydown', close); document.body.style.overflow = open ? 'hidden' : ''; return () => { window.removeEventListener('keydown', close); document.body.style.overflow = ''; }; }, [open]);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', close);
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      window.removeEventListener('keydown', close);
+      document.body.style.overflow = '';
+    };
+  }, [open]);
   const closeMenu = () => setOpen(false);
-  return <header className={join('relative z-[60] w-full border-b border-neutral-border bg-white shadow-card transition-shadow', fixed && 'fixed inset-x-0 top-0')}><div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 md:h-20 md:px-6"><div className="flex items-center gap-4 md:gap-8"><Link href="/" aria-label="Orange Cloud Kitchen home" className="flex shrink-0"><OrangeLogo compact /></Link><button type="button" onClick={onLocationClick} className="hidden items-center gap-1 border-b-2 border-orange-500 py-1 text-body font-semibold text-neutral-ink md:inline-flex"><span className="material-symbols-outlined text-[20px] text-orange-500">location_on</span>{locationName}<span className="material-symbols-outlined text-[16px]">expand_more</span></button><Link href="/menu" className="hidden text-body-sm font-semibold text-neutral-copy transition hover:text-orange-500 md:block">Menu</Link></div><div className="mx-5 hidden max-w-xl flex-1 md:block"><label className="relative block"><span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-neutral-copy">search</span><input onChange={(event) => onSearch?.(event.target.value)} aria-label="Search dishes and cuisines" placeholder="Search for dishes, cuisines..." className="w-full rounded-full border border-neutral-border bg-neutral-soft py-3 pl-12 pr-6 text-body text-neutral-ink outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20" /></label></div><div className="flex items-center gap-1 md:gap-4"><button type="button" onClick={() => setOpen(true)} aria-label="Open navigation" className="grid size-11 place-items-center rounded-full text-neutral-copy hover:bg-neutral-blue md:hidden"><span className="material-symbols-outlined">menu</span></button><Link href="/cart" aria-label="Cart" className="relative grid size-11 place-items-center rounded-full text-neutral-copy transition hover:bg-neutral-blue hover:text-orange-500"><span className="material-symbols-outlined text-[27px]">shopping_cart</span>{cartCount > 0 && <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-orange-500 text-[10px] font-bold text-white">{cartCount}</span>}</Link><Link href="/profile" aria-label="Profile" className="hidden size-10 place-items-center rounded-full bg-neutral-blue text-orange-500 md:grid"><span className="material-symbols-outlined">person</span></Link></div></div>{open && <div className="fixed inset-0 z-[70] bg-black/40 md:hidden" onClick={closeMenu}><nav className="ml-auto flex h-full w-[min(85vw,340px)] flex-col bg-white p-6 shadow-menu" onClick={(event) => event.stopPropagation()} aria-label="Mobile navigation"><div className="flex items-center justify-between"><OrangeLogo compact /><button type="button" aria-label="Close navigation" onClick={closeMenu} className="grid size-11 place-items-center rounded-full hover:bg-neutral-soft"><span className="material-symbols-outlined">close</span></button></div><button type="button" onClick={() => { onLocationClick?.(); closeMenu(); }} className="mt-8 flex min-h-12 items-center gap-2 rounded-xl bg-neutral-soft px-4 text-left text-sm font-semibold"><span className="material-symbols-outlined text-orange-500">location_on</span>{locationName}</button><div className="mt-5 grid gap-2">{[{ href: '/', label: 'Home', icon: 'home' }, { href: '/menu', label: 'Menu', icon: 'restaurant_menu' }, { href: '/cart', label: 'Cart', icon: 'shopping_cart' }, { href: '/profile', label: 'My profile', icon: 'person' }].map((item) => <Link key={item.href} href={item.href} onClick={closeMenu} className="flex min-h-12 items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold text-neutral-ink hover:bg-orange-100"><span className="material-symbols-outlined text-orange-500">{item.icon}</span>{item.label}</Link>)}</div></nav></div>}</header>;
+  return (
+    <header
+      className={join(
+        'relative z-[60] w-full border-b border-neutral-border bg-white shadow-card transition-shadow',
+        fixed && 'fixed inset-x-0 top-0',
+      )}
+    >
+      <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 md:h-20 md:px-6">
+        <div className="flex items-center gap-4 md:gap-8">
+          <Link href="/" aria-label="Orange Cloud Kitchen home" className="flex shrink-0">
+            <OrangeLogo compact />
+          </Link>
+          <button
+            type="button"
+            onClick={onLocationClick}
+            className="hidden items-center gap-1 border-b-2 border-orange-500 py-1 text-body font-semibold text-neutral-ink md:inline-flex"
+          >
+            <span className="material-symbols-outlined text-[20px] text-orange-500">
+              location_on
+            </span>
+            {locationName}
+            <span className="material-symbols-outlined text-[16px]">expand_more</span>
+          </button>
+          <Link
+            href="/menu"
+            className="hidden text-body-sm font-semibold text-neutral-copy transition hover:text-orange-500 md:block"
+          >
+            Menu
+          </Link>
+        </div>
+        <div className="mx-5 hidden max-w-xl flex-1 md:block">
+          <label className="relative block">
+            <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-neutral-copy">
+              search
+            </span>
+            <input
+              onChange={(event) => onSearch?.(event.target.value)}
+              aria-label="Search dishes and cuisines"
+              placeholder="Search for dishes, cuisines..."
+              className="w-full rounded-full border border-neutral-border bg-neutral-soft py-3 pl-12 pr-6 text-body text-neutral-ink outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20"
+            />
+          </label>
+        </div>
+        <div className="flex items-center gap-1 md:gap-4">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label="Open navigation"
+            className="grid size-11 place-items-center rounded-full text-neutral-copy hover:bg-neutral-blue md:hidden"
+          >
+            <span className="material-symbols-outlined">menu</span>
+          </button>
+          <Link
+            href="/cart"
+            aria-label="Cart"
+            className="relative grid size-11 place-items-center rounded-full text-neutral-copy transition hover:bg-neutral-blue hover:text-orange-500"
+          >
+            <span className="material-symbols-outlined text-[27px]">shopping_cart</span>
+            {cartCount > 0 && (
+              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-orange-500 text-[10px] font-bold text-white">
+                {cartCount}
+              </span>
+            )}
+          </Link>
+          <Link
+            href="/profile"
+            aria-label="Profile"
+            className="hidden size-10 place-items-center rounded-full bg-neutral-blue text-orange-500 md:grid"
+          >
+            <span className="material-symbols-outlined">person</span>
+          </Link>
+        </div>
+      </div>
+      {open && (
+        <div className="fixed inset-0 z-[70] bg-black/40 md:hidden" onClick={closeMenu}>
+          <nav
+            className="ml-auto flex h-full w-[min(85vw,340px)] flex-col bg-white p-6 shadow-menu"
+            onClick={(event) => event.stopPropagation()}
+            aria-label="Mobile navigation"
+          >
+            <div className="flex items-center justify-between">
+              <OrangeLogo compact />
+              <button
+                type="button"
+                aria-label="Close navigation"
+                onClick={closeMenu}
+                className="grid size-11 place-items-center rounded-full hover:bg-neutral-soft"
+              >
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                onLocationClick?.();
+                closeMenu();
+              }}
+              className="mt-8 flex min-h-12 items-center gap-2 rounded-xl bg-neutral-soft px-4 text-left text-sm font-semibold"
+            >
+              <span className="material-symbols-outlined text-orange-500">location_on</span>
+              {locationName}
+            </button>
+            <div className="mt-5 grid gap-2">
+              {[
+                { href: '/', label: 'Home', icon: 'home' },
+                { href: '/menu', label: 'Menu', icon: 'restaurant_menu' },
+                { href: '/cart', label: 'Cart', icon: 'shopping_cart' },
+                { href: '/profile', label: 'My profile', icon: 'person' },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="flex min-h-12 items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold text-neutral-ink hover:bg-orange-100"
+                >
+                  <span className="material-symbols-outlined text-orange-500">{item.icon}</span>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
 }
 
 export function CustomerFooter() {
-  return <footer className="border-t border-neutral-border bg-white"><div className="mx-auto max-w-screen-xl px-5 py-12 md:px-6 md:py-16"><div className="grid gap-9 sm:grid-cols-2 md:grid-cols-4 md:gap-12"><div><OrangeLogo /><p className="mt-5 max-w-[230px] text-caption leading-5 text-neutral-copy">Where taste makes memories. Freshly prepared food, delivered with care across Karachi.</p><div className="mt-6 flex gap-4 text-neutral-copy"><span className="material-symbols-outlined text-[19px]">qr_code_2</span><span className="material-symbols-outlined text-[19px]">photo_camera</span><span className="material-symbols-outlined text-[19px]">alternate_email</span></div></div><CustomerFooterGroup title="Menu" links={['Fast Food', 'Chinese Cuisine', 'Pakistani BBQ', 'Desserts', 'Beverages']} /><CustomerFooterGroup title="Quick Links" links={['About Us', 'Contact Support', 'Order Tracking', 'Privacy Policy', 'Terms of Service']} /><div><h3 className="font-semibold">Contact</h3><ul className="mt-5 space-y-3 text-caption text-neutral-copy"><li className="flex gap-2"><span className="material-symbols-outlined text-[15px] text-orange-500">location_on</span>DHA Phase 6, Karachi, Pakistan</li><li className="flex gap-2"><span className="material-symbols-outlined text-[15px] text-orange-500">call</span>+92 21 3456 7890</li><li className="flex gap-2"><span className="material-symbols-outlined text-[15px] text-orange-500">mail</span>info@orangecloudkitchen.pk</li></ul></div></div><div className="mt-12 flex flex-col gap-4 border-t border-neutral-border pt-6 text-caption text-neutral-copy md:flex-row md:items-center md:justify-between"><span>© 2026 Orange Cloud Kitchen. All rights reserved.</span><div className="flex gap-2"><span className="rounded bg-neutral-soft px-2 py-1 text-[10px] font-bold">VISA</span><span className="rounded bg-neutral-soft px-2 py-1 text-[10px] font-bold">mastercard</span></div></div></div></footer>;
+  return (
+    <footer className="border-t border-neutral-border bg-white">
+      <div className="mx-auto max-w-screen-xl px-5 py-12 md:px-6 md:py-16">
+        <div className="grid gap-9 sm:grid-cols-2 md:grid-cols-4 md:gap-12">
+          <div>
+            <OrangeLogo />
+            <p className="mt-5 max-w-[230px] text-caption leading-5 text-neutral-copy">
+              Where taste makes memories. Freshly prepared food, delivered with care across Karachi.
+            </p>
+            <div className="mt-6 flex gap-4 text-neutral-copy">
+              <span className="material-symbols-outlined text-[19px]">qr_code_2</span>
+              <span className="material-symbols-outlined text-[19px]">photo_camera</span>
+              <span className="material-symbols-outlined text-[19px]">alternate_email</span>
+            </div>
+          </div>
+          <CustomerFooterGroup
+            title="Menu"
+            links={['Fast Food', 'Chinese Cuisine', 'Pakistani BBQ', 'Desserts', 'Beverages']}
+          />
+          <CustomerFooterGroup
+            title="Quick Links"
+            links={[
+              'About Us',
+              'Contact Support',
+              'Order Tracking',
+              'Privacy Policy',
+              'Terms of Service',
+            ]}
+          />
+          <div>
+            <h3 className="font-semibold">Contact</h3>
+            <ul className="mt-5 space-y-3 text-caption text-neutral-copy">
+              <li className="flex gap-2">
+                <span className="material-symbols-outlined text-[15px] text-orange-500">
+                  location_on
+                </span>
+                DHA Phase 6, Karachi, Pakistan
+              </li>
+              <li className="flex gap-2">
+                <span className="material-symbols-outlined text-[15px] text-orange-500">call</span>
+                +92 21 3456 7890
+              </li>
+              <li className="flex gap-2">
+                <span className="material-symbols-outlined text-[15px] text-orange-500">mail</span>
+                info@orangecloudkitchen.pk
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-12 flex flex-col gap-4 border-t border-neutral-border pt-6 text-caption text-neutral-copy md:flex-row md:items-center md:justify-between">
+          <span>© 2026 Orange Cloud Kitchen. All rights reserved.</span>
+          <div className="flex gap-2">
+            <span className="rounded bg-neutral-soft px-2 py-1 text-[10px] font-bold">VISA</span>
+            <span className="rounded bg-neutral-soft px-2 py-1 text-[10px] font-bold">
+              mastercard
+            </span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
-function CustomerFooterGroup({ title, links }: { title: string; links: string[] }) { return <div><h3 className="font-semibold">{title}</h3><ul className="mt-5 space-y-3 text-caption text-neutral-copy">{links.map((link) => <li key={link}><a href="#" className="transition hover:text-orange-800">{link}</a></li>)}</ul></div>; }
+function CustomerFooterGroup({ title, links }: { title: string; links: string[] }) {
+  return (
+    <div>
+      <h3 className="font-semibold">{title}</h3>
+      <ul className="mt-5 space-y-3 text-caption text-neutral-copy">
+        {links.map((link) => (
+          <li key={link}>
+            <a href="#" className="transition hover:text-orange-800">
+              {link}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-export function AdminSidebar({ mobile = false, open = true, onClose }: { mobile?: boolean; open?: boolean; onClose?: () => void }) { const pathname = usePathname(); const nav = [{ label: 'Dashboard', href: '/admin', icon: 'dashboard' }, { label: 'Orders', href: '/admin/orders', icon: 'receipt_long' }, { label: 'Menu', href: '/admin/menu', icon: 'restaurant_menu' }, { label: 'Categories', href: '/admin/categories', icon: 'category' }, { label: 'Customers', href: '/admin/customers', icon: 'group' }, { label: 'Settings', href: '/admin/settings', icon: 'settings' }]; const content = <aside className="flex h-full w-72 flex-col bg-admin-surface p-6 shadow-subtle"><Link href="/admin" className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-orange-500 text-white"><span className="material-symbols-outlined">restaurant</span></span><span><span className="block font-display text-heading-md text-orange-500">Orange Merchant</span><span className="text-caption text-admin-muted">Partner Portal</span></span></Link>{mobile && <Button variant="icon" className="absolute right-4 top-4 text-admin-text" onClick={onClose} aria-label="Close navigation">×</Button>}<nav className="mt-12 space-y-2">{nav.map((item) => <Link key={item.href} href={item.href} onClick={onClose} className={join('flex items-center gap-4 rounded-xl px-4 py-3 text-body font-semibold transition', pathname === item.href ? 'bg-admin-border text-admin-text' : 'text-admin-muted hover:bg-admin-border/30 hover:text-admin-text')}><span className="material-symbols-outlined">{item.icon}</span>{item.label}</Link>)}</nav><Link href="/" className="mt-auto flex h-14 items-center justify-center gap-2 rounded-xl bg-orange-500 font-semibold text-white"><span className="material-symbols-outlined">visibility</span>View Live Store</Link></aside>; if (!mobile) return content; if (!open) return null; return <div className="fixed inset-0 z-50 bg-admin-base/70"><div className="relative h-full w-72 shadow-drawer">{content}</div></div>; }
-export function AdminMobileNav({ onOpen }: { onOpen: () => void }) { return <header className="flex h-16 items-center justify-between border-b border-admin-border bg-admin-surface px-4"><Button variant="icon" className="text-admin-text" onClick={onOpen} aria-label="Open navigation"><span className="material-symbols-outlined">menu</span></Button><span className="font-display text-heading-md text-orange-500">Orange Merchant</span><span className="material-symbols-outlined text-admin-muted">notifications</span></header>; }
+export function AdminSidebar({
+  mobile = false,
+  open = true,
+  onClose,
+}: {
+  mobile?: boolean;
+  open?: boolean;
+  onClose?: () => void;
+}) {
+  const pathname = usePathname();
+  const nav = [
+    { label: 'Dashboard', href: '/admin', icon: 'dashboard' },
+    { label: 'Orders', href: '/admin/orders', icon: 'receipt_long' },
+    { label: 'Menu', href: '/admin/menu', icon: 'restaurant_menu' },
+    { label: 'Categories', href: '/admin/categories', icon: 'category' },
+    { label: 'Deals', href: '/admin/deals', icon: 'sell' },
+    { label: 'Hero Banners', href: '/admin/banners', icon: 'view_carousel' },
+    { label: 'Locations', href: '/admin/locations', icon: 'location_on' },
+    { label: 'Delivery settings', href: '/admin/delivery', icon: 'local_shipping' },
+    { label: 'Customers', href: '/admin/customers', icon: 'group' },
+    { label: 'Settings', href: '/admin/settings', icon: 'settings' },
+  ];
+  const content = (
+    <aside className="flex h-full w-72 flex-col bg-admin-surface p-6 shadow-subtle">
+      <Link href="/admin" className="flex items-center gap-3">
+        <span className="grid size-11 place-items-center rounded-xl bg-orange-500 text-white">
+          <span className="material-symbols-outlined">restaurant</span>
+        </span>
+        <span>
+          <span className="block font-display text-heading-md text-orange-500">
+            Orange Merchant
+          </span>
+          <span className="text-caption text-admin-muted">Partner Portal</span>
+        </span>
+      </Link>
+      {mobile && (
+        <Button
+          variant="icon"
+          className="absolute right-4 top-4 text-admin-text"
+          onClick={onClose}
+          aria-label="Close navigation"
+        >
+          ×
+        </Button>
+      )}
+      <nav className="mt-12 space-y-2">
+        {nav.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={onClose}
+            className={join(
+              'flex items-center gap-4 rounded-xl px-4 py-3 text-body font-semibold transition',
+              pathname === item.href
+                ? 'bg-admin-border text-admin-text'
+                : 'text-admin-muted hover:bg-admin-border/30 hover:text-admin-text',
+            )}
+          >
+            <span className="material-symbols-outlined">{item.icon}</span>
+            {item.label}
+          </Link>
+        ))}
+      </nav>
+      <Link
+        href="/"
+        className="mt-auto flex h-14 items-center justify-center gap-2 rounded-xl bg-orange-500 font-semibold text-white"
+      >
+        <span className="material-symbols-outlined">visibility</span>View Live Store
+      </Link>
+    </aside>
+  );
+  if (!mobile) return content;
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 bg-admin-base/70">
+      <div className="relative h-full w-72 shadow-drawer">{content}</div>
+    </div>
+  );
+}
+export function AdminMobileNav({ onOpen }: { onOpen: () => void }) {
+  return (
+    <header className="flex h-16 items-center justify-between border-b border-admin-border bg-admin-surface px-4">
+      <Button
+        variant="icon"
+        className="text-admin-text"
+        onClick={onOpen}
+        aria-label="Open navigation"
+      >
+        <span className="material-symbols-outlined">menu</span>
+      </Button>
+      <span className="font-display text-heading-md text-orange-500">Orange Merchant</span>
+      <span className="material-symbols-outlined text-admin-muted">notifications</span>
+    </header>
+  );
+}
 
-export function Toast({ message, tone = 'success', duration = 0, onClose }: { message: string; tone?: 'success' | 'error' | 'info'; duration?: number; onClose?: () => void }) { useEffect(() => { if (!duration || !onClose) return; const id = window.setTimeout(onClose, duration); return () => window.clearTimeout(id); }, [duration, onClose]); const colors = { success: 'border-success bg-success/20 text-success', error: 'border-danger bg-danger/20 text-danger', info: 'border-info bg-info/20 text-info' }; return <div className={join('flex items-center justify-between gap-4 rounded-lg border p-4 text-body-sm font-semibold shadow-overlay', colors[tone])} role="status"><span>{message}</span>{onClose && <button onClick={onClose} aria-label="Close notification">×</button>}</div>; }
+export function Toast({
+  message,
+  tone = 'success',
+  duration = 0,
+  onClose,
+}: {
+  message: string;
+  tone?: 'success' | 'error' | 'info';
+  duration?: number;
+  onClose?: () => void;
+}) {
+  useEffect(() => {
+    if (!duration || !onClose) return;
+    const id = window.setTimeout(onClose, duration);
+    return () => window.clearTimeout(id);
+  }, [duration, onClose]);
+  const colors = {
+    success: 'border-success bg-success/20 text-success',
+    error: 'border-danger bg-danger/20 text-danger',
+    info: 'border-info bg-info/20 text-info',
+  };
+  return (
+    <div
+      className={join(
+        'flex items-center justify-between gap-4 rounded-lg border p-4 text-body-sm font-semibold shadow-overlay',
+        colors[tone],
+      )}
+      role="status"
+    >
+      <span>{message}</span>
+      {onClose && (
+        <button onClick={onClose} aria-label="Close notification">
+          ×
+        </button>
+      )}
+    </div>
+  );
+}
