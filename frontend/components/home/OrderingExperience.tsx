@@ -364,9 +364,12 @@ export function OrderingExperience() {
   return (
     <main className="order-page">
       <div className="order-bar">
-        <button type="button" onClick={() => setLocationOpen(true)}>
-          <span className="material-symbols-outlined">location_on</span> Delivering across selected
-          Karachi areas
+        <button type="button" onClick={() => locations.length && setLocationOpen(true)}>
+          <span className="material-symbols-outlined">location_on</span>{' '}
+          {selectedLocation?.name ??
+            (locations.length
+              ? 'Select your delivery location'
+              : 'Delivery across selected Karachi areas')}
         </button>
         <span className="hidden sm:inline">Freshly prepared after you order</span>
       </div>
@@ -717,16 +720,17 @@ export function OrderingExperience() {
               ))}
               {!locations.length && (
                 <p className="rounded-xl bg-neutral-soft p-4 text-sm text-neutral-muted">
-                  Delivery locations are not available yet. Please contact Orange to place an order.
+                  Browse the menu while delivery locations are being configured. Delivery details
+                  will be confirmed at checkout.
                 </p>
               )}
             </div>
-            {selectedLocation && (
+            {(selectedLocation || !locations.length) && (
               <button
                 onClick={() => setLocationOpen(false)}
                 className="mt-5 text-sm font-bold text-orange-800"
               >
-                Keep current location
+                {selectedLocation ? 'Keep current location' : 'Continue to the menu'}
               </button>
             )}
           </section>
