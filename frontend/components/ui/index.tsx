@@ -318,14 +318,14 @@ export function Modal({
       role="dialog"
       aria-modal="true"
     >
-      <section className="w-full max-w-lg rounded-xl bg-neutral-white p-6 shadow-menu">
-        <div className="flex items-center justify-between">
+      <section className="flex max-h-[calc(100dvh-2rem)] w-full max-w-lg flex-col overflow-hidden rounded-xl bg-neutral-white p-6 shadow-menu">
+        <div className="flex shrink-0 items-center justify-between">
           <h2 className="font-display text-heading-md text-neutral-ink">{title}</h2>
           <Button variant="icon" onClick={onClose} aria-label="Close">
             ×
           </Button>
         </div>
-        <div className="mt-4">{children}</div>
+        <div className="mt-4 min-h-0 overflow-y-auto pr-1">{children}</div>
       </section>
     </div>
   );

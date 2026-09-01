@@ -15,12 +15,12 @@ export default function Categories() {
   const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<ApiCategory | null>(null);
-  const [name, setName] = useState('Fast Food');
+  const [name, setName] = useState('');
   const [displayOrder, setDisplayOrder] = useState('0');
   const [saving, setSaving] = useState(false);
   const load = () =>
     apiClient
-      .get('/categories')
+      .get('/categories', { params: { admin: true } })
       .then((response) => setCategories(response.data.data))
       .catch((requestError) => setError(apiError(requestError)));
   useEffect(() => {
@@ -28,15 +28,20 @@ export default function Categories() {
   }, []);
   const edit = (category?: ApiCategory) => {
     setSelected(category ?? null);
-    setName(category?.name ?? 'Fast Food');
+    setName(category?.name ?? '');
     setDisplayOrder(String(category?.displayOrder ?? categories.length));
     setOpen(true);
   };
   const save = async () => {
+    const cleanName = name.trim();
+    if (!cleanName) {
+      setError('Enter a category name.');
+      return;
+    }
     setSaving(true);
     setError('');
     try {
-      const body = { name, displayOrder: Number(displayOrder) };
+      const body = { name: cleanName, displayOrder: Number(displayOrder) };
       if (selected) await apiClient.put(`/categories/${selected._id}`, body);
       else await apiClient.post('/categories', body);
       setOpen(false);
@@ -131,20 +136,13 @@ export default function Categories() {
         onClose={() => setOpen(false)}
       >
         <div className="space-y-5">
-          <label className="block">
-            <span className="mb-2 block text-sm font-semibold text-neutral-copy">
-              Category name
-            </span>
-            <select
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              className="h-12 w-full rounded-lg border border-neutral-border px-4 outline-none"
-            >
-              <option>Fast Food</option>
-              <option>Chinese Food</option>
-              <option>BBQ</option>
-            </select>
-          </label>
+          <Input
+            label="Category name"
+            value={name}
+            placeholder="e.g. Desserts"
+            maxLength={120}
+            onChange={(event) => setName(event.target.value)}
+          />
           <Input
             label="Display order"
             type="number"
