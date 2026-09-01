@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   apiClient,
@@ -303,6 +304,7 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
 }
 
 export function OrderingExperience() {
+  const reduceMotion = useReducedMotion();
   const [items, setItems] = useState<ApiMenuItem[]>([]);
   const [categories, setCategories] = useState<ApiCategory[]>([]);
   const [deals, setDeals] = useState<ApiDeal[]>([]);
@@ -411,14 +413,29 @@ export function OrderingExperience() {
   const contactNumber = selectedLocation?.contactNumber || '+923001234567';
   const phoneHref = `tel:${contactNumber.replace(/[^\d+]/g, '')}`;
   const signature = items.find((item) => /platter/i.test(item.name)) ?? items[0];
+  const sectionReveal = reduceMotion
+    ? {}
+    : ({
+        initial: { opacity: 0, y: 28 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.16 },
+        transition: { duration: 0.55, ease: 'easeOut' },
+      } as const);
   return (
     <main className="order-page">
-      <div className="order-bar">
+      <motion.div
+        className="order-bar"
+        initial={reduceMotion ? false : { opacity: 0, y: -16 }}
+        animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      >
         <div className="order-bar__left">
-          <button
+          <motion.button
             type="button"
             className="order-top-chip"
             onClick={() => locations.length && setLocationOpen(true)}
+            whileHover={reduceMotion ? undefined : { y: -1 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
           >
             <span className="material-symbols-outlined">location_on</span>
             <b>
@@ -428,14 +445,19 @@ export function OrderingExperience() {
             <span className="material-symbols-outlined order-top-chip__chevron">
               chevron_right
             </span>
-          </button>
-          <a className="order-top-chip order-top-chip--phone" href={phoneHref}>
+          </motion.button>
+          <motion.a
+            className="order-top-chip order-top-chip--phone"
+            href={phoneHref}
+            whileHover={reduceMotion ? undefined : { y: -1 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+          >
             <span className="material-symbols-outlined">call</span>
             <b>
               <small>Call</small>
               {contactNumber}
             </b>
-          </a>
+          </motion.a>
         </div>
         <Link href="#home" className="order-top-logo" aria-label="Orange home">
           <Image
@@ -447,57 +469,78 @@ export function OrderingExperience() {
           />
         </Link>
         <div className="order-bar__right">
-          <button
+          <motion.button
             className="order-search"
             aria-label="Search the menu"
             onClick={() => setSearchOpen(true)}
+            whileHover={reduceMotion ? undefined : { y: -1 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.94 }}
           >
             <span className="material-symbols-outlined">search</span>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             className="order-cart"
             onClick={() => setCartOpen(true)}
             aria-label={`Open cart, ${cartCount} items`}
+            whileHover={reduceMotion ? undefined : { y: -1 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.94 }}
           >
             <span className="material-symbols-outlined">shopping_cart</span>
             <b>{cartCount}</b>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             className="order-menu-toggle"
             onClick={() => setMenuOpen(true)}
             aria-label="Open navigation"
+            whileHover={reduceMotion ? undefined : { y: -1 }}
+            whileTap={reduceMotion ? undefined : { scale: 0.94 }}
           >
             <span className="material-symbols-outlined">menu</span>
-          </button>
+          </motion.button>
         </div>
-      </div>
-      <div className={`order-mobile-nav ${menuOpen ? 'is-open' : ''}`}>
-        <button onClick={() => setMenuOpen(false)} aria-label="Close navigation">
-          <span className="material-symbols-outlined">close</span>
-        </button>
-        <Image src="/orange-cloud-kitchen.svg" alt="Orange Cloud Kitchen" width={180} height={52} />
-        <nav>
-          {[
-            ['Home', '#home'],
-            ['Menu', '#menu'],
-            ['Categories', '#categories'],
-            ['About', '#about'],
-            ['Contact', '#contact'],
-          ].map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>
-              {label}
-            </a>
-          ))}
-        </nav>
-        <button
-          onClick={() => {
-            setMenuOpen(false);
-            setCartOpen(true);
-          }}
-        >
-          View your order ({cartCount})
-        </button>
-      </div>
+      </motion.div>
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="order-mobile-nav is-open"
+            initial={reduceMotion ? false : { opacity: 0, x: 28 }}
+            animate={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, x: 28 }}
+            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <button onClick={() => setMenuOpen(false)} aria-label="Close navigation">
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            <Image
+              src="/orange-cloud-kitchen.svg"
+              alt="Orange Cloud Kitchen"
+              width={180}
+              height={52}
+            />
+            <nav>
+              {[
+                ['Home', '#home'],
+                ['Menu', '#menu'],
+                ['Categories', '#categories'],
+                ['About', '#about'],
+                ['Contact', '#contact'],
+              ].map(([label, href]) => (
+                <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                setCartOpen(true);
+              }}
+            >
+              View your order ({cartCount})
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <section
         id="home"
         className="order-hero"
@@ -530,11 +573,17 @@ export function OrderingExperience() {
           />
         </div>
         <div className="order-hero__viewport">
-          {heroSlides.map((slide, index) => (
-            <article
+          <AnimatePresence mode="wait">
+            {heroSlides.map((slide, index) =>
+              index === activeSlide ? (
+                <motion.article
               key={slide._id}
-              className={`order-hero__slide ${index === activeSlide ? 'is-active' : ''}`}
-              aria-hidden={index !== activeSlide}
+                  className="order-hero__slide is-active"
+                  aria-hidden={false}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 1.015 }}
+                  animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                  exit={reduceMotion ? undefined : { opacity: 0, scale: 1.015 }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             >
               <picture className="order-hero__media">
                 {slide.mobileImageUrl && (
@@ -558,16 +607,27 @@ export function OrderingExperience() {
                 </h1>
                 <p>{slide.subtitle}</p>
                 <div>
-                  <a href={slide.ctaTarget || '#menu'}>
+                  <motion.a
+                    href={slide.ctaTarget || '#menu'}
+                    whileHover={reduceMotion ? undefined : { y: -2 }}
+                    whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                  >
                     {slide.ctaLabel || 'Order now'} <span>→</span>
-                  </a>
-                  <a className="order-hero__secondary" href="#categories">
+                  </motion.a>
+                  <motion.a
+                    className="order-hero__secondary"
+                    href="#categories"
+                    whileHover={reduceMotion ? undefined : { y: -2 }}
+                    whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                  >
                     Explore menu
-                  </a>
+                  </motion.a>
                 </div>
               </div>
-            </article>
-          ))}
+                </motion.article>
+              ) : null,
+            )}
+          </AnimatePresence>
         </div>
         {heroCount > 1 && (
           <>
@@ -603,7 +663,7 @@ export function OrderingExperience() {
           </>
         )}
       </section>
-      <section id="categories" className="order-categories">
+      <motion.section id="categories" className="order-categories" {...sectionReveal}>
         <div className="order-section-title">
           <span>Pick your craving</span>
           <h2>What are you in the mood for?</h2>
@@ -625,8 +685,8 @@ export function OrderingExperience() {
             </button>
           ))}
         </div>
-      </section>
-      <section className="order-featured">
+      </motion.section>
+      <motion.section className="order-featured" {...sectionReveal}>
         <div className="order-section-title">
           <span>Kitchen favourites</span>
           <h2>Start with the most-loved dishes.</h2>
@@ -637,7 +697,7 @@ export function OrderingExperience() {
             <ProductCard key={item._id} item={item} onAdd={addItem} featured />
           ))}
         </div>
-      </section>
+      </motion.section>
       {signature && (
         <section className="order-signature">
           <div>
