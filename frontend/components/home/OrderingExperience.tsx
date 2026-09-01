@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   apiClient,
   type ApiCategory,
@@ -26,6 +26,44 @@ const categoryCopy: Record<string, string> = {
   'Chinese Food': 'Wok-tossed comfort, made fresh.',
   BBQ: 'Smoky grill favourites, made to share.',
 };
+const fallbackHeroSlides: ApiHeroSlide[] = [
+  {
+    _id: 'orange-hero-signature',
+    title: 'Big flavour',
+    highlightedText: 'made for craving.',
+    subtitle: 'Fresh burgers, wok-tossed favourites and smoky BBQ prepared after you order.',
+    imageUrl: '/images/hero/hero-signature.svg',
+    mobileImageUrl: '/images/hero/hero-signature-mobile.svg',
+    ctaLabel: 'Order now',
+    ctaTarget: '#menu',
+    isActive: true,
+    displayOrder: 0,
+  },
+  {
+    _id: 'orange-hero-burger',
+    title: 'Stacked burgers',
+    highlightedText: 'hot from Orange.',
+    subtitle: 'Crispy, saucy and built for serious Karachi cravings.',
+    imageUrl: '/images/hero/hero-burger-meal.svg',
+    mobileImageUrl: '/images/hero/hero-burger-meal-mobile.svg',
+    ctaLabel: 'View burgers',
+    ctaTarget: '#menu',
+    isActive: true,
+    displayOrder: 1,
+  },
+  {
+    _id: 'orange-hero-wok',
+    title: 'Wok-tossed favourites',
+    highlightedText: 'ready when you are.',
+    subtitle: 'Chinese comfort, BBQ plates and quick bites in one clean menu.',
+    imageUrl: '/images/hero/hero-variety.svg',
+    mobileImageUrl: '/images/hero/hero-variety-mobile.svg',
+    ctaLabel: 'Explore menu',
+    ctaTarget: '#categories',
+    isActive: true,
+    displayOrder: 2,
+  },
+];
 const fallbackSeed: Array<[string, string, number, string, string]> = [
   [
     'Mighty Zinger',
@@ -273,12 +311,14 @@ export function OrderingExperience() {
   const [selectedLocation, setSelectedLocation] = useState<ApiLocation | null>(null);
   const [locationOpen, setLocationOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [active, setActive] = useState('');
   const [query, setQuery] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [notice, setNotice] = useState('');
+  const heroTouchStart = useRef<number | null>(null);
   const add = useCartStore((state) => state.add);
   const cartCount = useCartStore((state) =>
     state.items.reduce((sum, item) => sum + item.quantity, 0),
@@ -313,14 +353,19 @@ export function OrderingExperience() {
         .then((response) => setDeals(response.data.data ?? []))
         .catch(() => setDeals([]));
   }, [selectedLocation]);
+  const heroSlides = slides.length ? slides : fallbackHeroSlides;
+  const heroCount = heroSlides.length;
   useEffect(() => {
-    if (slides.length < 2) return;
+    if (heroCount < 2 || heroPaused) return;
     const timer = window.setInterval(
-      () => setActiveSlide((current) => (current + 1) % slides.length),
+      () => setActiveSlide((current) => (current + 1) % heroCount),
       6500,
     );
     return () => window.clearInterval(timer);
-  }, [slides.length]);
+  }, [heroCount, heroPaused]);
+  useEffect(() => {
+    if (activeSlide >= heroCount) setActiveSlide(0);
+  }, [activeSlide, heroCount]);
   useEffect(() => {
     if (!notice) return;
     const timer = window.setTimeout(() => setNotice(''), 2200);
@@ -360,39 +405,48 @@ export function OrderingExperience() {
     setLocationOpen(false);
     setNotice(`Now ordering from ${location.name}`);
   };
+  const goHero = (index: number) => {
+    setActiveSlide((index + heroCount) % heroCount);
+  };
+  const contactNumber = selectedLocation?.contactNumber || '+923001234567';
+  const phoneHref = `tel:${contactNumber.replace(/[^\d+]/g, '')}`;
   const signature = items.find((item) => /platter/i.test(item.name)) ?? items[0];
   return (
     <main className="order-page">
       <div className="order-bar">
-        <button type="button" onClick={() => locations.length && setLocationOpen(true)}>
-          <span className="material-symbols-outlined">location_on</span>{' '}
-          {selectedLocation?.name ??
-            (locations.length
-              ? 'Select your delivery location'
-              : 'Delivery across selected Karachi areas')}
-        </button>
-        <span className="hidden sm:inline">Freshly prepared after you order</span>
-      </div>
-      <header className="order-header">
-        <Link href="#home" className="order-brand" aria-label="Orange home">
+        <div className="order-bar__left">
+          <button
+            type="button"
+            className="order-top-chip"
+            onClick={() => locations.length && setLocationOpen(true)}
+          >
+            <span className="material-symbols-outlined">location_on</span>
+            <b>
+              <small>Delivery</small>
+              {selectedLocation?.name ?? (locations.length ? 'Select area' : 'Karachi areas')}
+            </b>
+            <span className="material-symbols-outlined order-top-chip__chevron">
+              chevron_right
+            </span>
+          </button>
+          <a className="order-top-chip order-top-chip--phone" href={phoneHref}>
+            <span className="material-symbols-outlined">call</span>
+            <b>
+              <small>Call</small>
+              {contactNumber}
+            </b>
+          </a>
+        </div>
+        <Link href="#home" className="order-top-logo" aria-label="Orange home">
           <Image
             src="/orange-cloud-kitchen.svg"
             alt="Orange Cloud Kitchen"
             width={160}
-            height={46}
+            height={56}
             priority
           />
         </Link>
-        <nav aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#menu" onClick={() => setActive('')}>
-            Menu
-          </a>
-          <a href="#categories">Categories</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <div className="order-header__actions">
+        <div className="order-bar__right">
           <button
             className="order-search"
             aria-label="Search the menu"
@@ -405,9 +459,8 @@ export function OrderingExperience() {
             onClick={() => setCartOpen(true)}
             aria-label={`Open cart, ${cartCount} items`}
           >
-            <span className="material-symbols-outlined">shopping_bag</span>
+            <span className="material-symbols-outlined">shopping_cart</span>
             <b>{cartCount}</b>
-            <span className="hidden lg:inline">Your order</span>
           </button>
           <button
             className="order-menu-toggle"
@@ -417,6 +470,17 @@ export function OrderingExperience() {
             <span className="material-symbols-outlined">menu</span>
           </button>
         </div>
+      </div>
+      <header className="order-header">
+        <nav aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#menu" onClick={() => setActive('')}>
+            Menu
+          </a>
+          <a href="#categories">Categories</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </header>
       <div className={`order-mobile-nav ${menuOpen ? 'is-open' : ''}`}>
         <button onClick={() => setMenuOpen(false)} aria-label="Close navigation">
@@ -445,33 +509,110 @@ export function OrderingExperience() {
           View your order ({cartCount})
         </button>
       </div>
-      <section id="home" className="order-hero">
-        <div className="order-hero__copy">
-          <span>Orange Cloud Kitchen · Karachi</span>
-          <h1>
-            Big flavour,
-            <br />
-            <em>made for craving.</em>
-          </h1>
-          <p>Fresh burgers, wok-tossed favourites and smoky BBQ prepared after you order.</p>
-          <div>
-            <a href="#menu">
-              Order now <span>→</span>
-            </a>
-            <a className="order-hero__secondary" href="#categories">
-              Explore menu
-            </a>
-          </div>
-        </div>
-        <div className="order-hero__image">
+      <section
+        id="home"
+        className="order-hero"
+        aria-roledescription="carousel"
+        aria-label="Orange featured menu banners"
+        onMouseEnter={() => setHeroPaused(true)}
+        onMouseLeave={() => setHeroPaused(false)}
+        onFocus={() => setHeroPaused(true)}
+        onBlur={() => setHeroPaused(false)}
+        onTouchStart={(event) => {
+          heroTouchStart.current = event.touches[0].clientX;
+          setHeroPaused(true);
+        }}
+        onTouchEnd={(event) => {
+          if (heroTouchStart.current !== null) {
+            const distance = event.changedTouches[0].clientX - heroTouchStart.current;
+            if (Math.abs(distance) > 44) goHero(activeSlide + (distance < 0 ? 1 : -1));
+          }
+          heroTouchStart.current = null;
+          setHeroPaused(false);
+        }}
+      >
+        <div className="order-hero__logo" aria-hidden="true">
           <Image
-            src="/images/hero/hero-signature.svg"
-            alt="Orange signature food selection"
-            fill
+            src="/orange-cloud-kitchen.svg"
+            alt=""
+            width={132}
+            height={132}
             priority
-            sizes="(max-width: 768px) 100vw, 55vw"
           />
         </div>
+        <div className="order-hero__viewport">
+          {heroSlides.map((slide, index) => (
+            <article
+              key={slide._id}
+              className={`order-hero__slide ${index === activeSlide ? 'is-active' : ''}`}
+              aria-hidden={index !== activeSlide}
+            >
+              <picture className="order-hero__media">
+                {slide.mobileImageUrl && (
+                  <source media="(max-width: 767px)" srcSet={slide.mobileImageUrl} />
+                )}
+                <Image
+                  src={slide.imageUrl}
+                  alt={slide.title}
+                  fill
+                  priority={index === 0}
+                  sizes="100vw"
+                />
+              </picture>
+              <div className="order-hero__shade" />
+              <div className="order-hero__copy">
+                <span>Orange Cloud Kitchen · Karachi</span>
+                <h1>
+                  {slide.title}
+                  <br />
+                  <em>{slide.highlightedText}</em>
+                </h1>
+                <p>{slide.subtitle}</p>
+                <div>
+                  <a href={slide.ctaTarget || '#menu'}>
+                    {slide.ctaLabel || 'Order now'} <span>→</span>
+                  </a>
+                  <a className="order-hero__secondary" href="#categories">
+                    Explore menu
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        {heroCount > 1 && (
+          <>
+            <button
+              type="button"
+              className="order-hero__arrow order-hero__arrow--prev"
+              onClick={() => goHero(activeSlide - 1)}
+              aria-label="Previous banner"
+            >
+              <span className="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button
+              type="button"
+              className="order-hero__arrow order-hero__arrow--next"
+              onClick={() => goHero(activeSlide + 1)}
+              aria-label="Next banner"
+            >
+              <span className="material-symbols-outlined">chevron_right</span>
+            </button>
+            <div className="order-hero__dots" aria-label={`Banner ${activeSlide + 1} of ${heroCount}`}>
+              {heroSlides.map((slide, index) => (
+                <button
+                  key={slide._id}
+                  type="button"
+                  onClick={() => goHero(index)}
+                  aria-label={`Show banner ${index + 1}`}
+                  aria-current={index === activeSlide}
+                >
+                  <span className={index === activeSlide && !heroPaused ? 'is-running' : ''} />
+                </button>
+              ))}
+            </div>
+          </>
+        )}
       </section>
       <section id="categories" className="order-categories">
         <div className="order-section-title">
